@@ -1,0 +1,16 @@
+cd worker
+
+git add src/index.ts wrangler.jsonc
+(This stages the main code file and the wrangler configuration file).
+
+git status
+(You should see modified: src/index.ts and modified: wrangler.jsonc under "Changes to be committed").
+
+git commit -m "Update index to pull package features and price"
+Push to GitHub:
+
+git push
+Deploy to Cloudflare: Now that the code is committed and pushed, deploy it.
+
+npx wrangler deploy
+

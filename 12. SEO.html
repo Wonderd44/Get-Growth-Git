@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine Optimization (SEO) Services | Get Growth Media</title>
+    <meta name="description" content="Boost your organic visibility with expert Search Engine Optimization (SEO) services from Get Growth Media. Learn about technical, on-page, and off-page SEO strategies.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00;
+            --white: #FFFFFF;
+            --light-gray: #F7F8FA;
+            --black: #000000;
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7; /* Consistent line height */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+			padding-top: 160px; /* Adjust this value as needed */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px; /* Slightly narrower for content pages */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Horizontal padding */
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--border-light);
+        }
+        .content-section:last-child {
+            border-bottom: none;
+             padding-bottom: 8rem; /* More padding at the end */
+        }
+        .content-section.bg-light {
+             background-color: var(--light-gray); /* Alternate background */
+        }
+
+        /* Headings Styling based on Branding and SEO */
+        h1, h2, h3, h4 { /* Added h4 for deeper structure */
+            font-weight: 700; /* Bold headings */
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem; /* Space below headings */
+        }
+
+        h1 { /* H1 styling */
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem; /* Less margin before underline */
+        }
+
+        /* Neon green underline for H1 and H2 */
+        h1::after,
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: var(--neon-green);
+            margin: 1.5rem auto 3rem auto; /* Center and add space below */
+            border-radius: 2px;
+        }
+        h2.section-title::after {
+             margin-top: 1rem;
+             margin-bottom: 2.5rem;
+        }
+
+        h2 { /* H2 styling */
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+             margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+             text-align: center;
+        }
+
+
+        h3 { /* H3 styling */
+            font-size: clamp(1.4rem, 3.5vw, 1.8rem); /* Slightly larger H3 */
+            margin-bottom: 1.25rem;
+            margin-top: 2.5rem; /* Add space above H3 */
+            color: var(--dark-gray);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-light); /* Subtle separator */
+        }
+        h3:first-of-type {
+            margin-top: 0; /* Remove top margin for the first H3 in a section */
+        }
+
+
+        h4 { /* H4 Styling for sub-points */
+             font-size: 1.1rem;
+             font-weight: 600;
+             color: var(--dark-gray);
+             margin-bottom: 0.75rem;
+             margin-top: 1.5rem;
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit paragraph width for readability */
+        }
+        p.lead { /* Optional lead paragraph style */
+             font-size: 1.2rem;
+             color: var(--dark-gray);
+             margin-left: auto;
+             margin-right: auto;
+             text-align: center;
+             max-width: 800px;
+             margin-bottom: 3rem;
+        }
+         /* Center paragraphs directly under section titles */
+        h2.section-title + p {
+             text-align: center;
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 3rem;
+        }
+        /* Adjust max-width for content paragraphs */
+         .content-block p, .content-block li { /* This will apply to li within .content-block */
+             max-width: 800px;
+         }
+        section p:last-child {
+             margin-bottom: 0;
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            text-align: left; /* Default alignment for list text */
+        }
+
+        /* General list item styling (for all li elements) */
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            /* position: relative; and padding-left: 2rem; are now in .checklist li */
+        }
+
+        /* Styling specific to checklist items */
+        .checklist li {
+            position: relative; /* For positioning the pseudo-element */
+            padding-left: 2rem; /* Space for the custom checkmark */
+        }
+
+        /* Custom checkmark using pseudo-element, scoped to .checklist */
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px; /* Adjust vertical alignment */
+            width: 18px;
+            height: 18px;
+            background-color: var(--neon-green); /* Neon green checkmark for this page */
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Specific styling for the centered list container that contains a checklist */
+        .centered-list-container {
+            text-align: center; /* Center the container contents (like the ul.checklist) */
+        }
+         .centered-list-container ul.checklist {
+              display: inline-block; /* Allows centering of the list block */
+              /* text-align: left; is inherited from the general ul rule, ensuring li text starts left */
+         }
+         /* Other ul elements (not .checklist) in .centered-list-container would default to block if not further styled */
+
+
+        /* Styling for the SEO Pillars section */
+        .seo-pillars-section .container {
+             max-width: 900px; /* Allow slightly wider container for detailed content */
+        }
+        /* Ensure li within .content-block (like in SEO Pillars) don't get checkmarks unless they are also in a .checklist */
+        .content-block ul:not(.checklist) li {
+            padding-left: 0; /* Override if any padding was inherited or set by mistake */
+        }
+         .content-block ul:not(.checklist) li::before {
+            content: none; /* Explicitly remove ::before for non-checklist items in content-block */
+        }
+
+
+        /* Feature Grid Styling (Copied from Google Ads page for consistency if needed) */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .feature-item-card {
+            background-color: var(--white); padding: 2rem 1.8rem; border-radius: 10px;
+            border: 1px solid var(--border-light); box-shadow: 0 6px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07); }
+        .feature-item-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; border-bottom: none; display: flex; align-items: center; } /* Removed border from card H3 */
+        .feature-item-card h3 i { color: var(--neon-green); margin-right: 0.75rem; font-size: 1.5rem; width: 28px; text-align: center; }
+        .feature-item-card p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 0; }
+
+
+        /* Call to Action Section */
+        .cta-section {
+             text-align: center;
+             padding-top: 2rem; /* Space above CTAs */
+        }
+         .cta-section p {
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 2rem;
+         }
+
+        /* Button Styling (Based on Primary Button from Branding Guide) */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded style from header CTA */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green);
+            color: var(--black);
+            box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(174, 255, 0, 0.5); /* Enhanced hover shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+             h1::after, h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             h2.section-title::after {
+                 margin-top: 1.5rem;
+                 margin-bottom: 3rem;
+             }
+             li, .checklist li { /* Ensure consistent font size */
+                 font-size: 1.1rem;
+             }
+             p {
+                 font-size: 1.1rem;
+             }
+             .content-section {
+                 padding: 7rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 9rem;
+             }
+             .content-block p, .content-block li {
+                  max-width: none; /* Remove max-width constraint on wider screens if desired */
+             }
+        }
+
+        @media (min-width: 992px) {
+             .content-section {
+                 padding: 8rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 10rem;
+             }
+        }
+         /* Modal styles are loaded dynamically via modal-form.js */
+		 
+		 
+		 .cta-section .btn,
+.cta-section .btn-primary,
+.cta-section button.btn-primary {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px; /* updated */
+  height: 52px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: var(--neon-green);
+  color: var(--black);
+  box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+
+ <!--#include file="Header.html" -->
+
+ <section class="content-section">
+        <div class="container">
+            <h1>Search Engine Optimization (SEO)</h1>
+            <p class="lead">
+                Unlock sustainable growth and attract qualified customers organically with Search Engine Optimization (SEO). Unlike paid ads, SEO focuses on earning visibility in search engine results (like Google) through strategic website optimization and authority building. It's the foundation for long-term online success.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Why Invest in SEO?</h2>
+            <p>Effective SEO is crucial for any business aiming for lasting online presence. Key benefits include:</p>
+             <ul>
+                 <li><strong>Increased Organic Traffic:</strong> Attract visitors actively searching for solutions you offer, without paying per click.</li>
+                 <li><strong>Enhanced Credibility & Trust:</strong> Ranking highly in search results signals authority and trustworthiness to potential customers.</li>
+                 <li><strong>Higher Quality Leads:</strong> Organic visitors often have stronger intent, leading to better conversion rates compared to some other channels.</li>
+                 <li><strong>Cost-Effectiveness:</strong> While requiring upfront investment, SEO delivers compounding returns and can be more cost-effective than paid ads long-term.</li>
+                 <li><strong>Competitive Advantage:</strong> Outranking competitors in search results captures valuable market share.</li>
+                 <li><strong>Improved User Experience:</strong> Many SEO best practices (like site speed and mobile-friendliness) directly enhance how users interact with your site.</li>
+             </ul>
+        </div>
+    </section>
+
+    <section class="content-section seo-pillars-section">
+         <div class="container content-block">
+             <h2 class="section-title">The Pillars of Effective SEO</h2>
+             <p>Achieving sustainable SEO results requires a holistic approach focusing on three core pillars, based on principles outlined in our SEO Framework:</p>
+
+             <h3><i class="fas fa-cogs" style="color: var(--neon-green); margin-right: 0.75rem;"></i>Technical SEO: The Foundation</h3>
+             <p>Technical SEO ensures search engines can easily find, crawl, understand, and index your website content. It's the bedrock upon which all other SEO efforts are built.</p>
+             <h4>Key Areas:</h4>
+             <ul>
+                 <li><strong>Crawlability & Indexability:</strong> Ensuring search engine bots can access and add your site pages to their database (using tools like robots.txt and sitemaps).</li>
+                 <li><strong>Site Speed (Core Web Vitals):</strong> Optimizing loading performance (LCP, FID/INP, CLS) for better user experience and search rankings. This includes image optimization and code minification.</li>
+                 <li><strong>Mobile-Friendliness:</strong> Guaranteeing your site works flawlessly on all devices using responsive design.</li>
+                 <li><strong>HTTPS Security:</strong> Using secure connections (HTTPS) to protect user data and build trust.</li>
+                 <li><strong>Schema Markup:</strong> Implementing structured data to help search engines understand the context of your content, potentially earning rich results.</li>
+             </ul>
+
+             <h3><i class="fas fa-file-alt" style="color: var(--neon-green); margin-right: 0.75rem;"></i>On-Page SEO: Content & Relevance</h3>
+              <p>On-page SEO involves optimizing the actual content and HTML source code of your web pages to be relevant for target keywords and user-friendly.</p>
+              <h4>Key Areas:</h4>
+              <ul>
+                  <li><strong>Keyword Research:</strong> Identifying the terms and phrases your target audience uses to search for your products or services.</li>
+                  <li><strong>High-Quality Content Creation:</strong> Developing valuable, comprehensive, and engaging content that fully answers user search intent and demonstrates Expertise, Authoritativeness, and Trustworthiness (E-E-A-T).</li>
+                  <li><strong>Content Optimization:</strong> Naturally incorporating target keywords into page titles, headings, body text, and image alt text.</li>
+                  <li><strong>Title Tags & Meta Descriptions:</strong> Crafting compelling titles and descriptions that accurately represent page content and encourage clicks from search results.</li>
+                  <li><strong>Heading Structure (H1-H6):</strong> Organizing content logically with clear headings to improve readability and signal content hierarchy to search engines.</li>
+                  <li><strong>Internal Linking:</strong> Linking relevant pages within your own website to distribute authority and guide users.</li>
+              </ul>
+
+             <h3><i class="fas fa-link" style="color: var(--neon-green); margin-right: 0.75rem;"></i>Off-Page SEO: Authority & Trust</h3>
+             <p>Off-page SEO focuses on activities performed *outside* your website to build its authority, reputation, and trustworthiness in the eyes of search engines and users.</p>
+              <h4>Key Areas:</h4>
+              <ul>
+                  <li><strong>High-Quality Link Building:</strong> Earning backlinks from reputable, relevant websites signals to search engines that your content is valuable and trustworthy.</li>
+                  <li><strong>Local SEO (for applicable businesses):</strong> Optimizing your Google Business Profile, building local citations (mentions of your business name, address, phone number), and managing online reviews to improve visibility in local search results.</li>
+                  <li><strong>Content Promotion & Outreach:</strong> Sharing your valuable content to reach a wider audience and potentially earn natural links and mentions.</li>
+                  <li><strong>Building Brand Authority:</strong> Establishing your brand as a recognized expert and trusted resource within your industry.</li>
+              </ul>
+         </div>
+     </section>
+
+      <section class="content-section bg-light">
+          <div class="container" style="max-width: 850px;">
+               <h2 class="section-title">Our SEO Services</h2>
+               <p>Get Growth Media offers tailored SEO solutions designed to achieve measurable results, whether you're targeting a local audience or a national market.</p>
+                <ul>
+                     <li><strong>Local SEO:</strong> Perfect for businesses serving specific geographic areas. Includes Google Business Profile optimization, local keyword targeting, citation building, review management, and localized content strategies.</li>
+                     <li><strong>National SEO:</strong> Designed for businesses aiming for broader visibility across the country. Includes comprehensive keyword research, advanced on-page and technical SEO, high-quality link building strategies, competitor analysis, and content creation.</li>
+                 </ul>
+                 <p style="text-align: center; margin-top: 2rem;">Both packages include detailed monthly reporting and operate on our transparent, flat-rate model with no long-term contracts.</p>
+          </div>
+      </section>
+
+
+    <section class="content-section centered-list-container">
+        <div class="container" style="max-width: 850px;">
+             <h2 class="section-title">Why Partner with Get Growth Media for SEO?</h2>
+              <ul class="checklist">
+                 <li><strong>Data-Driven Strategies:</strong> We base our SEO plans on thorough research, competitor analysis, and performance data.</li>
+                 <li><strong>Focus on Sustainable Results:</strong> We employ ethical, white-hat SEO techniques aimed at long-term growth, not short-term tricks.</li>
+                 <li><strong>Transparent Reporting:</strong> Understand exactly what we're doing and the impact it's having with clear, regular reports.</li>
+                 <li><strong>Flat-Rate Pricing:</strong> Predictable monthly fees for comprehensive SEO services.</li>
+                 <li><strong>No Long-Term Contracts:</strong> We're confident in our ability to deliver results and earn your business every month.</li>
+                 <li><strong>Performance Guarantee:</strong> Our commitment to results is backed by a fair refund policy.</li>
+             </ul>
+        </div>
+    </section>
+
+    <section class="content-section cta-section bg-light">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Ready to Climb the Search Rankings?</h2>
+            <p>
+               Invest in the long-term success of your business with strategic Search Engine Optimization from <strong>Get Growth Media</strong>. Let's build your organic visibility and attract more qualified customers.
+            </p>
+            <div>
+                <a href="/#pricing" class="btn btn-primary">View SEO Packages</a>
+                <button id="openConsultationPopup" class="btn btn-primary">Request a Free SEO Audit</button>
+                </div>
+        </div>
+    </section>
+
+
+	
+					  <!--#include file="Footer.html" -->
+					  
+					  
+
+
+
+<!-- Modal Script -->
+<script src="Modal Files/modal-form.js"></script>
+<div id="modal-container"></div>
+	
+		  </body>
+</html>

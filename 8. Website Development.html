@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Development vs. Landing Pages | Get Growth Media</title>
+    <meta name="description" content="Understand the difference between website development and landing pages with Get Growth Media. Learn why professional website design is crucial for your new business website or starter website.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00; /* */
+            --white: #FFFFFF; /* */
+            --light-gray: #F7F8FA; /* */
+            --black: #000000; /* */
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0; /* */
+            --shadow-color: rgba(0, 0, 0, 0.05); /* */
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* */
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7; /* Consistent line height */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+			padding-top: 160px; /* Adjust this value as needed */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px; /* Slightly narrower for content pages */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Horizontal padding */
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--border-light);
+        }
+        .content-section:last-child {
+            border-bottom: none;
+             padding-bottom: 8rem; /* More padding at the end */
+        }
+        .content-section.bg-light {
+             background-color: var(--light-gray); /* Alternate background */
+        }
+
+        /* Headings Styling based on Branding and SEO */
+        h1, h2, h3 {
+            font-weight: 700; /* Bold headings */
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem; /* Space below headings */
+        }
+
+        h1 { /* H1 styling */
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem; /* Less margin before underline */
+        }
+
+        /* Neon green underline for H1 and H2 */
+        h1::after,
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: var(--neon-green); /* */
+            margin: 1.5rem auto 3rem auto; /* Center and add space below */
+            border-radius: 2px;
+        }
+        h2.section-title::after {
+             margin-top: 1rem;
+             margin-bottom: 2.5rem;
+        }
+
+        h2 { /* H2 styling */
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+             margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+             text-align: center;
+        }
+
+
+        h3 { /* H3 styling */
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray); /* */
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit paragraph width for readability */
+        }
+        p.lead { /* Optional lead paragraph style */
+             font-size: 1.2rem;
+             color: var(--dark-gray);
+             margin-left: auto;
+             margin-right: auto;
+             text-align: center;
+             max-width: 800px;
+             margin-bottom: 3rem;
+        }
+        section p:last-child {
+             margin-bottom: 0;
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0; /* Reset padding for the ul */
+            margin-bottom: 1.5rem;
+            text-align: left; /* Align text inside li to the left by default for all uls */
+            /* display: inline-block; removed from general ul */
+        }
+
+        /* General list item styling */
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            /* position: relative; and padding-left: 2rem; moved to .checklist li */
+        }
+        
+        /* Styling specific to checklist items */
+        .checklist li {
+            position: relative; /* For positioning the pseudo-element */
+            padding-left: 2rem; /* Space for the custom checkmark */
+        }
+
+        /* Custom bullet point using neon green check, scoped to .checklist */
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px; /* Adjust vertical alignment if needed */
+            width: 18px;
+            height: 18px;
+            background-color: var(--neon-green); /* */
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Specific styling for the centered list container */
+        .centered-list-container {
+            text-align: center; /* Center the container contents */
+        }
+        .centered-list-container ul.checklist {
+             display: inline-block; /* Ensures the ul shrinks to fit content, aiding centering */
+             /* text-align: left; is inherited from general ul rule */
+        }
+         /* .centered-list-container li { } */ /* No longer needed as .checklist li handles specifics */
+
+
+        /* Comparison Section Styling (Example) */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Stack on mobile */
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+        .comparison-item ul.checklist { /* Apply to checklists within comparison items */
+             margin-bottom: 0;
+             display: block; /* Override inline-block for this specific list, making it full width in its container */
+             /* text-align: left; is inherited from general ul rule */
+        }
+
+
+        /* Call to Action Section */
+        .cta-section {
+             text-align: center;
+             padding-top: 2rem; /* Space above CTAs */
+        }
+         .cta-section p {
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 2rem;
+         }
+
+        /* Button Styling (Based on Primary Button from Branding Guide) */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded style from header CTA */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green); /* */
+            color: var(--black); /* */
+            box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(174, 255, 0, 0.5); /* Enhanced hover shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr 1fr; /* Side-by-side */
+            }
+             h1::after, h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             h2.section-title::after {
+                 margin-top: 1.5rem;
+                 margin-bottom: 3rem;
+             }
+             /* Apply to general li and specifically to .checklist li for consistent font size */
+             li, .checklist li {
+                 font-size: 1.1rem;
+             }
+             p {
+                font-size: 1.1rem;
+             }
+             .content-section {
+                 padding: 7rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 9rem;
+             }
+        }
+
+        @media (min-width: 992px) {
+            .comparison-item {
+                padding: 2.5rem;
+            }
+             .content-section {
+                 padding: 8rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 10rem;
+             }
+        }
+        /* Modal styles are now loaded dynamically via modal-form.js */
+		
+		
+.cta-section .btn,
+.cta-section .btn-primary,
+.cta-section button.btn-primary {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px; /* updated */
+  height: 52px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: var(--neon-green);
+  color: var(--black);
+  box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+
+ <!--#include file="Header.html" -->
+
+ <section class="content-section">
+        <div class="container">
+            <h1>Website Development: More Than Just a Page</h1>
+            <p class="lead">
+                Launching a new business or establishing your online presence? You've probably heard terms like "website" and "landing page" thrown around. While both are vital digital assets, understanding their distinct roles is key to maximizing your online impact. Let's dive into the world of <strong>website development</strong> and clarify exactly what you need to succeed.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Landing Page vs. Website: What's the Difference?</h2>
+            <p style="text-align: center; margin-left: auto; margin-right:auto; margin-bottom: 3rem;">Think of it like this: a landing page is a focused sprint, while a website is a comprehensive journey.</p>
+
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>Landing Pages: The Focused Conversion Tool</h3>
+                    <p>A landing page is a <em>single web page</em> designed with one specific goal in mind – conversion. This goal could be:</p>
+                    <ul class="checklist">
+                        <li>Capturing leads (e.g., email sign-ups for a newsletter)</li>
+                        <li>Promoting a specific product or service</li>
+                        <li>Registering users for an event or webinar</li>
+                        <li>Driving downloads of a resource (e.g., ebook, guide)</li>
+                    </ul>
+                    <p><strong>Key Characteristics:</strong> Singular Focus, Targeted Message, Clear Call-to-Action (CTA), Campaign-Specific.</p>
+                    <p><strong>Why Important:</strong> Highly effective for marketing campaigns due to focused nature, leading to higher conversion rates for specific offers.</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h3>Websites: Your Comprehensive Digital Hub</h3>
+                    <p>A website is a <em>collection of multiple interconnected web pages</em> (like homepage, about, services, contact, blog) under one domain. It's the central digital hub for your business.</p>
+                     <ul class="checklist">
+                        <li>Caters to various user needs</li>
+                        <li>Provides comprehensive brand/service info</li>
+                        <li>Features site navigation to explore</li>
+                        <li>Builds long-term trust and authority</li>
+                    </ul>
+                     <p><strong>Key Characteristics:</strong> Multiple Pages & Goals, Navigation, Broad Information, Brand Building.</p>
+                     <p><strong>Why Important:</strong> Crucial for trust, authority, allowing research, and foundational for broader <strong>search engine optimization (SEO)</strong>. Essential for any <strong>new business website</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+         <div class="container centered-list-container" style="max-width: 850px;">
+             <h2 class="section-title">Do You Need a Landing Page, a Website, or Both?</h2>
+             <p>The answer depends on your immediate goals:</p>
+             <ul class="checklist">
+                 <li><strong>Launching a specific marketing campaign?</strong> You <em>need</em> a targeted landing page.</li>
+                 <li><strong>Building a foundational online presence?</strong> You <em>need</em> comprehensive <strong>website development</strong>. This is your <strong>starter website</strong>.</li>
+                 <li><strong>Running ads AND want a central brand hub?</strong> You ideally need <em>both</em>.</li>
+             </ul>
+             <p style="margin-top: 2rem;">Think of your website as your digital storefront and headquarters, while landing pages are like promotional kiosks set up for specific events or sales.</p>
+         </div>
+     </section>
+
+    <section class="content-section bg-light">
+        <div class="container" style="max-width: 850px;">
+             <h2 class="section-title">Why Professional Website Design Matters</h2>
+             <p style="text-align: center; margin-left: auto; margin-right: auto;">Whether it's a single landing page or a multi-page site, professional <strong>website design</strong> is non-negotiable. Here's why investing in quality <strong>website development</strong> pays off:</p>
+             <ul class="checklist">
+                 <li><strong>First Impressions:</strong> A clean, modern design builds immediate trust.</li>
+                 <li><strong>User Experience (UX):</strong> Ensures easy navigation, fast loading, and mobile-friendliness for engagement and SEO.</li>
+                 <li><strong>SEO Performance:</strong> Technically sound sites incorporating best practices rank better.</li>
+                 <li><strong>Conversion Rates:</strong> Well-designed sites guide users effectively towards your goals.</li>
+                 <li><strong>Brand Consistency:</strong> Aligns your online presence with your overall brand identity.</li>
+             </ul>
+        </div>
+    </section>
+
+    <section class="content-section cta-section">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Get Growth Media: Your Partner in Website Development</h2>
+            <p>
+                At <strong>Get Growth Media</strong>, we specialize in <strong>website development</strong> that combines stunning, user-friendly <strong>website design</strong> with powerful SEO strategies. Whether you need a high-converting landing page or a robust <strong>starter website</strong> to launch your <strong>new business website</strong>, we provide transparent, value-driven solutions.
+            </p>
+             <p>
+                 <strong>Our Offerings:</strong><br>
+                 ✓ High-Converting Landing Pages<br>
+                 ✓ Affordable Starter Websites<br>
+                 ✓ Scalable Growth Websites (E-commerce, etc.)
+             </p>
+            <p>Ready to build an online presence that drives real growth?</p>
+            <div>
+                <a href="/#pricing" class="btn btn-primary">View Web Development Packages</a>
+                <button id="openConsultationPopup" class="btn btn-primary">Schedule a Free Consultation</button>
+                </div>
+        </div>
+    </section>
+
+
+
+	 
+	  <!--#include file="Footer.html" -->
+	
+
+<!-- Modal Script -->
+<script src="Modal Files/modal-form.js"></script>
+<div id="modal-container"></div>
+	  
+	  
+	  </body>
+</html>

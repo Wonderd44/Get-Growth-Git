@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Get Growth Media</title>
+    <meta name="description" content="Learn about Get Growth Media's story, approach and team. Founded by a business owner for business owners, we provide transparent, results-driven digital marketing.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+ 
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00; /* */
+            --white: #FFFFFF; /* */
+            --light-gray: #F7F8FA; /* */
+            --black: #000000; /* */
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0; /* */
+            --shadow-color: rgba(0, 0, 0, 0.05); /* */
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* */
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7; /* Consistent line height */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-top: 160px; /* Adjust this value as needed */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px; /* Slightly narrower for content pages */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Horizontal padding */
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--border-light);
+        }
+        .content-section:last-child {
+            border-bottom: none;
+            padding-bottom: 8rem; /* More padding at the end */
+        }
+        .content-section.bg-light {
+            background-color: var(--light-gray); /* Alternate background */
+        }
+
+        /* Headings Styling based on Branding and SEO */
+        h1, h2, h3 {
+            font-weight: 700; /* Bold headings */
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem; /* Space below headings */
+        }
+
+        h1 { /* H1 styling */
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem; /* Less margin before underline */
+        }
+
+        /* Neon green underline for H1 and H2 */
+        h1::after,
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: var(--neon-green); /* */
+            margin: 1.5rem auto 3rem auto; /* Center and add space below */
+            border-radius: 2px;
+        }
+        h2.section-title::after {
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h2 { /* H2 styling */
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+            text-align: center;
+        }
+
+
+        h3 { /* H3 styling */
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray); /* */
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit paragraph width for readability */
+        }
+        p.lead { /* Optional lead paragraph style */
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+        section p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0; /* Reset padding for the ul */
+            margin-bottom: 1.5rem;
+            text-align: left; /* Align text inside li to the left by default for all uls */
+        }
+
+        /* General list item styling */
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+        
+        /* Styling specific to checklist items */
+        .checklist li {
+            position: relative; /* For positioning the pseudo-element */
+            padding-left: 2rem; /* Space for the custom checkmark */
+        }
+
+        /* Custom bullet point using neon green check, scoped to .checklist */
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px; /* Adjust vertical alignment if needed */
+            width: 18px;
+            height: 18px;
+            background-color: var(--neon-green); /* */
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Specific styling for the centered list container */
+        .centered-list-container {
+            text-align: center; /* Center the container contents */
+        }
+        .centered-list-container ul.checklist {
+            display: inline-block; /* Ensures the ul shrinks to fit content, aiding centering */
+        }
+
+        /* Team Section Styling */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Stack on mobile */
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 20px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            text-align: center;
+            padding-top: 2rem; /* Space above CTAs */
+        }
+        .cta-section p {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+        }
+
+        /* Button Styling (Based on Primary Button from Branding Guide) */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded style from header CTA */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green); /* */
+            color: var(--black); /* */
+            box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(174, 255, 0, 0.5); /* Enhanced hover shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr 1fr; /* Side-by-side */
+            }
+            h1::after, h2.section-title::after {
+                margin: 2rem auto 4rem auto;
+            }
+            h2.section-title::after {
+                margin-top: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            /* Apply to general li and specifically to .checklist li for consistent font size */
+            li, .checklist li {
+                font-size: 1.1rem;
+            }
+            p {
+                font-size: 1.1rem;
+            }
+            .content-section {
+                padding: 7rem 0;
+            }
+            .content-section:last-child {
+                padding-bottom: 9rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .team-item {
+                padding: 2.5rem;
+            }
+            .content-section {
+                padding: 8rem 0;
+            }
+            .content-section:last-child {
+                padding-bottom: 10rem;
+            }
+        }
+        
+        .cta-section .btn,
+        .cta-section .btn-primary,
+        .cta-section button.btn-primary {
+            all: unset;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 320px; /* updated */
+            height: 52px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: var(--neon-green);
+            color: var(--black);
+            box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+            text-decoration: none;
+            white-space: nowrap;
+            box-sizing: border-box;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+        
+        /* About Us specific styles */
+        .founder-photo {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+            border-radius: 10px;
+            margin: 0 auto 2rem;
+            display: block;
+            box-shadow: 0 8px 20px var(--shadow-color);
+            border: 1px solid var(--border-light);
+        }
+        
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .principle-item {
+            background-color: var(--white);
+            padding: 1.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 20px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .principle-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .principle-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 2rem;
+            display: inline-block;
+        }
+        
+        .principle-item h3::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--neon-green);
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+        
+        @media (min-width: 768px) {
+            .principles-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+ <!--#include file="Header.html" -->
+
+    <section class="content-section">
+        <div class="container">
+            <h1>Our Story</h1>
+            <p class="lead">
+                Get Growth Media was born from a business owner's journey to find effective marketing solutions. Today, we help other businesses achieve real, measurable growth through transparent digital marketing strategies.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">The Beginning</h2>
+            <p style="text-align: center; margin-left: auto; margin-right: auto;">
+                At Get Growth Media, we started with a simple observation: small and medium businesses were being underserved by traditional marketing agencies. Too often, they were locked into expensive contracts with hidden fees, confusing reports, and disappointing results.
+            </p>
+            <p style="text-align: center; margin-left: auto; margin-right: auto;">
+                Our founder knows this challenge firsthand. As a business owner struggling to find effective marketing solutions for his own company, he took matters into his own hands. After diving deep into digital marketing strategies, he not only transformed his business but discovered a genuine passion for the craft. This journey led him to pursue professional certifications in Google Ads and Meta Ads, mastering the platforms that drive modern business growth.
+            </p>
+            <p style="text-align: center; margin-left: auto; margin-right: auto;">
+                Get Growth Media was born in 2020 from this personal experience – created by a business owner, for business owners. We understand your challenges because we've lived them. Our approach is built on the belief that effective digital marketing should be accessible to all businesses, not just those with massive budgets.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Our Approach</h2>
+            <p style="text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 0;">We built Get Growth Media on three core principles that continue to guide everything we do:</p>
+            
+            <div class="principles-grid">
+                <div class="principle-item">
+                    <h3>Transparency First</h3>
+                    <p>We display our pricing upfront, we don't lock you into long-term contracts, and we never hit you with surprise fees. What you see is what you get – straightforward digital marketing that works.</p>
+                </div>
+                
+                <div class="principle-item">
+                    <h3>Results Matter</h3>
+                    <p>We're obsessed with measurable outcomes. Our team doesn't hide behind marketing jargon or confusing metrics. Instead, we focus on the numbers that actually impact your business: more leads, more customers, and more revenue.</p>
+                </div>
+                
+                <div class="principle-item">
+                    <h3>Growth Partners</h3>
+                    <p>We see ourselves as an extension of your team, not just a vendor. We celebrate your wins as our own and take responsibility when adjustments are needed. If we don't perform, we'll refund our fee – that's how confident we are in our ability to deliver results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Our Team</h2>
+            <p style="text-align: center; margin-left: auto; margin-right: auto;">
+                Our team brings together certified experts in Google Ads, Meta advertising, web development, and SEO. Led by our founder's hands-on business experience and marketing expertise, we approach each client's needs with both technical skill and entrepreneurial understanding.
+            </p>
+            <p style="text-align: center; margin-left: auto; margin-right: auto;">
+                What sets us apart is our unique perspective – we've sat on both sides of the table. We know what it's like to run a business AND what it takes to market one effectively. This dual insight allows us to create strategies that align perfectly with your business goals and operational realities.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container centered-list-container" style="max-width: 850px;">
+            <h2 class="section-title">Our Promise to You</h2>
+            <p>When you work with Get Growth Media, you can expect:</p>
+            <ul class="checklist">
+                <li>A partnership with people who understand the challenges of running a business</li>
+                <li>Transparent pricing with no hidden fees or long-term contracts</li>
+                <li>Regular reporting that shows exactly what's working (and what's not)</li>
+                <li>A proactive approach that adapts to changing market conditions</li>
+                <li>Real, measurable results that impact your bottom line</li>
+            </ul>
+            <p style="margin-top: 2rem; text-align: center; margin-left: auto; margin-right: auto;">
+                We believe that great digital marketing shouldn't be complicated or expensive. It should be accessible, effective, and focused on driving real business growth – something we've proven not just for our clients, but in our own business journey.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section cta-section bg-light">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Ready to Grow Your Business?</h2>
+            <p>
+                Let's talk about how Get Growth Media can help you reach your goals with our transparent, results-driven approach to digital marketing.
+            </p>
+            <div>
+                <a href="#services-section-link" class="btn btn-primary">View Our Services</a>
+                <button id="openConsultationPopup" class="btn btn-primary">Schedule a Free Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-container"></div>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="modal-form.js"></script>
+    
+				  <!--#include file="Footer.html" -->
+
+</body>
+</html>

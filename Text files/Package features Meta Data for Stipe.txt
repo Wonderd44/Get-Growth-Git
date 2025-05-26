@@ -1,0 +1,248 @@
+Repeat this for all 10 of your products, adding the correct features_json metadata key and JSON array value to each one.
+(Optional) Add Category: To easily split items into "Web Design" and "Marketing" grids, add another metadata key:
+Key: category
+Value: webdesign (for web packages) or marketing (for marketing packages).
+
+Landing Page:::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Single-page design", "Mobile-responsive layout", "Custom branding", "SEO optimization", "Contact form integration", "1 round of revisions", "Google Analytics integration", "Domain & hosting setup", "SSL certificate", "7-day delivery"]
+
+Deliverables on Checkout
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+
+Single-page design
+Mobile-responsive layout
+Custom branding
+SEO optimization
+Contact form integration
+1 round of revisions
+Basic analytics setup
+Domain & hosting setup
+SSL certificate
+7-day delivery
+
+Starter Website:::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Up to 5 pages", "Mobile-responsive layout", "Custom branding", "SEO optimization", "Contact form integration", "2 round of revisions", "Google Analytics integration", "Domain & hosting setup", "SSL certificate", "14-day delivery"]
+
+Deliverables on Checkout
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+
+Up to 5 pages
+Mobile-responsive design
+Custom branding
+SEO optimization
+Contact & lead forms
+2 rounds of revisions
+Google Analytics integration
+Domain & hosting setup
+SSL certificate
+14-day delivery
+
+
+Business Website:::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Up to 15 pages", "Advanced responsive design", "Custom branding", "Advanced SEO optimization", "Contact/Lead form integrations", "3 round of revisions", "Google Analytics integration", "Domain & hosting setup", "SSL certificate", "30-day delivery"]
+
+Deliverables on Checkout
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+
+Up to 15 pages
+Advanced responsive design
+Custom branding & UI/UX
+Advanced SEO optimization
+E-commerce or booking system
+3 rounds of revisions
+Advanced analytics & tracking
+Domain & hosting setup
+SSL certificate
+30-day delivery
+
+
+
+
+
+
+Meta Ads:::::::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Complete ad build-out", "3-5 ads per Campaign", "No Limit on Ad spend", "Reporting Setup", "Conversion Tracking Support", "Lead Generation Ads", "Messenger Ads", "Instagram Ads", "Conversion Ads", "Retargeting Ads", "Turn Around time 3-4 days"]
+
+Weekly Optimization tasks:
+weekly_features_json
+["Conversion Analysis", "Budget Management / Pacing", "Audience Testing", "Under Performing Ads / Ad Sets"]
+
+Deliverables on Checkout
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+
+Package Includes:
+Complete ad build-out
+3-5 ads per Campaign
+No Limit on Ad spend
+Reporting Setup
+Conversion Tracking Support
+Lead Generation Ads
+Messenger Ads
+Instagram Ads
+Conversion Ads
+Retargeting Ads
+Turn Around time 3-4 days
+
+Conversion Analysis
+Budget Management / Pacing
+Audience Testing
+Pause Under Performing Ads / Ad Sets
+
+
+
+
+Google Ads::::::::::::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Complete ad build-out", "3-5 ads per Campaign", "No Limit on Ad spend", "Keyword Research", "Reporting Setup", "Conversion Tracking Support", "Search Campaigns", "Remarketing Campaigns", "Shopping Campaigns", "Performance Max Campaigns", "Ad Extensions", "Turn Around time 3-4 days"]
+
+Weekly Optimization tasks:
+weekly_features_json
+["Conversion Analysis", "Budget Management / Pacing", "(A/B Ad Split Testing)", "Audience Testing", "Bid Management", "Negative Keywords", "Search Terms Report Analysis", "Extension Testing", "Pause Under Performing Ads", "Pause Under Performing Keywords"]
+
+Deliverables on Checkout
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+
+Package Includes:
+Complete ad build-out
+3-5 ads per Campaign
+No Limit on Ad spend
+Keyword Research
+Reporting Setup
+Conversion Tracking Support
+Search Campaigns
+Remarketing Campaigns
+Shopping Campaigns
+Performance Max Campaigns
+Ad Extensions
+Turn Around time 3-4 days
+
+Weekly Optimization Tasks:
+Conversion Analysis
+Budget Management / Pacing
+(A/B Ad Split Testing)
+Audience Testing
+Bid Management
+Negative Keywords
+Search Terms Report Analysis
+Extension Testing
+Pause Under Performing Ads
+Pause Under Performing Keywords
+
+Local SEO:::::::::::::::::::::::::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Rank Report Setup", "GeoGrid Rank Report Setup", "Campaign Setup", "Keyword Research", "Priority Keywords = 5", "Total Keywords = No Limit", "Google Analytics Setup / Access", "Google Search Console Setup / Access", "AHREFs Setup"]
+
+On-Site SEO:
+onsite_features_json
+["Internal Linking Optimizations", "Title Tags & Meta Description Optimizations", "Header Tag Optimizations", "Sitemap Verification", "Robots.txt Verification", "Media Room Setup", "Schema Creation & Setup"]
+
+Off-Site SEO:
+offsite_features_json
+["Link Building 30+ Referring Domains", "DA 30+ Guest Posts"]
+
+Google Business Profile:
+gmb_features_json
+["GBP Setup / Review", "Create / Access GBP Listing", "Directory Submissions (Yext or Uberall)", "GBP Audit", "GBP Posts Creation", "GBP Services & Products Setup", "GBP Description Optimization", "GBP Image Uploads", "GBP Q&A Responses", "GBP Attributes Review", "GBP Locking"]
+
+Deliverables:
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+Package Includes:
+Rank Report Setup
+GeoGrid Rank Report Setup
+Campaign Setup
+Keyword Research
+Priority Keywords = 5
+Total Keywords = No Limit
+Google Analytics Setup / Access
+Google Search Console Setup / Access
+AHREFs Setup
+
+On-site SEO:
+Internal Linking Optimizations
+Title Tags & Meta Description Optimizations
+Header Tag Optimizations
+Sitemap Verification
+Robots.txt Verification
+Media Room Setup
+Schema Creation & Setup
+
+Off-site SEO/ Month:
+Link Building 30+ Referring Domains
+DA 30+ Guest Posts
+
+Google Business Profile:
+GBP Setup / Review
+Create / Access GBP Listing
+Directory Submissions (Yext or Uberall)
+GBP Audit
+GBP Posts Creation
+GBP Services & Products Setup
+GBP Description Optimization
+GBP Image Uploads
+GBP Q&A Responses
+GBP Attributes Review
+GBP Locking
+
+
+National SEO:::::::::::::::::::::::::::::::::::::::::
+Package Includes:
+features_json
+["Rank Report Setup", "GeoGrid Rank Report Setup", "Campaign Setup", "Keyword Research", "Priority Keywords = 5", "Total Keywords = No Limit", "Google Analytics Setup / Access", "Google Search Console Setup / Access", "AHREFs Setup"]
+
+On-Site SEO:
+features_json
+["Internal Linking Optimizations", "Title Tags & Meta Description Optimizations", "Header Tag Optimizations", "Sitemap Verification", "Robots.txt Verification", "Media Room Setup", "Schema Creation & Setup"]
+
+Off-Site SEO:
+offsite_features_json
+["Link Building 60+ Referring Domains", "DA 60+ Guest Posts"]
+
+Deliverables:
+deliverables_features_json
+["Full deliverables document on Checkout page"]
+
+Package Includes:
+Rank Report Setup
+GeoGrid Rank Report Setup
+Campaign Setup
+Keyword Research
+Priority Keywords = 5
+Total Keywords = No Limit
+Google Analytics Setup / Access
+Google Search Console Setup / Access
+AHREFs Setup
+
+On-site SEO:
+Internal Linking Optimizations
+Title Tags & Meta Description Optimizations
+Header Tag Optimizations
+Sitemap Verification
+Robots.txt Verification
+Media Room Setup
+Schema Creation & Setup
+
+Off-site SEO/ Month:
+Link Building 30+ Referring Domains
+DA 30+ Guest Posts

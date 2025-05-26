@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Pricing Section - Get Growth Media</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles (Keep existing) --- */
+        :root {
+            --neon-green: #AEFF00;
+            --white: #FFFFFF;
+            --light-gray: #F7F8FA;
+            --white-card: #FFFFFF;
+            --black: #000000;
+            --dark-gray: #1A202C;
+            --medium-gray: #667185;
+            --border-light: #E2E8F0;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            --disabled-color: #D1D5DB;
+            --disabled-text-color: #9CA3AF;
+            /* NEW: Define max height for features */
+            --features-max-height: 280px; /* Adjust this value as needed */
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--white); color: var(--dark-gray); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .pricing-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(174, 255, 0, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(174, 255, 0, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(174, 255, 0, 0.3); }
+        }
+
+        .pricing-section { padding: 8rem 0; background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); overflow: hidden; position: relative; }
+        .pricing-section-header { text-align: center; margin-bottom: 4rem; opacity: 0; animation: fadeInSlideUp 0.8s ease-out forwards; position: relative; z-index: 1; }
+        .pricing-section-header h2 { font-size: 2.8rem; font-weight: 800; color: var(--dark-gray); margin-bottom: 1.25rem; letter-spacing: -1px; position: relative; display: inline-block; }
+        .pricing-section-header h2::after { content: ""; display: block; width: 60px; height: 4px; background: var(--neon-green); margin: 1.75rem auto; border-radius: 2px; }
+        .pricing-section-header p { font-size: 1.1rem; color: var(--medium-gray); line-height: 1.75; max-width: 750px; margin: 0 auto; }
+        .pricing-service-category { margin-bottom: 5rem; position: relative; z-index: 1; }
+        .pricing-service-category:last-child { margin-bottom: 0; }
+
+        .pricing-category-title { text-align: center; margin-bottom: 1.5rem; position: relative; opacity: 0; animation: fadeInSlideUp 0.8s ease-out 0.2s forwards; }
+        .pricing-category-title h3 { font-size: 2rem; font-weight: 700; color: var(--dark-gray); display: inline-block; background: transparent; padding: 0 1.5rem; position: relative; z-index: 1; }
+        .pricing-category-title::after { content: ""; position: absolute; top: 50%; left: 5%; right: 5%; height: 1px; background: var(--border-light); z-index: 0; }
+
+        /* --- Scroller Container Styles --- */
+        .pricing-scroller-container { position: relative; opacity: 0; animation: fadeInSlideUp 0.8s ease-out 0.4s forwards; }
+
+        /* --- Flexbox Scroller Base Styles (Keep existing) --- */
+        .pricing-grid, .marketing-grid {scroll-padding-left: 2rem; display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; gap: 2rem; margin-top: 1.5rem; padding: 10px 0 20px; scroll-behavior: smooth; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none; min-height: 100px; align-items: flex-start !important; /* Prevent cards from stretching to match tallest card */ }
+        .pricing-grid::-webkit-scrollbar, .marketing-grid::-webkit-scrollbar { display: none; }
+        .pricing-grid > .pricing-card, .marketing-grid > .pricing-card {
+    overflow: hidden;
+    border-radius: 12px; flex: 0 0 85%; scroll-snap-align: start; margin: 0; 
+    }
+
+.pricing-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--neon-green);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+.pricing-card:hover::before {
+    transform: scaleX(1);
+}
+
+        .marketing-grid > .pricing-card { flex: 0 0 90%; 
+    }
+        .pricing-grid, .marketing-grid {scroll-padding-left: 2rem; padding-left: calc(50% - 85% / 2); padding-right: calc(50% - 85% / 2); }
+        .marketing-grid {scroll-padding-left: 2rem; padding-left: calc(50% - 90% / 2); padding-right: calc(50% - 90% / 2); }
+        @media (min-width: 577px) {
+            .pricing-grid, .marketing-grid {scroll-padding-left: 2rem; padding-left: calc(50% - 75% / 2); padding-right: calc(50% - 75% / 2); }
+            .pricing-grid > .pricing-card { flex: 0 0 75%; 
+    }
+            .marketing-grid > .pricing-card { flex: 0 0 85%; 
+    }
+            .marketing-grid {scroll-padding-left: 2rem; padding-left: calc(50% - 85% / 2); padding-right: calc(50% - 85% / 2); }
+        }
+        @media (min-width: 769px) {
+            .pricing-grid, .marketing-grid {scroll-padding-left: 2rem; padding-left: calc(50% - (50% - 1rem)); padding-right: calc(50% - (50% - 1rem)); }
+            .pricing-grid > .pricing-card { flex: 0 0 calc(50% - 1rem); 
+    }
+            .marketing-grid > .pricing-card { flex: 0 0 calc(65% - 1rem); 
+    }
+            .marketing-grid {scroll-padding-left: 2rem; padding-left: calc(50% - (65% - 1rem) / 2); padding-right: calc(50% - (65% - 1rem) / 2); }
+        }
+        @media (min-width: 993px) {
+             #webGrid { padding-left: 0; padding-right: 0; justify-content: center; overflow-x: visible; scroll-snap-type: none; }
+             #webGrid > .pricing-card { flex-basis: calc(26.67% - 1.34rem); flex-grow: 0; flex-shrink: 0; scroll-snap-align: start; 
+    }
+             #marketingGrid { padding-left: 0; padding-right: 0; justify-content: start; overflow-x: visible; scroll-snap-type: none; }
+             #marketingGrid > .pricing-card { flex-basis: calc(26.67% - 1.34rem); flex-grow: 0; flex-shrink: 0; scroll-snap-align: start; 
+    }
+        }
+        @media (min-width: 1201px) {
+             #marketingGrid > .pricing-card { flex-basis: calc(26.67% - 1.34rem); 
+    }
+        }
+
+        /* Pricing Card Styling (Keep existing, add feature list styles) */
+        .pricing-card { background-color: var(--white-card); border: 1px solid var(--border-light); border-radius: 12px; padding: 2.5rem; text-align: center; box-shadow: 0 8px 25px var(--shadow-color); position: relative;  min-width: 280px; display: flex; flex-direction: column; isolation: isolate; /* Create stacking context for proper z-index behavior */
+    }
+        .pricing-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: var(--neon-green); transform: scaleX(0); transform-origin: center; transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; }
+        
+        /* Add invisible hover buffer to prevent bouncing at edges */
+        .pricing-card::after {
+            content: "";
+            position: absolute;
+            top: -5px; /* Extend above card too */
+            bottom: -20px; /* Larger buffer below card */
+            left: -5px; /* Extend on sides */
+            right: -5px;
+            pointer-events: auto; /* Make it part of the hover area */
+            z-index: -1; /* Behind the card */
+        }
+        
+        .pricing-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+}
+        .pricing-card:hover::before { transform: scaleX(1); }
+        .pricing-card h3 { font-size: 1.4rem; font-weight: 700; color: var(--dark-gray); margin-bottom: 1rem; }
+        .pricing-card .price { font-size: 2.5rem; font-weight: 800; color: var(--dark-gray); margin-bottom: 1rem; line-height: 1.1; position: relative; display: inline-block; }
+        .pricing-card .price::after { content: none; }
+        .price-frequency { display: block; font-size: 0.9rem; font-weight: 500; color: var(--medium-gray); margin-top: 0.25rem; margin-bottom: 1.5rem; }
+
+        /* --- NEW: Feature List Control --- */
+        .features-list-wrapper {
+            margin-bottom: 1.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+            text-align: left;
+            padding-left: 0;
+            margin: 0;
+        }
+        
+        /* Collapsed state - show only limited features */
+        .features-list-collapsed {
+            display: block;
+        }
+        
+        /* Expanded state - show all features */
+        .features-list-expanded {
+            display: none;
+        }
+        
+        /* When expanded class is added, swap visibility */
+        .features-list-wrapper.expanded .features-list-collapsed {
+            display: none;
+        }
+        
+        .features-list-wrapper.expanded .features-list-expanded {
+            display: block;
+        }
+
+        .features-list li { font-size: 0.95rem; color: var(--medium-gray); margin-bottom: 0.85rem; position: relative; padding-left: 1.8rem; line-height: 1.5; }
+        .features-list li::before { content: ""; position: absolute; left: 0; top: 4px; width: 16px; height: 16px; background-color: var(--neon-green); mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>'); mask-repeat: no-repeat; mask-size: contain; }
+        .features-list li.feature-title { list-style: none; padding-left: 0; font-weight: 600; margin-top: 0.8em; margin-bottom: 0.4em; color: var(--dark-gray); }
+        .features-list li.feature-title::before { display: none; content: none; }
+
+        /* --- NEW: Toggle Features Button --- */
+        .toggle-features-btn {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            background-color: var(--white-card);
+            border: 1px solid var(--border-light);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .toggle-features-btn:hover {
+            background-color: var(--light-gray);
+            color: var(--black);
+        }
+        .toggle-features-btn svg {
+            width: 16px;
+            height: 16px;
+            margin-left: 6px;
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Rotate chevron when expanded */
+        .toggle-features-btn.expanded svg {
+             transform: rotate(180deg);
+        }
+        /* Hide button if features list is short (handled by JS) */
+        .toggle-features-btn.hidden {
+            display: none;
+        }
+
+
+        /* --- Main CTA Button (Existing) --- */
+        .pricing-card .pricing-btn {
+            width: 100%;
+            max-width: 220px;
+            margin: 0 auto; /* Keep centered */
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            text-decoration: none;
+            margin-top: 0; /* Removed margin-top: auto; handled by wrapper */
+        }
+        .pricing-btn { padding: 0.9rem 1.8rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1); border: none; text-align: center; min-width: 130px; }
+        .pricing-btn-primary { background-color: var(--neon-green); color: var(--black); box-shadow: 0 4px 10px rgba(174, 255, 0, 0.3); }
+        .pricing-btn-secondary { background-color: #6b7280; color: var(--white); box-shadow: 0 4px 10px rgba(107, 114, 128, 0.3); }
+        .pricing-btn:hover { transform: translateY(-3px); }
+        .pricing-btn-primary:hover { box-shadow: 0 7px 18px rgba(174, 255, 0, 0.4); }
+        .pricing-btn-secondary:hover { box-shadow: 0 7px 18px rgba(107, 114, 128, 0.4); }
+        .pricing-btn.disabled { background-color: #ccc !important; color: #666 !important; cursor: default !important; box-shadow: none !important; pointer-events: none; }
+        .pricing-btn.disabled:hover { transform: none !important; box-shadow: none !important; }
+
+        /* Scroll Button Styling (Keep existing) */
+        .button-container { display: flex; justify-content: center; align-items: center; margin-top: 0; margin-bottom: 1.5rem; position: relative; z-index: 5; min-height: 40px; }
+        .scroll-button { padding: 10px 16px; background-color: var(--disabled-color); border: none; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; cursor: not-allowed; font-weight: 600; font-size: 0.9rem; color: var(--disabled-text-color); transition: all 0.3s ease; box-shadow: none; margin: 0 6px; opacity: 0.7; }
+        .scroll-button:not(.disabled) { background-color: var(--neon-green); color: var(--black); cursor: pointer; opacity: 1; box-shadow: 0 4px 15px rgba(174, 255, 0, 0.3); animation: pulse 1.5s infinite ease-in-out; }
+        .scroll-button svg { width: 18px; height: 18px; margin: 0 4px; stroke: currentColor; }
+        .scroll-button:not(.disabled):hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 20px rgba(174, 255, 0, 0.5); }
+        .scroll-button:not(.disabled):active { transform: translateY(0) scale(0.98); box-shadow: 0 2px 10px rgba(174, 255, 0, 0.4); animation: none; }
+        .scroll-button.disabled { background-color: var(--disabled-color) !important; color: var(--disabled-text-color) !important; cursor: not-allowed !important; opacity: 0.7 !important; box-shadow: none !important; animation: none !important; transform: none !important; }
+        .scroll-button.disabled:hover { transform: none !important; box-shadow: none !important; }
+        .scroll-button[disabled] { background-color: var(--disabled-color) !important; color: var(--disabled-text-color) !important; cursor: not-allowed !important; opacity: 0.7 !important; box-shadow: none !important; animation: none !important; transform: none !important; }
+        .scroll-button[disabled]:hover { transform: none !important; box-shadow: none !important; }
+        
+        /* Hide buttons completely when no scrolling is needed (desktop) */
+        @media (min-width: 769px) {
+            .button-container.no-scroll-needed {
+                display: none !important;
+            }
+        }
+
+        /* Responsive Adjustments (Keep existing) */
+        @media (max-width: 768px) { .pricing-section { padding: 6rem 0; } .pricing-section-header h2 { font-size: 2.4rem; } .pricing-category-title h3 { font-size: 1.8rem; } .pricing-card { padding: 2rem; 
+    } .pricing-card h3 { font-size: 1.3rem; } .pricing-card .price { font-size: 2.2rem; } }
+        @media (max-width: 480px) { .pricing-container {
+    width: 100%;
+    margin: 0 auto;
+} .pricing-section { padding: 5rem 0; } .pricing-section-header h2 { font-size: 2.1rem; } .pricing-category-title h3 { font-size: 1.6rem; } .pricing-scroller-container { padding: 0; } .pricing-card { padding: 1.8rem; 
+    } .pricing-card h3 { font-size: 1.25rem; } .pricing-card .price { font-size: 2rem; } .features-list li { font-size: 0.9rem; } }
+    
+/* OVERRIDE padding to expand visible width without affecting cards */
+.pricing-grid,
+.marketing-grid {scroll-padding-left: 2rem;
+    padding-left: 1rem !important;
+    padding-right: 0 !important;
+}
+
+
+#webGrid > .pricing-card,
+#marketingGrid > .pricing-card {
+    flex: 0 0 calc(26.67% - 1.34rem) !important;
+    max-width: calc(26.67% - 1.34rem) !important;
+    min-width: calc(26.67% - 1.34rem) !important;
+}
+
+#webGrid > .pricing-card,
+#marketingGrid > .pricing-card {
+    flex: 0 0 360px !important;
+    max-width: 360px !important;
+    min-width: 360px !important;
+}
+
+@media (max-width: 768px) {
+  .pricing-grid,
+  .marketing-grid {
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 50%;
+  }
+
+  .pricing-card {
+    scroll-snap-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-grid,
+  .marketing-grid {
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    scroll-padding-right: 0;
+    display: flex;
+  }
+
+  .pricing-card {
+    scroll-snap-align: center !important;
+  }
+
+  .pricing-grid::before,
+  .pricing-grid::after,
+  .marketing-grid::before,
+  .marketing-grid::after {
+    content: "";
+    flex: 0 0 50%;
+  }
+}
+
+.scroll-sentinel{width:1px;height:1px}
+    </style>
+</head>
+<body>
+ <section class="pricing-section" id="pricing">
+        <div class="pricing-container">
+            <div class="pricing-section-header">
+                <h2>Our Services & Pricing</h2>
+                <p>Choose the perfect package to grow your business with our transparent, value-driven solutions. We're so confident in our services that if we don't perform, we'll refund our fee.</p>
+            </div>
+
+            <div class="pricing-service-category">
+                <div class="pricing-category-title">
+                    <h3>Web Design Services</h3>
+                </div>
+                <div class="pricing-scroller-container webdesign-container">
+                    <div class="button-container">
+                        <button class="scroll-button" id="webLeftButton"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg> </button>
+                        <button class="scroll-button" id="webRightButton"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg> </button>
+                    </div>
+                    <div class="pricing-grid" id="webGrid">
+                        <p id="webGridLoading" style="padding: 20px; text-align: center; width: 100%;">Loading Web Design Packages...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-service-category">
+                <div class="pricing-category-title">
+                    <h3>Marketing Services</h3>
+                </div>
+                 <div class="pricing-scroller-container marketing-container">
+                     <div class="button-container">
+                         <button class="scroll-button" id="marketingLeftButton"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg> </button>
+                         <button class="scroll-button" id="marketingRightButton"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg> </button>
+                     </div>
+                    <div class="marketing-grid" id="marketingGrid">
+                         <p id="marketingGridLoading" style="padding: 20px; text-align: center; width: 100%;">Loading Marketing Packages...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script>
+        // --- Dynamic Package Loading Script ---
+        (function() { // Wrap in IIFE
+            // --- Configuration ---
+            const backendUrl = 'https://worker.danwellington44.workers.dev'; // !!! VERIFY THIS !!!
+            const checkoutPageUrl = '/Checkout/checkout.html'; // Relative path to your checkout page
+            const featuresMaxHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--features-max-height') || '150'); // Get max height from CSS variable
+            // ---------------------
+
+            const webGrid = document.getElementById('webGrid');
+            const marketingGrid = document.getElementById('marketingGrid');
+            const webGridLoading = document.getElementById('webGridLoading');
+            const marketingGridLoading = document.getElementById('marketingGridLoading');
+
+            // Helper to format price (Keep existing)
+            function formatPrice(amount, currency, isRecurring, packageName) {
+                try {
+                    const formattedAmount = (amount / 100).toLocaleString(undefined, {
+                        style: 'currency', currency: currency.toUpperCase(), minimumFractionDigits: 0, maximumFractionDigits: 0
+                    });
+                    let frequencyText = '';
+                    if (isRecurring) {
+                        const lowerCaseName = packageName?.toLowerCase() || '';
+                        if (lowerCaseName.includes('meta') || lowerCaseName.includes('google')) { frequencyText = '+ad spend / month'; }
+                        else { frequencyText = '/ month'; }
+                    } else { frequencyText = 'One-time payment'; }
+                    const frequencySpan = amount > 0 ? `<span class="price-frequency">${frequencyText}</span>` : '<span class="price-frequency">Contact Us</span>';
+                    return amount === 0 ? 'Contact Us' : `${formattedAmount}${frequencySpan}`;
+                } catch (e) { console.warn("Could not format currency", e); return `${(amount/100).toFixed(0)} ${currency.toUpperCase()}`; }
+            }
+
+            // Simple HTML escaping helper (Keep existing)
+            function escapeHtml(unsafe) { if (typeof unsafe !== 'string' || !unsafe) return ''; return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
+
+            // Function to create feature lists HTML - both collapsed and expanded versions
+            function createFeaturesHtmlAndCount(pkg) {
+                const maxCollapsedFeatures = 8; // Show only first 8 features in collapsed state
+                let collapsedHtml = '<ul class="features-list features-list-collapsed">';
+                let expandedHtml = '<ul class="features-list features-list-expanded">';
+                let featureCount = 0;
+                let collapsedFeatureCount = 0;
+                
+                const featureSections = [
+                    { key: 'features', title: null },
+                    { key: 'deliverables_features', title: 'Deliverables:' },
+                    { key: 'weekly_features', title: 'Weekly Tasks:' },
+                    { key: 'onsite_features', title: 'On-Site SEO:' },
+                    { key: 'offsite_features', title: 'Off-Site SEO:' },
+                    { key: 'gmb_features', title: 'GMB Features:' }
+                ];
+                
+                featureSections.forEach(section => {
+                    const features = pkg[section.key];
+                    if (features && Array.isArray(features) && features.length > 0) {
+                        if (section.title) {
+                            // Add section title to both versions
+                            const titleHtml = `<li class="feature-title">${escapeHtml(section.title)}</li>`;
+                            expandedHtml += titleHtml;
+                            if (collapsedFeatureCount < maxCollapsedFeatures) {
+                                collapsedHtml += titleHtml;
+                            }
+                        }
+                        features.forEach(feature => {
+                            const featureHtml = `<li>${escapeHtml(feature)}</li>`;
+                            expandedHtml += featureHtml; // Always add to expanded
+                            
+                            // Only add to collapsed if under limit
+                            if (collapsedFeatureCount < maxCollapsedFeatures) {
+                                collapsedHtml += featureHtml;
+                                collapsedFeatureCount++;
+                            }
+                            featureCount++;
+                        });
+                    }
+                });
+                
+                if (featureCount === 0) {
+                    const noFeaturesHtml = '<li>Contact us for feature details.</li>';
+                    collapsedHtml += noFeaturesHtml;
+                    expandedHtml += noFeaturesHtml;
+                }
+                
+                collapsedHtml += '</ul>';
+                expandedHtml += '</ul>';
+                
+                // If all features fit in collapsed view, no need for toggle
+                const needsToggle = featureCount > maxCollapsedFeatures;
+                
+                return { 
+                    html: collapsedHtml + expandedHtml, 
+                    count: featureCount,
+                    needsToggle: needsToggle
+                };
+            }
+
+            // Function to create a single pricing card HTML (MODIFIED)
+            function createPricingCard(pkg) {
+                const card = document.createElement('div');
+                card.classList.add('pricing-card');
+                if (pkg.recurring) { card.classList.add('subscription'); }
+                else { card.classList.add('one-time'); }
+
+                // Create features lists and get count
+                const { html: featuresHtml, count: featureCount, needsToggle } = createFeaturesHtmlAndCount(pkg);
+
+                // Create toggle button HTML (show only if needed)
+                const toggleButtonHtml = needsToggle ? `
+                    <button class="toggle-features-btn" aria-expanded="false">
+                        See All Features
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+                    </button>
+                ` : '';
+
+                // Create main CTA button HTML
+                const buttonText = pkg.recurring ? 'Subscribe' : 'Purchase';
+                const buttonHref = pkg.amount > 0 ? `${checkoutPageUrl}?priceId=${pkg.priceId}` : '#';
+                let buttonClasses = 'pricing-btn pricing-btn-primary';
+                let buttonStyle = '';
+                let buttonContent = buttonText;
+                let anchorAttributes = `href="${buttonHref}" class="${buttonClasses}"`;
+                if (pkg.amount === 0) {
+                    buttonClasses = 'pricing-btn pricing-btn-secondary disabled';
+                    buttonStyle = 'cursor: default;';
+                    anchorAttributes = `href="#" onclick="event.preventDefault(); return false;" class="${buttonClasses}" style="${buttonStyle}"`;
+                    buttonContent = 'Contact Us';
+                }
+                const mainButtonHtml = `<a ${anchorAttributes}>${buttonContent}</a>`;
+
+                // Assemble the card content
+                const descriptionHtml = pkg.description ? `<p style="font-size: 0.9em; color: var(--medium-gray); margin-bottom: 1.5rem;">${escapeHtml(pkg.description)}</p>` : '';
+                card.innerHTML = `
+                    <h3>${escapeHtml(pkg.name)}</h3>
+                    ${descriptionHtml}
+                    <div class="price">${formatPrice(pkg.amount, pkg.currency, pkg.recurring, pkg.name)}</div>
+                    <div class="features-list-wrapper">
+                        ${featuresHtml}
+                        ${toggleButtonHtml}
+                    </div>
+                    ${mainButtonHtml}
+                `;
+
+                // No additional logic needed - button visibility is handled during creation
+
+                return card;
+            }
+
+            // --- NEW: Event Listener for Toggle Buttons ---
+            function handleFeatureToggle(event) {
+                const toggleButton = event.target.closest('.toggle-features-btn');
+                if (!toggleButton) return; // Click wasn't on a toggle button
+
+                const card = toggleButton.closest('.pricing-card');
+                if (!card) return;
+
+                const featuresWrapper = card.querySelector('.features-list-wrapper');
+                if (!featuresWrapper) return;
+
+                const isCurrentlyExpanded = featuresWrapper.classList.contains('expanded');
+                
+                if (isCurrentlyExpanded) {
+                    // Collapsing: show collapsed version, hide expanded version
+                    featuresWrapper.classList.remove('expanded');
+                    toggleButton.classList.remove('expanded');
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                    toggleButton.childNodes[0].nodeValue = 'See All Features ';
+                } else {
+                    // Expanding: show expanded version, hide collapsed version
+                    featuresWrapper.classList.add('expanded');
+                    toggleButton.classList.add('expanded');
+                    toggleButton.setAttribute('aria-expanded', 'true');
+                    toggleButton.childNodes[0].nodeValue = 'Show Less ';
+                }
+            }
+
+            // Add delegated event listeners to grids
+            if (webGrid) webGrid.addEventListener('click', handleFeatureToggle);
+            if (marketingGrid) marketingGrid.addEventListener('click', handleFeatureToggle);
+
+
+            // Fetch packages and render cards (MODIFIED to add feature check)
+            async function loadPackages() {
+                console.log("Fetching packages from:", `${backendUrl}/api/packages`);
+                try {
+                    const response = await fetch(`${backendUrl}/api/packages`);
+                    if (!response.ok) { let errorMsg = `Failed to fetch packages: ${response.status} ${response.statusText}`; try { const errData = await response.json(); if (errData.error) errorMsg = errData.error; } catch(e) {} throw new Error(errorMsg); }
+                    let packages = await response.json();
+                    console.log("Received packages:", packages);
+                    if (Array.isArray(packages)) { packages.sort((a, b) => { if (a.amount === 0 && b.amount !== 0) return 1; if (b.amount === 0 && a.amount !== 0) return -1; if (a.amount === 0 && b.amount === 0) return 0; return a.amount - b.amount; }); console.log("Sorted packages:", packages); }
+                    if(webGridLoading) webGridLoading.remove(); if(marketingGridLoading) marketingGridLoading.remove(); if (!webGrid || !marketingGrid) { console.error("Grid containers not found"); return; } webGrid.innerHTML = ''; marketingGrid.innerHTML = ''; if (!Array.isArray(packages) || packages.length === 0) { webGrid.innerHTML = '<p>No packages currently available.</p>'; marketingGrid.innerHTML = '<p>No packages currently available.</p>'; return; } let webHasCards = false; let marketingHasCards = false; packages.forEach(pkg => {
+                        const cardElement = createPricingCard(pkg); // This now includes the toggle button logic
+                        if (pkg.category === 'webdesign') { webGrid.appendChild(cardElement); webHasCards = true; }
+                        else if (pkg.category === 'marketing') { marketingGrid.appendChild(cardElement); marketingHasCards = true; }
+                        else { console.warn(`Package ${pkg.name} missing known category ('${pkg.category}'), adding to Web Design grid.`); webGrid.appendChild(cardElement); webHasCards = true; }
+                    });
+                    if (!webHasCards) webGrid.innerHTML = '<p>No Web Design packages currently available.</p>';
+                    if (!marketingHasCards) marketingGrid.innerHTML = '<p>No Marketing packages currently available.</p>';
+
+                    // Re-initialize scrollers AFTER cards are added and potentially measured
+                    if (typeof window.initializePageScrollers === 'function') {
+                        console.log("Re-initializing scrollers after package load...");
+                        requestAnimationFrame(() => {
+                            // First, ensure the global scrollers are set up if they weren't already
+                            // or if this is the first time packages are loaded.
+                            window.initializePageScrollers(); 
+
+                            // Then, specifically re-initialize each scroller instance
+                            // to correctly calculate new dimensions and reset scroll.
+                            if (window.webScroller && typeof window.webScroller.reInitialize === 'function') {
+                                window.webScroller.reInitialize();
+                            }
+                            if (window.marketingScroller && typeof window.marketingScroller.reInitialize === 'function') {
+                                window.marketingScroller.reInitialize();
+                            }
+
+                            // A final update after a delay can still be beneficial for edge cases.
+                            setTimeout(() => {
+                                console.log("Final state update check after package load and re-init.");
+                                if (window.webScroller?.update) window.webScroller.update();
+                                if (window.marketingScroller?.update) window.marketingScroller.update();
+                            }, 500);
+                        });
+                    } else { console.warn("Scroller initialization function (initializePageScrollers) not found on window object."); }
+
+                } catch (error) {
+                    console.error("Error loading packages:", error);
+                     const errorMsg = `Error loading packages: ${error.message}. Please try refreshing the page.`;
+                     if(webGridLoading) webGridLoading.remove(); if(webGrid) webGrid.innerHTML = `<p style="color: red; padding: 20px;">${escapeHtml(errorMsg)}</p>`;
+                     if(marketingGridLoading) marketingGridLoading.remove(); if(marketingGrid) marketingGrid.innerHTML = `<p style="color: red; padding: 20px;">${escapeHtml(errorMsg)}</p>`;
+                }
+            }
+
+            // Run the package loading logic
+            if (document.readyState === 'complete' || document.readyState === 'interactive') { loadPackages(); }
+            else { document.addEventListener('DOMContentLoaded', loadPackages); }
+
+        })(); // End of IIFE wrapper for dynamic loading script
+    </script>
+
+    <script>
+    // === Robust Scroll Button Management ===
+    (function() {
+        let scrollers = new Map();
+
+        class ScrollController {
+                         constructor(gridId, leftBtnId, rightBtnId) {
+                 this.grid = document.getElementById(gridId);
+                 this.leftBtn = document.getElementById(leftBtnId);
+                 this.rightBtn = document.getElementById(rightBtnId);
+                 this.buttonContainer = this.leftBtn ? this.leftBtn.parentElement : null;
+                 this.gridId = gridId;
+                
+                if (!this.grid || !this.leftBtn || !this.rightBtn) {
+                    console.warn(`ScrollController: Missing elements for ${gridId}`);
+                    return;
+                }
+
+                                 this.scrollAmount = 0;
+                 this.isScrolling = false;
+                 this.updateTimeout = null;
+                 this.mobileUpdateTimeout = null;
+                 this.isTouching = false;
+                
+                this.init();
+            }
+
+                         init() {
+                 // Prevent duplicate initialization
+                 if (this.grid.dataset.scrollControllerInit) return;
+                 this.grid.dataset.scrollControllerInit = 'true';
+
+                 // Bind event listeners
+                 this.leftBtn.addEventListener('click', () => this.scrollLeft());
+                 this.rightBtn.addEventListener('click', () => this.scrollRight());
+                 
+                 // Use passive listeners for better performance
+                 this.grid.addEventListener('scroll', () => this.onScroll(), { passive: true });
+                 window.addEventListener('resize', () => this.onResize(), { passive: true });
+
+                 // Mobile touch event handling for better scroll detection
+                 this.grid.addEventListener('touchstart', () => this.onTouchStart(), { passive: true });
+                 this.grid.addEventListener('touchend', () => this.onTouchEnd(), { passive: true });
+
+                 // Add intersection observer for mobile
+                 if (window.innerWidth <= 768) {
+                     this.setupMobileObserver();
+                     this.startMobileMonitoring();
+                 }
+
+                 // Initial state - always start at left position
+                 this.resetToStart();
+             }
+
+                         resetToStart() {
+                 // Force scroll to start and update buttons
+                 this.grid.scrollLeft = 0;
+                 
+                 const isMobile = window.innerWidth <= 768;
+                 
+                 if (isMobile) {
+                     // Mobile: Force immediate button state
+                     this.setButtonState(this.leftBtn, true);  // Always disable left at start
+                     this.setButtonState(this.rightBtn, false); // Enable right if there's content
+                     
+                     // Then do a proper check after a delay
+                     setTimeout(() => {
+                         this.updateButtonStates();
+                     }, 100);
+                     
+                     setTimeout(() => {
+                         this.updateButtonStates();
+                     }, 300);
+                 } else {
+                     // Desktop: Immediate check for whether buttons are needed at all
+                     requestAnimationFrame(() => {
+                         this.updateButtonStates();
+                     });
+                     
+                     // Additional check after content loads
+                     setTimeout(() => {
+                         this.updateButtonStates();
+                     }, 100);
+                 }
+             }
+
+            scrollLeft() {
+                if (this.leftBtn.disabled || this.isScrolling) return;
+                
+                this.isScrolling = true;
+                const scrollAmount = Math.min(this.grid.clientWidth * 0.8, this.grid.scrollLeft);
+                
+                this.grid.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+
+                // Reset scrolling flag after animation
+                setTimeout(() => {
+                    this.isScrolling = false;
+                    this.updateButtonStates();
+                }, 500);
+            }
+
+            scrollRight() {
+                if (this.rightBtn.disabled || this.isScrolling) return;
+                
+                this.isScrolling = true;
+                const maxScroll = this.grid.scrollWidth - this.grid.clientWidth;
+                const remainingScroll = maxScroll - this.grid.scrollLeft;
+                const scrollAmount = Math.min(this.grid.clientWidth * 0.8, remainingScroll);
+                
+                this.grid.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+
+                // Reset scrolling flag after animation
+                setTimeout(() => {
+                    this.isScrolling = false;
+                    this.updateButtonStates();
+                }, 500);
+            }
+
+                         onScroll() {
+                 // Different timing for mobile vs desktop
+                 const isMobile = window.innerWidth <= 768;
+                 
+                 // Immediate update if not on mobile or not currently touching
+                 if (!isMobile || !this.isTouching) {
+                     const delay = isMobile ? 30 : 10;
+                     
+                     if (this.updateTimeout) {
+                         clearTimeout(this.updateTimeout);
+                     }
+                     
+                     this.updateTimeout = setTimeout(() => {
+                         this.updateButtonStates();
+                     }, delay);
+                 }
+
+                 // Additional delayed check for mobile momentum scrolling
+                 if (isMobile) {
+                     if (this.mobileUpdateTimeout) {
+                         clearTimeout(this.mobileUpdateTimeout);
+                     }
+                     this.mobileUpdateTimeout = setTimeout(() => {
+                         this.updateButtonStates();
+                     }, this.isTouching ? 300 : 150);
+                 }
+             }
+
+             onResize() {
+                 // Debounce resize updates
+                 if (this.updateTimeout) {
+                     clearTimeout(this.updateTimeout);
+                 }
+                 
+                 this.updateTimeout = setTimeout(() => {
+                     // Reset scroll position and update button states
+                     // This ensures proper button visibility after resize
+                     this.grid.scrollLeft = 0;
+                     this.updateButtonStates();
+                 }, 100);
+             }
+
+             onTouchStart() {
+                 // User started touching - clear any pending updates
+                 if (this.mobileUpdateTimeout) {
+                     clearTimeout(this.mobileUpdateTimeout);
+                 }
+                 this.isTouching = true;
+             }
+
+             onTouchEnd() {
+                 // User stopped touching - wait for momentum scrolling to settle
+                 this.isTouching = false;
+                 
+                 // Immediate update
+                 this.updateButtonStates();
+                 
+                 // Multiple aggressive checks at different intervals
+                 setTimeout(() => this.updateButtonStates(), 50);
+                 setTimeout(() => this.updateButtonStates(), 150);
+                 setTimeout(() => this.updateButtonStates(), 300);
+                 setTimeout(() => this.updateButtonStates(), 500);
+                 setTimeout(() => this.updateButtonStates(), 800);
+                 
+                 // Final failsafe check
+                 setTimeout(() => {
+                     this.forceButtonVisualUpdate();
+                 }, 1000);
+             }
+
+             updateButtonStates() {
+                 if (!this.grid || !this.leftBtn || !this.rightBtn) return;
+
+                 const isMobile = window.innerWidth <= 768;
+                 
+                 if (isMobile) {
+                     // Mobile: Use intersection observer approach
+                     this.updateButtonStatesMobile();
+                 } else {
+                     // Desktop: Use scroll position approach
+                     this.updateButtonStatesDesktop();
+                 }
+             }
+
+             updateButtonStatesDesktop() {
+                 const scrollLeft = Math.round(this.grid.scrollLeft);
+                 const scrollWidth = this.grid.scrollWidth;
+                 const clientWidth = this.grid.clientWidth;
+                 const maxScroll = scrollWidth - clientWidth;
+
+                 // Check if scrolling is possible at all
+                 const canScroll = maxScroll > 5;
+
+                 if (!canScroll) {
+                     // All content fits in view - hide buttons completely on desktop
+                     this.setButtonState(this.leftBtn, true);
+                     this.setButtonState(this.rightBtn, true);
+                     if (this.buttonContainer) {
+                         this.buttonContainer.classList.add('no-scroll-needed');
+                     }
+                     return;
+                 }
+
+                 // Content overflows - show buttons and update their states
+                 if (this.buttonContainer) {
+                     this.buttonContainer.classList.remove('no-scroll-needed');
+                 }
+
+                 const atStart = scrollLeft <= 5;
+                 const atEnd = scrollLeft >= (maxScroll - 5);
+
+                 this.setButtonState(this.leftBtn, atStart);
+                 this.setButtonState(this.rightBtn, atEnd);
+             }
+
+             updateButtonStatesMobile() {
+                 // Get all cards
+                 const cards = this.grid.querySelectorAll('.pricing-card');
+                 if (cards.length === 0) {
+                     this.setButtonState(this.leftBtn, true);
+                     this.setButtonState(this.rightBtn, true);
+                     return;
+                 }
+
+                 const containerRect = this.grid.getBoundingClientRect();
+                 const containerLeft = containerRect.left;
+                 const containerRight = containerRect.right;
+                 const containerWidth = containerRect.width;
+
+                 // Check first card visibility (left button state)
+                 const firstCard = cards[0];
+                 const firstCardRect = firstCard.getBoundingClientRect();
+                 const firstCardVisible = firstCardRect.left >= (containerLeft - 50); // 50px tolerance
+
+                 // Check last card visibility (right button state)
+                 const lastCard = cards[cards.length - 1];
+                 const lastCardRect = lastCard.getBoundingClientRect();
+                 const lastCardVisible = lastCardRect.right <= (containerRight + 50); // 50px tolerance
+
+                 // More aggressive check: if first card is mostly visible, disable left
+                 const firstCardMostlyVisible = firstCardRect.left >= (containerLeft - 20);
+                 
+                 // More aggressive check: if last card is mostly visible, disable right
+                 const lastCardMostlyVisible = lastCardRect.right <= (containerRight + 20);
+
+                 this.setButtonState(this.leftBtn, firstCardMostlyVisible);
+                 this.setButtonState(this.rightBtn, lastCardMostlyVisible);
+
+                 // Force immediate visual update
+                 this.forceButtonVisualUpdate();
+             }
+
+             forceButtonVisualUpdate() {
+                 // Force re-render of button styles
+                 requestAnimationFrame(() => {
+                     [this.leftBtn, this.rightBtn].forEach(btn => {
+                         if (btn.disabled && !btn.classList.contains('disabled')) {
+                             btn.classList.add('disabled');
+                         } else if (!btn.disabled && btn.classList.contains('disabled')) {
+                             btn.classList.remove('disabled');
+                         }
+                     });
+                 });
+             }
+
+             setupMobileObserver() {
+                 // Create intersection observer to watch when grid becomes visible
+                 this.observer = new IntersectionObserver((entries) => {
+                     entries.forEach(entry => {
+                         if (entry.isIntersecting) {
+                             // Grid is visible, force button state update
+                             setTimeout(() => this.updateButtonStates(), 100);
+                             setTimeout(() => this.forceButtonVisualUpdate(), 200);
+                         }
+                     });
+                 }, {
+                     threshold: 0.1
+                 });
+                 
+                 this.observer.observe(this.grid);
+                 
+                 // Also observe the button container
+                 const buttonContainer = this.leftBtn.parentElement;
+                 if (buttonContainer) {
+                     this.observer.observe(buttonContainer);
+                 }
+             }
+
+             startMobileMonitoring() {
+                 // Continuous monitoring for mobile (aggressive approach)
+                 this.mobileMonitor = setInterval(() => {
+                     if (window.innerWidth <= 768) {
+                         this.updateButtonStates();
+                         this.forceButtonVisualUpdate();
+                     } else {
+                         // Switch to desktop, stop mobile monitoring
+                         clearInterval(this.mobileMonitor);
+                     }
+                 }, 2000); // Check every 2 seconds
+                 
+                 // Also check after any user interaction
+                 ['click', 'touchstart', 'scroll', 'resize'].forEach(eventType => {
+                     window.addEventListener(eventType, () => {
+                         if (window.innerWidth <= 768) {
+                             setTimeout(() => {
+                                 this.updateButtonStates();
+                                 this.forceButtonVisualUpdate();
+                             }, 100);
+                         }
+                     }, { passive: true });
+                 });
+             }
+
+            setButtonState(button, disabled) {
+                if (button.disabled !== disabled) {
+                    button.disabled = disabled;
+                    if (disabled) {
+                        button.classList.add('disabled');
+                    } else {
+                        button.classList.remove('disabled');
+                    }
+                }
+            }
+
+            reInitialize() {
+                // Reset initialization flag and reinitialize
+                if (this.grid) {
+                    this.grid.dataset.scrollControllerInit = '';
+                }
+                this.init();
+                this.resetToStart();
+            }
+
+            update() {
+                this.updateButtonStates();
+            }
+        }
+
+        function initializeScrollControllers() {
+            // Clear existing controllers
+            scrollers.clear();
+
+            // Initialize web design scroller
+            const webScroller = new ScrollController('webGrid', 'webLeftButton', 'webRightButton');
+            if (webScroller.grid) {
+                scrollers.set('web', webScroller);
+                window.webScroller = webScroller; // Expose globally for package loader
+            }
+
+            // Initialize marketing scroller
+            const marketingScroller = new ScrollController('marketingGrid', 'marketingLeftButton', 'marketingRightButton');
+            if (marketingScroller.grid) {
+                scrollers.set('marketing', marketingScroller);
+                window.marketingScroller = marketingScroller; // Expose globally for package loader
+            }
+
+            
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeScrollControllers);
+        } else {
+            initializeScrollControllers();
+        }
+
+        // Expose global function for package loader
+        window.initializePageScrollers = initializeScrollControllers;
+
+        // Expose re-initialization function
+        window.reconnectScrollers = function() {
+            setTimeout(() => {
+                scrollers.forEach(scroller => {
+                    if (scroller.reInitialize) {
+                        scroller.reInitialize();
+                    }
+                });
+            }, 100);
+        };
+
+    })();
+    </script>
+
+</body>
+</html>

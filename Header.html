@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoped Header</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+	
+	
+	<!-- MICROSOFT CLARITY -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "rk266zcg2z");
+</script>
+
+<!-- Google ANALYTICS TAG MANAGER (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4TQQ2SBZ1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q4TQQ2SBZ1');
+</script>
+	
+</head>
+<body>
+
+<div class="site-header">
+  <header>
+    <style>
+      /* Root variables remain global */
+      :root {
+        --neon-green: #AEFF00;
+        --white: #FFFFFF;
+        --light-gray: #F8F8F8;
+        --black: #000000;
+        --gray-border: #e0e0e0;
+        /* Brand Colors */
+        --google-blue: #4285F4;
+        --google-red: #EA4335;
+        --google-yellow: #FBBC05;
+        --google-green: #34A853;
+        --meta-blue: #0082fb;
+      }
+      
+      /* Universal selector scoped to .site-header */
+      .site-header * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
+      
+      /* Scoped header styles */
+      .site-header header {
+        position: fixed;
+        top: 30px;           /* Maintains the 48px distance from the top of the viewport */
+        left: 20px;          /* Adds 20px space from the left edge of the viewport */
+        right: 20px;         /* Adds 20px space from the right edge of the viewport */
+        background-color: var(--white);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Optional: slightly adjusted shadow for a "lifted" look */
+        z-index: 100;
+        border-radius: 15px; /* Adjust this value for more or less rounded corners */
+      }
+      
+      .site-header .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 100%; 
+        padding: 1rem 2rem; 
+        box-sizing: border-box; 
+      }
+      
+      .site-header .logo-container {
+        display: flex;
+        align-items: center;
+      }
+      
+      .site-header .logo {
+        height: 70px;
+        width: auto;
+        transition: transform 0.3s ease;
+      }
+      
+      .site-header .logo:hover {
+        transform: scale(1.05);
+      }
+      
+      .site-header .nav-links {
+        display: flex;
+        gap: 3.8rem;
+        list-style: none;
+      }
+      
+      .site-header .nav-links > li {
+        position: relative;
+      }
+      
+      .site-header .nav-links a {
+        text-decoration: none;
+        color: var(--black);
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.3s ease; 
+        position: relative;
+        padding-bottom: 6px; 
+      }
+      
+      .site-header .nav-links a:hover {
+        color: var(--neon-green);
+      }
+      
+      .site-header .nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0px; 
+        left: 0;
+        background-color: var(--neon-green);
+        transition: width 0.3s ease;
+      }
+      
+      .site-header .nav-links a:hover::after {
+        width: 100%;
+      }
+      
+      .site-header .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--white);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 1rem 0;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        margin-top: 10px; 
+        transition: opacity 0.3s ease, visibility 0.3s ease; 
+        z-index: 1000;
+        list-style: none;
+      }
+      
+      .site-header .dropdown-menu li {
+        padding: 0.5rem 1.5rem;
+        list-style: none;
+      }
+      
+      .site-header .dropdown-menu a {
+        display: block;
+        white-space: nowrap;
+        color: var(--black);
+        padding-bottom: 0; 
+        transition: color 0.3s ease; 
+      }
+
+      .site-header .dropdown-menu a::after {
+        content: none; 
+      }
+      
+      .site-header .dropdown-menu a:hover {
+        color: var(--neon-green);
+      }
+      
+      .site-header .nav-links > li:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .site-header .cta-button {
+        background-color: var(--neon-green);
+        color: var(--black);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-weight: 700;
+        font-size: 1rem;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        text-align: center;
+      }
+      
+      .site-header .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(174, 255, 0, 0.4);
+      }
+      
+      .site-header .cta-button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 6px rgba(174, 255, 0, 0.3);
+      }
+      
+      .site-header .mobile-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .site-header .phone-button,
+      .site-header .chat-button,
+      .site-header .mobile-menu-button {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: 42px;
+        width: 42px;
+        padding: 0;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .site-header .phone-button:hover,
+      .site-header .chat-button:hover,
+      .site-header .mobile-menu-button:hover {
+        transform: scale(1.1);
+      }
+      
+      .site-header .phone-button:active,
+      .site-header .chat-button:active,
+      .site-header .mobile-menu-button:active {
+        transform: scale(0.95);
+      }
+      
+      .site-header .phone-icon-default,
+      .site-header .phone-icon-hover,
+      .site-header .chat-icon-default,
+      .site-header .chat-icon-hover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.25s ease-in-out;
+        width: 28px;
+        height: 28px;
+      }
+      
+      .site-header .phone-icon-hover,
+      .site-header .chat-icon-hover {
+        opacity: 0;
+      }
+      
+      .site-header .phone-button:hover .phone-icon-default,
+      .site-header .chat-button:hover .chat-icon-default {
+        opacity: 0;
+      }
+      
+      .site-header .phone-button:hover .phone-icon-hover,
+      .site-header .chat-button:hover .chat-icon-hover {
+        opacity: 1;
+      }
+      
+      .site-header .mobile-menu-button {
+        z-index: 1000; /* This was already here, ensuring it's scoped */
+        display: none; /* This was already here, ensuring it's scoped */
+      }
+      
+      .site-header .hamburger {
+        width: 30px;
+        height: 20px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      
+      .site-header .hamburger span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: var(--black);
+        border-radius: 3px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+      }
+      
+      .site-header .hamburger span:nth-child(1) { top: 0px; transform-origin: left center; }
+      .site-header .hamburger span:nth-child(2) { top: 9px; transform-origin: left center; }
+      .site-header .hamburger span:nth-child(3) { top: 9px; transform-origin: right center; } /* corrected from original comment */
+      .site-header .hamburger span:nth-child(4) { top: 18px; transform-origin: left center; }
+      
+      .site-header .mobile-menu-button.open .hamburger span:nth-child(1) {
+        transform: rotate(45deg); top: -1px; left: 4px; 
+      }
+      
+      .site-header .mobile-menu-button.open .hamburger span:nth-child(2),
+      .site-header .mobile-menu-button.open .hamburger span:nth-child(4) {
+        width: 0%; opacity: 0;
+      }
+      
+      .site-header .mobile-menu-button.open .hamburger span:nth-child(3) {
+        transform: rotate(-45deg); top: 19px; left: 4px; 
+      }
+      
+      .site-header .mobile-menu-button:hover .hamburger span {
+        background-color: var(--neon-green); /* Corrected from #AEFF00 to var(--neon-green) for consistency */
+      }
+      
+      /* === Mobile Menu Layout === */
+      .site-header .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Initial position off-screen */
+        width: 80%;
+        max-width: 300px;
+        height: 100vh; 
+        background-color: var(--white);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        padding: 0 2rem 2rem; 
+        display: flex; 
+        flex-direction: column; 
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999; /* Below header but above overlay typically */
+      }
+
+      .site-header .mobile-menu-close {
+        position: absolute; 
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 10; /* Relative to mobile-menu */
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--black);
+        transition: all 0.3s ease;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .site-header .mobile-menu-close:hover {
+          color: var(--neon-green);
+          transform: rotate(90deg);
+      }
+
+      /* === Scrollable Content Wrapper === */
+      .site-header .mobile-menu-scrollable-content {
+        flex-grow: 1; 
+        overflow-y: auto; 
+        margin-top: 5rem; /* Space for close button or header elements */
+        margin-bottom: 1rem; 
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+      }
+      
+      .site-header .mobile-menu.open {
+        right: 0; /* Slides in from the right */
+      }
+      
+      .site-header .mobile-menu .mobile-nav-links {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+      
+      .site-header .mobile-menu .mobile-nav-links li {
+        position: relative;
+        border-bottom: 1px solid var(--gray-border);
+        width: 100%;
+      }
+      
+      .site-header .mobile-menu .mobile-nav-links li:last-child {
+        border-bottom: none;
+      }
+      
+      .site-header .mobile-menu .mobile-nav-links a {
+        font-size: 1.1rem;
+        display: block;
+        padding: 1rem 0;
+        transition: color 0.3s ease, transform 0.3s ease; 
+        text-decoration: none;
+        color: var(--black);
+        font-weight: 500;
+        padding-right: 0 !important; 
+      }
+      
+      .site-header .mobile-menu .mobile-nav-links a:hover {
+        color: var(--neon-green);
+        transform: translateX(8px);
+      }
+
+      .site-header .mobile-menu .mobile-nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 12px; /* Adjusted to be above text */
+        left: 0;
+        background-color: var(--neon-green);
+        transition: width 0.3s ease;
+      }
+      
+      .site-header .mobile-menu .mobile-nav-links a:hover::after {
+        width: 100%;
+      }
+      
+      /* Mobile submenu styles */
+      .site-header .mobile-submenu {
+        padding-left: 1rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        margin-top: 0;
+        list-style: none;
+      }
+      
+      .site-header .mobile-submenu.active {
+        max-height: 1000px; /* Large enough for content */
+        transition: max-height 0.5s ease-in;
+      }
+      
+      .site-header .mobile-submenu li {
+        border-bottom: 1px solid var(--gray-border) !important; /* Ensure specificity */
+      }
+      
+      .site-header .mobile-submenu li:last-child {
+        border-bottom: none !important; /* Ensure specificity */
+      }
+      
+      .site-header .mobile-submenu a {
+        font-size: 1rem !important; /* Ensure specificity */
+        padding: 0.8rem 0 !important; /* Ensure specificity */
+      }
+      
+      .site-header .mobile-dropdown-toggle {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 30px; /* Clickable area width */
+        height: 100%; 
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 2; /* Above link text */
+        padding: 0; /* Reset padding */
+      }
+      
+      .site-header .toggle-icon {
+        display: block; /* Was 'flex', ensuring it's block for simpler centering if needed */
+        position: absolute;
+        left: 0; /* Aligns with parent toggle button */
+        top: 0;  /* Aligns with parent toggle button */
+        width: 100%;
+        height: 100%;
+        display: flex; /* Re-added flex for centering icon text */
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--black);
+        transition: color 0.3s ease, transform 0.3s ease; 
+      }
+      
+      .site-header .mobile-dropdown-toggle:hover .toggle-icon {
+        color: var(--neon-green);
+      }
+      
+      .site-header .mobile-dropdown > .mobile-link-wrapper > a {
+        padding-right: 30px !important; /* Space for the toggle button */
+      }
+
+      .site-header .mobile-dropdown-toggle.active .toggle-icon {
+        transform: rotate(45deg); 
+      }
+      
+      .site-header .mobile-menu .cta-button {
+        margin: 2rem 0 0; 
+        width: 100%;
+        display: flex; /* Ensures text is centered if button is wider */
+        justify-content: center;
+        align-items: center;
+        padding: 0.75rem 1.5rem; /* Consistent padding */
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        height: 40px; /* Fixed height */
+        line-height: 1; /* For precise vertical alignment of text */
+      }
+      
+      .site-header .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998; /* Below mobile menu, above content */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      
+      .site-header .overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      @media (max-width: 768px) {
+        .site-header .nav-links,
+        .site-header .cta-button.desktop-cta {
+          display: none;
+        }
+        
+        .site-header .mobile-menu-button,
+        .site-header .chat-button,
+        .site-header .phone-button {
+          display: flex; /* Changed from 'flex' to 'flex' (no change, just noting) */
+          align-items: center;
+          justify-content: center;
+        }
+    
+        .site-header .nav-container {
+          padding: 1rem 1rem; 
+        }
+      }
+    
+      .site-header .mobile-link-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        position: relative; /* For positioning toggle absolutely */
+      }
+
+      /* === Certification badges styles === */
+      .site-header .certification-badges {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem 0 0; 
+        margin-top: 0; /* Reset margin if any */
+        flex-shrink: 0; /* Prevent shrinking if in flex container */
+      }
+
+      .site-header .certification-badges .badge {
+        height: 60px;
+        width: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .site-header .certification-badges .badge:hover {
+        transform: scale(1.05);
+      }
+
+      /* === Brand Color Styles === */
+      .site-header .brand-google span, 
+      .site-header .brand-meta {
+        font-weight: 600; 
+        transition: color 0.3s ease; 
+      }
+      
+      .site-header .brand-google .g-blue { color: var(--google-blue); }
+      .site-header .brand-google .g-red { color: var(--google-red); }
+      .site-header .brand-google .g-yellow { color: var(--google-yellow); }
+      .site-header .brand-google .g-blue2 { color: var(--google-blue); } 
+      .site-header .brand-google .g-green { color: var(--google-green); }
+      .site-header .brand-google .g-red2 { color: var(--google-red); } 
+
+      .site-header .brand-meta {
+        color: var(--meta-blue); 
+      }
+
+      .site-header .dropdown-menu a:hover .brand-google span,
+      .site-header .dropdown-menu a:hover .brand-meta {
+        color: var(--neon-green); 
+      }
+      
+      .site-header .mobile-submenu a:hover .brand-google span,
+      .site-header .mobile-submenu a:hover .brand-meta {
+        color: var(--neon-green); 
+      }
+      
+      /* Popup styles */
+      .site-header .cert-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; /* Highest z-index for popups */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .site-header .cert-popup.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .site-header .popup-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90vh;
+        background: var(--white);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .site-header .popup-content img {
+        max-width: 100%;
+        max-height: 80vh; /* Ensure image fits within content and viewport */
+        display: block;
+        margin: 0 auto;
+      }
+
+      .site-header .popup-close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--black);
+        transition: all 0.3s ease;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .site-header .popup-close:hover {
+        color: var(--neon-green);
+        transform: rotate(90deg);
+      }
+      
+      /* Global style, not scoped to .site-header */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+
+    <div class="nav-container">
+      <div class="logo-container">
+        <a href="/">
+          <img src="/Images/Get-Growth-Media.svg" alt="Get Growth Logo" class="logo">
+        </a>
+      </div>
+      <nav class="desktop-nav">
+        <ul class="nav-links">
+          <li><a href="/8. Website Development.shtml">Web Development</a></li>
+          <li>
+            <a href="/9. Paid Advertising.shtml">Paid Advertising</a>
+            <ul class="dropdown-menu">
+              <li><a href="/10. Google Ads Management.shtml"><span class="brand-google"><span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue2">g</span><span class="g-green">l</span><span class="g-red2">e</span></span> Ads Management</a></li>
+              <li><a href="/11. Meta Ads Management.shtml"><span class="brand-meta">Meta</span> Ads Management</a></li> 
+            </ul>
+          </li>
+          <li><a href="/12. SEO.shtml">Search Optimization</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="/Contact Us.shtml">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-controls">
+        <button class="cta-button desktop-cta" onclick="window.location.href='tel:8452502403'">Call or Text (845) 250-2403</button>
+        <button class="phone-button" aria-label="Call us" onclick="window.location.href='tel:8452502403'">
+          <svg class="phone-icon-default" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#000000"/>
+          </svg>
+          <svg class="phone-icon-hover" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#AEFF00"/>
+          </svg>
+        </button>
+        <button class="chat-button" aria-label="Open chat" onclick="window.location.href='tel:8452502403'"> <svg class="chat-icon-default" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H8L12 22L16 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H15.17L12 19.17L8.83 16H4V4H20V16Z" fill="#000000"/>
+          </svg>
+          <svg class="chat-icon-hover" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2H4C2.9 2 2 2.9 2 4V16C2 17.1 2.9 18 4 18H8L12 22L16 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H15.17L12 19.17L8.83 16H4V4H20V16Z" fill="#AEFF00"/>
+          </svg>
+        </button>
+        <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Toggle mobile menu" aria-expanded="false">
+          <div class="hamburger">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close mobile menu">✕</button>
+    <div class="mobile-menu-scrollable-content"> 
+        <ul class="mobile-nav-links">
+          <li><a href="/8. Website Development.html">Web Development</a></li>
+          <li class="mobile-dropdown">
+            <div class="mobile-link-wrapper">
+              <a href="/9. Paid Advertising.html">Paid Advertising</a>
+              <button class="mobile-dropdown-toggle" aria-label="Toggle Paid Advertising submenu"><span class="toggle-icon">+</span></button>
+            </div>
+            <ul class="mobile-submenu">
+              <li><a href="/10. Google Ads Management.html"><span class="brand-google"><span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue2">g</span><span class="g-green">l</span><span class="g-red2">e</span></span> Ads Management</a></li>
+              <li><a href="/11. Meta Ads Management.html"><span class="brand-meta">Meta</span> Ads Management</a></li> 
+            </ul>
+          </li>
+          <li><a href="/12. SEO.html">Search Optimization</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="/Contact Us.html">Contact</a></li>
+        </ul>
+        <button class="cta-button" onclick="window.location.href='tel:8452502403'">Call or Text (845) 250-2403</button>
+    </div> 
+    <!--<div class="certification-badges">
+      <img src="https://getgrowth.media/Assets/Google-Ads-Certified-Badge.png" alt="Google Ads Certified" class="badge" data-popup="google-popup" onerror="this.alt='Google Ads Certified'; this.src='https://placehold.co/100x60/eeeeee/cccccc?text=G-Ads';">
+      <img src="https://getgrowth.media/Assets/Meta-Ads-Certified-Badge.png" alt="Meta Ads Certified" class="badge" data-popup="meta-popup" onerror="this.alt='Meta Ads Certified'; this.src='https://placehold.co/100x60/eeeeee/cccccc?text=Meta-Ads';">
+    </div>-->
+  </div>
+  
+  <div class="overlay" id="mobileMenuOverlay"></div>
+  
+  <div class="cert-popup" id="google-popup">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close Google certification popup">✕</button>
+      <img src="https://getgrowth.media/Assets/Google-Ads-Certification.png" alt="Google Ads Certification" onerror="this.alt='Google Ads Certification'; this.src='https://placehold.co/400x300/eeeeee/cccccc?text=G-Cert';">
+    </div>
+  </div>
+
+  <div class="cert-popup" id="meta-popup">
+    <div class="popup-content">
+      <button class="popup-close" aria-label="Close Meta certification popup">✕</button>
+      <img src="https://getgrowth.media/Assets/Meta-Ads-Certificate.jpeg" alt="Meta Ads Certification" onerror="this.alt='Meta Ads Certification'; this.src='https://placehold.co/400x300/eeeeee/cccccc?text=Meta-Cert';">
+    </div>
+  </div>
+</div> <script>
+    // Ensure the script runs after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Select elements within the .site-header context if they might not be unique globally
+      // However, getElementById is globally unique, so no change needed there.
+      const siteHeader = document.querySelector('.site-header') || document; // Fallback to document if .site-header not found (defensive)
+
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuClose = document.getElementById('mobileMenuClose');
+      const overlay = document.getElementById('mobileMenuOverlay');
+      
+      if (mobileMenuButton && mobileMenu && mobileMenuClose && overlay) {
+        // Toggle mobile menu
+        mobileMenuButton.addEventListener('click', function () {
+          this.classList.toggle('open');
+          mobileMenu.classList.toggle('open');
+          overlay.classList.toggle('open');
+          // Toggle body scroll lock
+          if (this.classList.contains('open')) {
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling of content behind
+          } else {
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+          }
+          this.setAttribute('aria-expanded', this.classList.contains('open').toString());
+        });
+        
+        function closeMobileMenu() {
+            mobileMenuButton.classList.remove('open');
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.position = ''; 
+            document.body.style.width = ''; 
+            document.body.style.overflow = '';
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            // Do not close all popups when menu closes, user might want them open.
+            // closeAllPopups(); // Removed this line
+        }
+
+        // Close mobile menu with X button
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        
+        // Close mobile menu with overlay click
+        overlay.addEventListener('click', closeMobileMenu);
+      }
+      
+      // Toggle submenu for items that have a toggle
+      // Scope querySelectorAll to siteHeader to be more specific
+      const mobileDropdownToggles = siteHeader.querySelectorAll('.mobile-dropdown-toggle');
+      mobileDropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          this.classList.toggle('active'); 
+          const toggleIcon = this.querySelector('.toggle-icon'); 
+          if (toggleIcon) {
+            // Use the minus sign '−' (U+2212) for better visual representation than hyphen '-'
+            toggleIcon.textContent = this.classList.contains('active') ? '−' : '+'; 
+          }
+          const parentLi = this.closest('li.mobile-dropdown'); // Ensure we get the correct li
+          if (parentLi) {
+            const submenu = parentLi.querySelector('.mobile-submenu');
+            if (submenu) { 
+              submenu.classList.toggle('active');
+            }
+          }
+        });
+      });
+      
+      // Close mobile menu when clicking links (except those with submenus)
+      // Scope querySelectorAll to siteHeader
+      const mobileLinks = siteHeader.querySelectorAll('.mobile-menu .mobile-nav-links a'); 
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          const parentLi = this.closest('li');
+          
+          // Check if the link is part of a dropdown structure (i.e., it's the main link in a mobile-dropdown li)
+          // or if the click target itself is a dropdown toggle.
+          const isDropdownLink = parentLi && parentLi.classList.contains('mobile-dropdown') && parentLi.querySelector('.mobile-dropdown-toggle');
+          const isToggleClick = e.target.closest('.mobile-dropdown-toggle');
+
+          if (isDropdownLink && !isToggleClick && this.parentElement.classList.contains('mobile-link-wrapper')) {
+            // This is the main link of a dropdown, let its toggle handle it
+            e.preventDefault();
+            const dropdownToggle = parentLi.querySelector('.mobile-dropdown-toggle');
+            if (dropdownToggle) {
+                dropdownToggle.click(); 
+            }
+            return; 
+          }
+          
+          // If it's not a dropdown main link or a toggle, and the menu is open, close it.
+          if (mobileMenu && mobileMenu.classList.contains('open')) {
+             // Only close if it's not a link that opens a new page within the same site (handled by browser nav)
+             // For simple href="#" or actual URLs, closing the menu is usually desired.
+            closeMobileMenu(); 
+          }
+        });
+      });
+      
+      // Certification badge popups
+      // Scope querySelectorAll to siteHeader
+      const badges = siteHeader.querySelectorAll('.badge');
+      const popups = siteHeader.querySelectorAll('.cert-popup'); // All popups within site-header
+      const popupCloses = siteHeader.querySelectorAll('.popup-close'); // All close buttons within site-header
+
+      badges.forEach(badge => {
+        badge.addEventListener('click', function() {
+          const popupId = this.getAttribute('data-popup');
+          const popup = document.getElementById(popupId); // IDs are global
+          if (popup) {
+              closeAllPopups(); // Close other popups before opening a new one
+              popup.classList.add('active');
+              // Body scroll lock is handled by mobile menu, ensure it's applied if menu isn't open
+              if (!mobileMenu || !mobileMenu.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+              }
+          }
+        });
+      });
+
+      function closeAndRestoreScroll() {
+        this.closest('.cert-popup').classList.remove('active');
+        // Only restore scroll if mobile menu is not also open and locking scroll
+        if (!mobileMenu || !mobileMenu.classList.contains('open')) {
+          document.body.style.overflow = '';
+        }
+      }
+
+      popupCloses.forEach(closeBtn => {
+        closeBtn.addEventListener('click', closeAndRestoreScroll);
+      });
+
+      popups.forEach(popup => {
+        popup.addEventListener('click', function(e) {
+          if (e.target === this) { // Clicked on the popup backdrop itself
+            this.classList.remove('active');
+            if (!mobileMenu || !mobileMenu.classList.contains('open')) {
+              document.body.style.overflow = '';
+            }
+          }
+        });
+      });
+
+      function closeAllPopups() {
+        popups.forEach(popup => {
+          popup.classList.remove('active');
+        });
+        // If no popups are active and mobile menu is not open, ensure body scroll is restored.
+        if (!mobileMenu || !mobileMenu.classList.contains('open')) {
+            let anyPopupActive = false;
+            popups.forEach(p => { if(p.classList.contains('active')) anyPopupActive = true; });
+            if (!anyPopupActive) {
+                 document.body.style.overflow = '';
+            }
+        }
+      }
+    });
+  </script>
+
+
+
+
+
+</body>
+</html>

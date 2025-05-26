@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Google Ads Management Services | Get Growth Media</title>
+    <meta name="description" content="Drive targeted traffic and maximize ROI with professional Google Ads management from Get Growth Media. Learn about our process, from keyword research to conversion tracking.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00; /* Keep for reference, but replace usage */
+            --white: #FFFFFF;
+            --light-gray: #F7F8FA;
+            --black: #000000;
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            /* Added Google Brand Colors */
+            --google-blue: #4285F4;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC05;
+            --google-green: #34A853;
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+			padding-top: 160px; /* Adjust this value as needed */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-light);
+            background-color: var(--white); /* Default white background */
+            position: static;
+            overflow: visible;
+            border-top: none;
+            border-image: none;
+            background: none;
+        }
+        .content-section:first-of-type::before {
+            content: none; /* Ensure no pseudo-elements from previous attempts */
+        }
+        .content-section:last-child {
+            border-bottom: none;
+             padding-bottom: 8rem;
+        }
+        .content-section.bg-light {
+             /* Sections with this class used to be light gray, now white */
+        }
+
+
+        /* Headings Styling */
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+             margin-bottom: 1rem; /* Margin before underline */
+        }
+
+        /* Style H1 in first section */
+         .content-section:first-of-type h1 {
+            color: var(--dark-gray); /* Ensure default text color */
+            background: none; /* Ensure no background effects */
+            -webkit-background-clip: initial;
+            background-clip: initial;
+            display: block;
+            margin-bottom: 1rem; /* Consistent margin */
+        }
+
+        /* Style the ::after for H1 in first section as a multi-color solid block bar */
+        .content-section:first-of-type h1::after {
+            content: "";
+            display: block;
+            width: 100px; /* Width of the underline */
+            height: 8px;  /* Thickness of the underline */
+            /* Gradient with sharp stops creating solid color blocks */
+            background: linear-gradient(
+                to right,
+                var(--google-blue) 25%,    /* Blue 0% to 25% */
+                var(--google-red) 0 50%,     /* Red 25% to 50% */
+                var(--google-yellow) 0 75%,  /* Yellow 50% to 75% */
+                var(--google-green) 0 100%   /* Green 75% to 100% */
+            );
+            margin: 1.5rem auto 3rem auto; /* Centering and vertical spacing */
+            border-radius: 4px; /* Rounded ends for the underline */
+        }
+
+        /* Style H2 section titles */
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+             margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+             text-align: center;
+        }
+
+         /* Apply consistent multi-color block underline to H2 titles */
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 100px;  /* Consistent width */
+            height: 8px;   /* Consistent height */
+            /* Use same multi-color block background */
+            background: linear-gradient(
+                to right,
+                var(--google-blue) 25%,
+                var(--google-red) 0 50%,
+                var(--google-yellow) 0 75%,
+                var(--google-green) 0 100%
+            );
+            margin: 1.5rem auto 3rem auto; /* Consistent margin */
+            border-radius: 4px; /* Consistent radius */
+        }
+
+        /* Style H3 subheadings */
+        h3 {
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit width for readability */
+        }
+        p.lead { /* Lead paragraph style */
+             font-size: 1.2rem;
+             color: var(--dark-gray);
+             margin-left: auto;
+             margin-right: auto;
+             text-align: center;
+             max-width: 800px;
+             margin-bottom: 3rem;
+        }
+        strong { /* Styling for bold text */
+            color: inherit; /* Inherit color from parent */
+            font-weight: 700; /* Standard bold weight */
+        }
+        section p:last-child {
+             margin-bottom: 0; /* Remove bottom margin on last paragraph in a section */
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none; /* Remove default bullet points */
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+        /* Apply to general ul that are not checklists */
+        ul:not(.checklist) {
+             display: inline-block; /* Allows centering if parent is text-align: center */
+             text-align: left; /* Keep text left-aligned within the list */
+        }
+
+
+        /* Styling for general list items, not part of the checklist */
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Styling specific to checklist items */
+        .checklist li {
+            position: relative; /* For positioning the pseudo-element */
+            padding-left: 2rem; /* Space for the custom checkmark */
+             /* Inherit font-size, color, margin-bottom from general li or override if needed */
+        }
+
+
+        /* Custom checkmark using pseudo-element, scoped to .checklist */
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px; /* Adjust vertical alignment */
+            width: 18px;
+            height: 18px;
+            background-color: var(--google-blue); /* MODIFIED: Use Google Blue */
+            /* Use SVG mask for the checkmark shape */
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Specific styling for the centered list container */
+        .centered-list-container {
+            text-align: center; /* Center the inline-block ul */
+        }
+         .centered-list-container ul.checklist {
+            display: inline-block; /* Allows centering if parent is text-align: center */
+            text-align: left; /* Keep text left-aligned within the list */
+         }
+          /* .centered-list-container li { } */ /* No extra styles needed here now */
+
+
+        /* Feature Grid Styling */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 2rem; /* Space between grid items */
+            margin-top: 3rem; /* Space above the grid */
+        }
+
+        .feature-item-card {
+            background-color: var(--white);
+            padding: 2rem 1.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+        }
+        .feature-item-card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07); /* Enhanced shadow on hover */
+        }
+        .feature-item-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            display: flex; /* Align icon and text */
+            align-items: center;
+        }
+        /* Icon styling within feature cards */
+        .feature-item-card h3 i {
+            color: var(--google-blue); /* MODIFIED: Use Google Blue */
+            margin-right: 0.75rem; /* Space between icon and text */
+            font-size: 1.5rem; /* Icon size */
+            width: 28px; /* Fixed width for alignment */
+            text-align: center; /* Center icon within its space */
+        }
+
+        .feature-item-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0; /* Remove margin within card */
+        }
+
+
+        /* Call to Action Section */
+        .cta-section {
+             text-align: center;
+             padding-top: 2rem; /* Space above CTA content */
+        }
+         .cta-section p {
+             margin-left: auto;
+             margin-right: auto; /* Center paragraph */
+             margin-bottom: 2rem; /* Space below paragraph */
+         }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded corners */
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition for hover */
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem; /* Space around buttons */
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--google-blue); /* MODIFIED: Use Google Blue */
+            color: var(--white); /* MODIFIED: Use white text */
+            /* MODIFIED: Use blue shadow */
+            box-shadow: 0 4px 14px rgba(66, 133, 244, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px); /* Lift effect on hover */
+             /* MODIFIED: Use enhanced blue shadow */
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.5);
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+             /* Consistent underline margins for larger screens */
+             .content-section:first-of-type h1::after,
+             h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             /* Increase base font size slightly for general li and checklist li */
+             li, .checklist li {
+                 font-size: 1.1rem;
+             }
+             p {
+                 font-size: 1.1rem;
+             }
+             /* Increase section padding */
+             .content-section {
+                 padding: 7rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 9rem;
+             }
+        }
+
+        @media (min-width: 992px) {
+             /* Further increase section padding for large screens */
+             .content-section {
+                 padding: 8rem 0;
+             }
+             .content-section:first-of-type h1::after,
+             h2.section-title::after {
+                 margin: 2rem auto 4rem auto; /* Keep consistent margin */
+             }
+             .content-section:last-child {
+                 padding-bottom: 10rem;
+             }
+        }
+
+
+.cta-section .btn,
+.cta-section .btn-primary,
+.cta-section button.btn-primary {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px; /* updated */
+  height: 52px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: var(--neon-green);
+  color: var(--black);
+  box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+    </style>
+</head>
+<body>
+ <!--#include file="Header.html" -->
+
+ <section class="content-section">
+        <div class="container">
+            <h1>Google Ads Management Services</h1>
+            <p class="lead">
+                Want to reach customers actively searching for your products or services? Google Ads (formerly AdWords) puts your business front and center on the world's largest search engine. Effective <strong>Google Ads management</strong> is key to maximizing your visibility, driving qualified traffic, and achieving a strong return on your advertising investment (ROAS).
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container" style="max-width: 850px; text-align: center;">
+            <h2 class="section-title">What Does Google Ads Management Involve?</h2>
+            <p>
+                Successful Google Ads campaigns aren't "set it and forget it." They require ongoing strategic planning, meticulous setup, continuous monitoring, and data-driven optimization. Professional <strong>Google Ads management</strong> is a comprehensive service designed to handle every aspect of your campaigns, ensuring your budget is used effectively to achieve your business objectives.
+            </p>
+            <p>
+                It's about more than just running ads; it's about understanding your market, targeting the right audience with the right message at the right time, and constantly refining your approach for peak performance.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+         <div class="container">
+             <h2 class="section-title">Our Google Ads Management Process</h2>
+             <p style="text-align: center; margin-left: auto; margin-right:auto; margin-bottom: 3rem;">We offer a comprehensive, flat-rate Google Ads management service focused on transparency and results. Here’s what’s included:</p>
+
+             <div class="feature-grid">
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-bullseye"></i>Campaign Setup & Strategy</h3>
+                     <p>We start by understanding your business goals, target audience, and budget to develop a tailored strategy. This includes selecting the right campaign types (Search, Display, Video, Shopping) and networks.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-search"></i>In-Depth Keyword Research</h3>
+                     <p>We identify high-intent keywords your potential customers are searching for, including long-tail variations and crucial negative keywords to avoid wasted spend.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-pencil-alt"></i>Compelling Ad Copy Creation</h3>
+                     <p>Crafting persuasive ad copy that speaks directly to user needs is vital. We write engaging headlines and descriptions, utilize ad extensions, and test variations to maximize click-through rates (CTR).</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-sliders-h"></i>Targeting & Bid Optimization</h3>
+                     <p>We refine targeting based on location, demographics, devices, and audiences. We manage bidding strategies to ensure your ads show prominently without overspending, focusing on maximizing conversions.</p>
+                 </div>
+                 <div class="feature-item-card">
+                      <h3><i class="fas fa-chart-line"></i>Conversion Tracking Setup</h3>
+                      <p>You can't optimize what you don't measure. We set up robust conversion tracking to monitor leads, sales, calls, or other valuable actions generated by your ads.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-file-signature"></i>Landing Page Optimization</h3>
+                     <p>Effective ads need effective landing pages. We analyze your landing pages and provide recommendations to improve user experience and conversion rates, ensuring consistency with ad messaging.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-vials"></i>Continuous A/B Testing</h3>
+                     <p>We constantly test different ad copy, keywords, bidding strategies, and landing page elements to identify what works best and continually improve campaign performance.</p>
+                 </div>
+                 <div class="feature-item-card">
+                      <h3><i class="fas fa-dollar-sign"></i>Budget Management</h3>
+                      <p>We carefully manage your ad spend to ensure it aligns with your budget and delivers the best possible return on investment, making strategic adjustments as needed.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-tasks"></i>Performance Reporting</h3>
+                     <p>Transparency is key. You'll receive regular, easy-to-understand performance reports detailing key metrics, insights, and the results we're driving for your business.</p>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+    <section class="content-section centered-list-container">
+        <div class="container" style="max-width: 850px;">
+             <h2 class="section-title">Why Choose Get Growth Media for Google Ads?</h2>
+              <ul class="checklist">
+                 <li><strong>Certified Expertise:</strong> Our team holds Google Ads certifications, ensuring knowledgeable and effective campaign management.</li>
+                 <li><strong>Transparent Flat-Rate Fee:</strong> Know exactly what you pay for management, with no hidden costs or percentage of spend models.</li>
+                 <li><strong>Focus on ROI:</strong> Our primary goal is to generate measurable results and a positive return on your ad spend.</li>
+                 <li><strong>No Long-Term Contracts:</strong> We earn your business month after month, offering flexibility and peace of mind.</li>
+                 <li><strong>Performance Guarantee:</strong> We stand by our work. If we don't perform, we offer a fair refund.</li>
+             </ul>
+        </div>
+    </section>
+
+    <section class="content-section cta-section">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Ready to Dominate Google Search?</h2>
+            <p>
+               Stop wasting ad spend and start seeing real results. Let <strong>Get Growth Media</strong> manage your Google Ads campaigns and drive targeted traffic that converts.
+            </p>
+            <div>
+                <a href="/#pricing" class="btn btn-primary">View Google Ads Package</a>
+                <button id="openConsultationPopup" class="btn btn-primary">Schedule a Free Consultation</button>
+                </div>
+        </div>
+    </section>
+
+
+
+
+
+	
+			  <!--#include file="Footer.html" -->
+			  
+			  
+
+
+
+<!-- Modal Script -->
+<script src="Modal Files/modal-form.js"></script>
+<div id="modal-container"></div>
+
+	
+		  </body>
+</html>

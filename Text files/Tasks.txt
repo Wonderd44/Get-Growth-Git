@@ -1,0 +1,52 @@
+Header:
+1. Add Pricing link to header and remove "about Us" link
+2. Make logo 15% bigger
+3. On mobile view change the hover green of the phone and text logo to neon green and also make the hamburger menu neon green on hover
+4. Put "Call or Text" infront of the phone number button
+5. Make the phone number button dial the phone number on users mobile phones. Make the activated number (845)250-2403
+6. Update the logo image path to getgrowth.media/Assets/Get-Growth-Media.svg
+
+Hero Section:
+1.Make the "Call Us" button dial the phone number on users mobile phones. Make the activated number (845)250-2403
+
+2.Change the Email Us button to "Quick Message" and give the Quick Message button the below code 
+<li><a href="#" onclick="$crisp.push(['do', 'chat:open']); return false;">Quick Message</a></li>
+
+3. Price Section:
+Give a pulse animation to the "Scroll left" or "scroll right" buttons when they are in active state
+
+4. People Are Talking:
+(Task 1)
+Make the testimonies on the cards relevant to one of the below topics. Make the testimonies short and believable. Dont display full last names on the cards. Just initials.
+1. Paid advertising (google ads or faceboook ads)
+2. Web Development
+3. Landing Pages Design
+4. Increase website traffic
+5. SEO
+
+(Task 2)
+Remove the quotation mark that appears on the top left side of the avatar picture and instead put a bigger (but subtle) quotation mark in the top right corner of the card
+
+(Task 3)
+Make all job title texts say "Reach out". Give the text underlined styling but keep the font and size. When a user clicks this link a small window pops up (this popup doesn't activate popup blockers). The popup looks exactly like the card, but the contents is different (it has the persons avatar photo in the top left, under the photo there is text saying "(Insert name) can be reached at the below email address. Please be respectful and polite." and under this is an email address with a copy button next to the email address. Make all the email addresses unique to each card and look believable. In the top right corner of the card is a modern styles close button.
+
+Footer:
+1. When clicking the Google Ads Certified button, make a image popup with the below image. Put a modern "X" close button in the top right of the popup
+getgrowth.media/Assets/Google-Ads-Certification.png
+
+2. When clicking the Meta Ads Certified button, make a image popup with the below image. Put a modern "X" close button in the top right of the popup
+getgrowth.media/Assets/Meta-Certificate.jpeg
+
+3. Remove the "All rights reserved" text and Put a "View All" button to the right of the Meta Ads Certified button. Keep the same button styling without having the small button in the image. When clicking the button. A popup appears with the below images stacked on top of each other. Put a modern "X" close button in the top right of the popup
+
+getgrowth.media/Assets/Northwest%20University%20-%20Engagement%20%26%20Nurture%20Marketing%20Strategies-1.jpg
+getgrowth.media/Assets/Rutgers%20-%20Influencer%20Marketing%20Strategy-1.jpg
+getgrowth.media/Assets/Wharton%20-%20Viral%20Marketing%20and%20How%20to%20Craft%20Contagious%20Content-1.jpg
+
+Ask Crisp is the "Last Active Date" can be removed
+
+
+
+ 
+
+

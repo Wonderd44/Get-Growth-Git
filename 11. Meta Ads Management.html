@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Ads Management (Facebook & Instagram) | Get Growth Media</title>
+    <meta name="description" content="Engage your audience on Facebook & Instagram with expert Meta Ads management by Get Growth Media. Drive results with targeted social media advertising.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00; /* Kept for reference */
+            --white: #FFFFFF;
+            --light-gray: #F7F8FA;
+            --black: #000000;
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            /* ADDED: Meta Brand Color */
+            --meta-blue: #0082fb;
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+			padding-top: 160px; /* Adjust this value as needed */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-light);
+            background-color: var(--white); /* Ensure white background */
+        }
+        .content-section:last-child {
+            border-bottom: none;
+             padding-bottom: 8rem;
+        }
+        /* Remove alternate background color */
+        .content-section.bg-light {
+             background-color: var(--white);
+        }
+
+        /* Headings Styling */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Underline for H1 and H2 Titles - Using Meta Blue */
+        h1::after,
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 100px; /* Consistent width */
+            height: 8px;  /* Consistent height */
+            background: var(--meta-blue); /* MODIFIED: Use Meta Blue */
+            margin: 1.5rem auto 3rem auto; /* Centering and vertical spacing */
+            border-radius: 4px; /* Rounded ends */
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+             margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+             text-align: center;
+        }
+
+        /* H3 Styling (General) */
+        h3 {
+            font-size: clamp(1.3rem, 3vw, 1.6rem); /* Adjusted size slightly */
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* H3 Styling within Feature Cards */
+         .feature-item-card h3 {
+              font-size: 1.25rem;
+              margin-bottom: 0.75rem;
+              display: flex;
+              align-items: center;
+              color: var(--dark-gray); /* Ensure H3 color consistency */
+              border-bottom: none; /* Remove border from H3 inside cards */
+              margin-top: 0; /* Reset top margin for H3 inside cards */
+         }
+
+        /* Icon styling within feature card H3 */
+         .feature-item-card h3 i {
+            color: var(--meta-blue); /* MODIFIED: Use Meta Blue */
+            margin-right: 0.75rem; /* Space between icon and text */
+            font-size: 1.5rem; /* Icon size */
+            width: 28px; /* Fixed width for alignment */
+            text-align: center; /* Center icon within its space */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+         }
+
+        /* H4 Styling (If used) */
+        h4 {
+             font-size: 1.1rem;
+             font-weight: 600;
+             color: var(--dark-gray);
+             margin-bottom: 0.75rem;
+             margin-top: 1.5rem;
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit paragraph width for readability */
+        }
+        p.lead {
+             font-size: 1.2rem;
+             color: var(--dark-gray);
+             margin-left: auto;
+             margin-right: auto;
+             text-align: center;
+             max-width: 800px;
+             margin-bottom: 3rem;
+        }
+        /* Center paragraphs directly under section titles */
+        h2.section-title + p {
+             text-align: center;
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 3rem;
+        }
+        /* Adjust max-width for content paragraphs */
+         .content-block p, .content-block li { /* Assuming .content-block might be used elsewhere */
+             max-width: 800px;
+         }
+        section p:last-child {
+             margin-bottom: 0;
+        }
+        /* Paragraphs within feature cards */
+        .feature-item-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0; /* Remove margin for card context */
+            max-width: none; /* Allow full width within card */
+        }
+
+
+        /* List Styling */
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            /* display: inline-block; and text-align: left; are moved to specific cases or ul:not(.checklist) */
+        }
+        /* For ULs that are not checklists but might need the previous inline-block centering behavior */
+        ul:not(.checklist) {
+            display: inline-block;
+            text-align: left;
+        }
+
+        /* General list item styling */
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            /* position: relative; and padding-left: 2rem; moved to .checklist li */
+        }
+
+        /* Styling specific to checklist items */
+        .checklist li {
+            position: relative; /* For positioning the pseudo-element */
+            padding-left: 2rem; /* Space for the custom checkmark */
+            /* Inherits font-size, color, margin-bottom from general li or can be overridden here */
+        }
+
+        /* Custom checkmark, scoped to .checklist */
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--meta-blue); /* MODIFIED: Use Meta Blue */
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Centered list container */
+        .centered-list-container {
+            text-align: center; /* Center the container contents */
+        }
+         /* Specific styling for a checklist ul within the centered container */
+         .centered-list-container ul.checklist {
+            display: inline-block; /* Ensures the ul shrinks to fit content, aiding centering */
+            text-align: left; /* Ensures text inside li starts left, relative to the checkmark */
+         }
+         /* .centered-list-container li was here, but now general li or .checklist li will cover it. */
+
+
+        /* Feature Grid Styling */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item-card {
+            background-color: var(--white);
+            padding: 2rem 1.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+
+
+        /* Call to Action Section */
+        .cta-section {
+             text-align: center;
+             padding-top: 2rem; /* Space above CTAs */
+        }
+         .cta-section p {
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 2rem;
+         }
+         /* Use Flexbox for the button container for equal width */
+         .cta-section > div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+         }
+         /* Style buttons within CTA section using flex */
+         .cta-section .btn {
+            flex: 1 1 auto;
+            max-width: 320px; /* Adjust max-width as needed */
+         }
+
+        /* Button Styling (General) */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded style from header CTA */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem; /* Overridden by gap in flex container */
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        .btn-primary {
+            background-color: var(--meta-blue); /* MODIFIED: Use Meta Blue */
+            color: var(--white); /* MODIFIED: Use white text */
+            box-shadow: 0 4px 14px rgba(0, 130, 251, 0.4); /* MODIFIED: Use blue shadow */
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 130, 251, 0.5); /* MODIFIED: Use enhanced blue shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+             h1::after,
+             h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             /* Apply to general li and specifically to .checklist li if overrides are needed */
+             li, .checklist li {
+                 font-size: 1.1rem;
+             }
+             p {
+                font-size: 1.1rem;
+             }
+             .content-section {
+                 padding: 7rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 9rem;
+             }
+             /* Remove max-width for general content blocks on larger screens */
+             .content-block p, .content-block li {
+                  max-width: none;
+             }
+        }
+
+        @media (min-width: 992px) {
+             .content-section {
+                 padding: 8rem 0;
+             }
+             h1::after,
+             h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             .content-section:last-child {
+                 padding-bottom: 10rem;
+             }
+        }
+		
+		
+		.cta-section .btn,
+.cta-section .btn-primary,
+.cta-section button.btn-primary {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px; /* updated */
+  height: 52px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: var(--neon-green);
+  color: var(--black);
+  box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+
+    </style>
+</head>
+<body>
+
+ <!--#include file="Header.html" -->
+
+ <section class="content-section">
+        <div class="container">
+            <h1>Meta Ads Management (Facebook & Instagram)</h1>
+            <p class="lead">
+                Connect with billions of users where they share and discover. <strong>Meta Ads management</strong> harnesses the power of Facebook and Instagram advertising to reach highly specific audiences, build brand awareness, and drive engagement through visually captivating campaigns. Effective management turns scrolling into results.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container" style="max-width: 850px; text-align: center;">
+            <h2 class="section-title">The Power of Managed Meta Campaigns</h2>
+            <p>
+                Running successful Facebook and Instagram ads involves more than just hitting "Boost Post." It demands a strategic approach to audience targeting, creative development, bid management, and ongoing analysis within the dynamic Meta ecosystem. Professional <strong>Meta Ads management</strong> handles every detail to ensure your advertising budget delivers maximum impact.
+            </p>
+            <p>
+                From leveraging the Meta Pixel for precise tracking to crafting eye-catching visuals for Feeds and Stories, comprehensive management transforms the potential of <strong>social media advertising</strong> on Facebook and Instagram into measurable business growth.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+         <div class="container">
+             <h2 class="section-title">Our Meta Ads Management Approach</h2>
+             <p style="text-align: center; margin-left: auto; margin-right:auto; margin-bottom: 3rem;">We provide end-to-end management for your Facebook and Instagram advertising, focusing on engaging your audience and achieving your marketing objectives. Our flat-rate service includes:</p>
+
+             <div class="feature-grid">
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-sitemap"></i>Campaign Strategy & Setup</h3>
+                     <p>We define clear campaign objectives (awareness, traffic, leads, sales), identify target KPIs, and structure campaigns effectively within the Meta Ads platform based on your goals.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-users-cog"></i>Advanced Audience Targeting</h3>
+                     <p>We utilize Meta's powerful tools to target users based on demographics, detailed interests, behaviors, life events, custom audiences (website visitors, email lists), and lookalike audiences.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-paint-brush"></i>Compelling Creative Design</h3>
+                     <p>Visuals are key on social. We work with you or create engaging ad creatives (images, videos, carousels, Stories) and write copy tailored to capture attention on Facebook and Instagram.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-cogs"></i>Campaign & Bid Optimization</h3>
+                     <p>We continuously monitor campaign performance, optimizing bids, placements (Feeds, Stories, Reels, etc.), and ad delivery settings to maximize results while controlling costs.</p>
+                 </div>
+                 <div class="feature-item-card">
+                      <h3><i class="fas fa-crosshairs"></i>Conversion Tracking (Meta Pixel)</h3>
+                      <p>Implementing the Meta Pixel correctly allows us to track website conversions, optimize for valuable actions, and build effective retargeting audiences based on user behavior.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-retweet"></i>Retargeting Campaigns</h3>
+                     <p>Reconnect with users who have shown interest by visiting your website or engaging with your Facebook/Instagram content. Retargeting boosts conversions from warm leads.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-vials"></i>Continuous A/B Testing</h3>
+                     <p>We rigorously test different ad creatives, audience segments, calls-to-action, and placements to learn what resonates best and systematically improve campaign effectiveness.</p>
+                 </div>
+                 <div class="feature-item-card">
+                      <h3><i class="fas fa-dollar-sign"></i>Budget Management</h3>
+                      <p>We allocate your budget efficiently across campaigns and ad sets to achieve the best possible return on ad spend (ROAS), providing clear visibility on spending.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-chart-pie"></i>Performance Reporting</h3>
+                     <p>Receive clear, insightful reports detailing key metrics like reach, engagement, CTR, conversions, cost-per-result, and audience performance, understanding the value generated.</p>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+    <section class="content-section centered-list-container">
+        <div class="container" style="max-width: 850px;">
+             <h2 class="section-title">Why Get Growth Media for Meta Ads?</h2>
+             <ul class="checklist">
+                 <li><strong>Certified Expertise:</strong> Our team includes Meta Ads Certified professionals, demonstrating proficiency in Facebook and Instagram advertising.</li>
+                 <li><strong>Platform Focus:</strong> We specialize in leveraging the full capabilities of the Meta advertising ecosystem.</li>
+                 <li><strong>Creative & Strategic Approach:</strong> We combine data-driven targeting with compelling creative to capture attention and drive action.</li>
+                 <li><strong>Transparent Flat-Rate Fee:</strong> Simple, predictable pricing for comprehensive Meta Ads management.</li>
+                 <li><strong>Focus on Your Goals:</strong> Campaigns designed to meet your specific objectives, from brand building to lead generation and sales.</li>
+                 <li><strong>No Long-Term Contracts:</strong> We earn your trust and continued business through performance and results.</li>
+                  <li><strong>Performance Guarantee:</strong> Our commitment is backed by a fair refund policy if you're unsatisfied with our performance.</li>
+             </ul>
+        </div>
+    </section>
+
+    <section class="content-section cta-section">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Ready to Master Facebook & Instagram Ads?</h2>
+            <p>
+               Unlock the potential of Meta platforms with expert advertising management from <strong>Get Growth Media</strong>. Let's build targeted campaigns that connect with your audience and grow your business.
+            </p>
+            <div> <a href="/#pricing" class="btn btn-primary">View Meta Ads Package</a>
+                <button id="openConsultationPopup" class="btn btn-primary">Schedule a Free Consultation</button>
+            </div>
+        </div>
+    </section>
+	
+				  <!--#include file="Footer.html" -->
+				  
+				  
+
+
+
+<!-- Modal Script -->
+<script src="Modal Files/modal-form.js"></script>
+<div id="modal-container"></div>
+	
+		  </body>
+</html>

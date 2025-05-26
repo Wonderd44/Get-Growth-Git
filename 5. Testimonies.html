@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Get Growth - People Are Talking</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+	  <script async="" defer="" src="https://www.google.com/recaptcha/api.js"></script>
+<style>
+        :root {
+            --neon-green: #AEFF00;
+            --black: #000000;
+            --white: #FFFFFF;
+            --light-gray: #F7F8FA;
+            --light-gray-hover: #EFF1F3;
+            --translucent-green: rgba(174, 255, 0, 0.1);
+            --translucent-green-dark: rgba(174, 255, 0, 0.2);
+            --dark-gray: #1A202C;
+            --medium-gray: #667185;
+            --light-border: #E2E8F0;
+            --success-green: #10B981;
+            --google-blue: #4285F4;
+            --google-blue-darker: #3367D6;
+        }
+
+        * {
+            box-sizing: border-box; margin: 0; padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            padding: 4rem 0 0rem; margin: 0; overflow-x: hidden;
+            line-height: 1.6; color: var(--dark-gray);
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: var(--black);
+            position: relative; display: inline-block; padding-bottom: 1.75rem; margin: 0 auto 0.75rem;
+        }
+        .section-title::after {
+            content: ""; display: block; width: 60px; height: 4px; background: var(--neon-green);
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 2px;
+        }
+        .section-subtitle {
+            font-size: 1.1rem; color: var(--medium-gray); font-weight: 400;
+            line-height: 1.5; max-width: 600px; margin: 0 auto; padding: 0 1rem;
+        }
+
+        /* Carousel */
+        .carousel-container { position: relative; width: 100%; margin: 0 auto; padding: 3rem 0 1rem; overflow: hidden; }
+        .carousel-track { display: flex; width: calc(284px * 12); animation: scroll 40s linear infinite; }
+        .carousel-track.top { margin-bottom: 1.5rem; animation: scroll 40s linear infinite; }
+        .carousel-track.bottom { animation: scroll 35s linear infinite; }
+        .carousel-track:hover { animation-play-state: paused; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-284px * 6)); } }
+
+        /* Card */
+        .testimonial-card {
+            width: 260px; min-height: 210px; background: var(--white);
+            border: 1px solid var(--light-border); border-radius: 16px;
+            padding: 2rem; margin: 0 12px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            display: flex; flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative; overflow: hidden;
+            backface-visibility: hidden;
+        }
+        .testimonial-card::before { /* Overlay */
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--translucent-green); opacity: 0;
+            transition: opacity 0.3s ease; z-index: 0; pointer-events: none;
+        }
+        .testimonial-card:hover {
+             transform: translateY(-8px); /* Card lift effect */
+             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+         }
+        .testimonial-card:hover .avatar {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), inset 0 0 8px rgba(174, 255, 0, 0.3);
+        }
+
+        .avatar {
+            width: 70px; height: 70px; border-radius: 50%; object-fit: cover;
+            margin-bottom: 1.5rem; border: 3px solid var(--neon-green);
+            background: var(--neon-green); background-clip: padding-box;
+            transition: all 0.3s ease; position: relative; z-index: 1; flex-shrink: 0;
+        }
+        .testimonial-text {
+            font-family: 'Inter', sans-serif; font-size: 1.0rem; font-weight: 500;
+            color: var(--dark-gray); line-height: 1.6; margin-bottom: 1.5rem;
+            flex-grow: 1; position: relative; z-index: 1;
+        }
+        .person-info {
+            margin-top: auto; min-height: 40px; display: flex; flex-direction: column;
+            justify-content: flex-end; position: relative; z-index: 1;
+            border-top: 1px solid var(--light-border); padding-top: 1rem;
+        }
+        .person-name-line {
+             display: flex; align-items: center; flex-wrap: wrap;
+             gap: 0.5rem;
+             margin-bottom: 0.15rem;
+             position: relative; /* Positioning context for the text */
+        }
+        .person-name {
+            font-size: 1.1rem; font-weight: 600; color: var(--neon-green);
+            line-height: 1.2; margin: 0;
+        }
+
+        /* Verified Badge Style (Wrapper / Fixed Badge / Adjusted Text Position) */
+        .verified-badge-container {
+             position: relative;
+             display: inline-block;
+             width: 20px; height: 20px;
+             vertical-align: middle;
+             flex-shrink: 0;
+             cursor: default;
+        }
+
+        .verified-badge { /* The blue circle */
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 100%;
+            background-color: var(--google-blue);
+            border-radius: 50%;
+            position: absolute; top: 0; left: 0;
+            z-index: 2;
+            transition: background-color 0.2s ease;
+            backface-visibility: hidden;
+        }
+        .verified-badge svg {
+            /* Centered by parent flexbox */
+            width: 12px; height: 12px;
+            fill: none;
+            /* stroke set in HTML path */
+            stroke-linecap: round; stroke-linejoin: round;
+            overflow: visible;
+            flex-shrink: 0;
+        }
+        .verified-badge-container:hover .verified-badge {
+            background-color: var(--google-blue-darker);
+        }
+
+        /* Absolutely Positioned Text (Adjusted Position & Padding) */
+        .verified-text {
+            position: absolute;
+            left: 0px; /* ADJUSTED: Start left edge aligned with badge */
+            top: 0;
+            height: 20px;
+            display: flex; align-items: center;
+            background-color: var(--google-blue-darker);
+            color: var(--white);
+            /* ADJUSTED: Increase left padding to push text past badge width + gap */
+            padding: 0 8px 0 24px; /* 20px badge + 4px gap */
+            border-radius: 10px; /* Pill shape */
+            font-size: 0.75rem; font-weight: 500;
+            white-space: nowrap;
+            opacity: 0; visibility: hidden;
+            clip-path: inset(0 100% 0 0); /* Clip from right */
+            transition: clip-path 0.3s ease 0.05s, opacity 0.1s ease 0.05s, visibility 0.1s ease 0.05s;
+            z-index: 1; /* Start behind badge */
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+        /* Show text when the CONTAINER is hovered */
+        .verified-badge-container:hover .verified-text {
+            opacity: 1;
+            visibility: visible;
+            clip-path: inset(0 0 0 0); /* Reveal full element */
+            /* z-index change likely not needed */
+        }
+
+        .person-title {
+            font-size: 0.9rem; font-weight: 400; color: var(--medium-gray);
+            line-height: 1.2; margin-top: 0;
+        }
+         .card-quote-mark {
+             position: absolute; top: 0.5rem; right: 1rem; font-family: serif;
+             font-size: 6rem; font-weight: bold; color: var(--light-border);
+             opacity: 0.5; line-height: 1; z-index: 0; user-select: none;
+             pointer-events: none;
+         }
+
+        /* Trigger Button */
+        .add-review-trigger-container { text-align: center; padding: 2rem 1rem 0; }
+        .add-review-button.subtle {
+             display: inline-flex; align-items: center; justify-content: center;
+             font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 500;
+             color: var(--dark-gray); background-color: var(--white);
+             border: 1px solid var(--light-border); padding: 0.6rem 1.4rem;
+             border-radius: 8px; cursor: pointer; text-align: center; text-decoration: none;
+             transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+             box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+        .add-review-button.subtle:hover {
+             background-color: var(--light-gray); border-color: #d1d5db;
+             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .add-review-button.subtle:active {
+             background-color: var(--light-gray-hover);
+             box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Form */
+        .add-review-section {
+            max-width: 1200px; margin: 1.5rem auto 0; background: var(--white);
+            border-radius: 12px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            overflow: hidden; border: 1px solid var(--light-border); max-height: 0;
+            opacity: 0; transform: translateY(-10px); transition: all 0.4s ease;
+        }
+        .add-review-section.expanded { max-height: 1500px; opacity: 1; transform: translateY(0); }
+        .add-review-content { padding: 2rem; }
+        .review-form { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; position: relative; }
+        .form-group:last-of-type { margin-bottom: 0; }
+        .form-group.avatar-upload { display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--dark-gray); font-size: 0.9rem; }
+        input[type="text"], input[type="email"], input[type="file"], textarea {
+            width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--light-border);
+            border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.95rem;
+            transition: all 0.3s ease; background: var(--white); color: var(--dark-gray);
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            outline: none; border-color: var(--neon-green);
+            box-shadow: 0 0 0 3px rgba(174, 255, 0, 0.15);
+        }
+        textarea { min-height: 150px; resize: vertical; line-height: 1.6; }
+        .avatar-preview {
+            width: 100px; height: 100px; border-radius: 50%; background-color: #f8f8f8;
+            margin-bottom: 1rem; overflow: hidden; display: flex; align-items: center;
+            justify-content: center; border: 1px dashed #ddd; flex-shrink: 0;
+        }
+        .avatar-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .avatar-preview.empty::before { content: 'Photo'; color: #999; font-size: 0.8rem; }
+        .file-upload-label {
+            display: inline-block; padding: 0.5rem 1rem; background: var(--light-gray);
+            color: var(--medium-gray); border-radius: 6px; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.3s ease; border: 1px solid var(--light-border);
+            margin-top: 0.5rem;
+        }
+        .file-upload-label:hover { background: #eee; }
+        #avatar { display: none; }
+        .submit-section {
+            display: flex; flex-direction: column; align-items: center;
+            margin-top: 1rem; width: 100%; gap: 1rem;
+        }
+        .submit-btn {
+             background-color: var(--neon-green); color: var(--black); border: none;
+             padding: 0.9rem 1.8rem; font-size: 1rem; font-weight: 600; border-radius: 8px;
+             cursor: pointer; transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+             box-shadow: 0 4px 10px rgba(174, 255, 0, 0.3); width: 100%;
+             appearance: none; text-decoration: none; text-align: center; line-height: normal;
+         }
+         .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 7px 18px rgba(174, 255, 0, 0.4); }
+        .recaptcha-container { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 1rem; }
+        .confirmation-message {
+            text-align: center; padding: 1rem; background: #f8fff0; border-radius: 8px;
+            margin-top: 1.5rem; border: 1px solid rgba(174, 255, 0, 0.3); color: var(--dark-gray);
+            font-size: 0.95rem; display: none; width: 100%;
+        }
+         .error-message { color: red; font-size: 0.8rem; display: block; margin-top: 4px; }
+
+        /* Responsive */
+         @media (min-width: 768px) {
+            .add-review-content { padding: 2.5rem; }
+            .review-form { grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; align-items: start; }
+            .form-left-column { display: flex; flex-direction: column; }
+            .form-right-column { display: flex; flex-direction: column; height: 100%; }
+            .form-group:has(textarea) { flex-grow: 1; display: flex; flex-direction: column; margin-bottom: 0; }
+            .form-group:has(textarea) textarea { flex-grow: 1; }
+            .form-group.avatar-upload { align-items: flex-start; margin-bottom: 1.5rem; }
+            .submit-section {
+                grid-column: span 2; flex-direction: row; flex-wrap: nowrap;
+                justify-content: flex-end; align-items: center; margin-top: 0;
+                gap: 0.75rem;
+            }
+            .submit-btn { width: auto; }
+            .recaptcha-container { width: auto; margin-bottom: 0; justify-content: flex-start; }
+            .confirmation-message { grid-column: span 2; }
+             .carousel-track { width: calc(304px * 12); }
+             @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-304px * 6)); } }
+             .testimonial-card { width: 280px; }
+         }
+         @media (min-width: 992px) {
+            .add-review-content { padding: 2.5rem 3rem; }
+            .review-form { gap: 2rem 2.5rem; }
+            .submit-section { gap: 1rem; }
+             .card-quote-mark { right: 1.5rem; top: 0.75rem; font-size: 7rem;}
+         }
+    
+.testimonial-card:hover .verified-text {
+    opacity: 1;
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+}
+
+.section-title {
+  padding-top: 5rem; /* Adds spacing above the title */
+}
+
+.add-review-trigger-container {
+  padding-bottom: 1rem; /* or adjust to e.g., 48px */
+}
+
+
+
+<div class="add-review-trigger-container">
+<button class="add-review-button subtle" id="reviewToggleButton">Add Your Review?</button>
+
+</style>
+
+<div class="section-header">
+<h2 class="section-title">People Are Talking</h2>
+<p class="section-subtitle">Real verified reviews from our favorite customers.</p>
+</div>
+<div class="carousel-container">
+<div class="carousel-track top">
+<div class="testimonial-card">
+<img alt="Dr. W." class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg"/>
+<p class="testimonial-text">"They built us a custom website that perfectly represents our brand and functions flawlessly. Highly recommended!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Dr. W.</p>
+<span class="verified-badge-container">
+<span class="verified-badge"> <svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path>
+</svg>
+</span>
+<span class="verified-text">Verified Review</span> </span>
+</div>
+<p class="person-title">Clinic Director</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="James S." class="avatar" src="https://randomuser.me/api/portraits/men/44.jpg"/>
+<p class="testimonial-text">"Our Google Ads cost per conversion dropped by 30% within two months of them taking over. Fantastic results!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">James S.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Marketing Manager</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Roberta M." class="avatar" src="https://randomuser.me/api/portraits/women/63.jpg"/>
+<p class="testimonial-text">"The new landing page design is converting visitors like crazy! Our sign-up rate doubled almost overnight."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Roberta M.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Product Lead</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Brian W." class="avatar" src="https://randomuser.me/api/portraits/men/22.jpg"/>
+<p class="testimonial-text">"We finally started ranking on page 1 for our main keywords thanks to their SEO expertise. It's made a huge difference."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Brian W.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Small Business Owner</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Jennifer H." class="avatar" src="https://randomuser.me/api/portraits/women/45.jpg"/>
+<p class="testimonial-text">"Our website traffic has consistently grown month-over-month since partnering with them. Seeing real progress!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Jennifer H.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">E-commerce Manager</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Sam K." class="avatar" src="https://randomuser.me/api/portraits/men/75.jpg"/>
+<p class="testimonial-text">"Their Facebook ad campaigns brought in a flood of qualified leads. Way better targeting than we could do ourselves."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Sam K.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Realtor</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Dr. W." class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg"/>
+<p class="testimonial-text">"They built us a custom website that perfectly represents our brand and functions flawlessly. Highly recommended!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Dr. W.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Clinic Director</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="James S." class="avatar" src="https://randomuser.me/api/portraits/men/44.jpg"/>
+<p class="testimonial-text">"Our Google Ads cost per conversion dropped by 30% within two months of them taking over. Fantastic results!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">James S.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Marketing Manager</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Roberta M." class="avatar" src="https://randomuser.me/api/portraits/women/63.jpg"/>
+<p class="testimonial-text">"The new landing page design is converting visitors like crazy! Our sign-up rate doubled almost overnight."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Roberta M.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Product Lead</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Brian W." class="avatar" src="https://randomuser.me/api/portraits/men/22.jpg"/>
+<p class="testimonial-text">"We finally started ranking on page 1 for our main keywords thanks to their SEO expertise. It's made a huge difference."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Brian W.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Small Business Owner</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Jennifer H." class="avatar" src="https://randomuser.me/api/portraits/women/45.jpg"/>
+<p class="testimonial-text">"Our website traffic has consistently grown month-over-month since partnering with them. Seeing real progress!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Jennifer H.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">E-commerce Manager</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Sam K." class="avatar" src="https://randomuser.me/api/portraits/men/75.jpg"/>
+<p class="testimonial-text">"Their Facebook ad campaigns brought in a flood of qualified leads. Way better targeting than we could do ourselves."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Sam K.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Realtor</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+</div>
+<div class="carousel-track bottom">
+<div class="testimonial-card">
+<img alt="Sarah L." class="avatar" src="https://randomuser.me/api/portraits/women/28.jpg"/>
+<p class="testimonial-text">"The checkout process on our new site is so much smoother. Customers love it, and our conversion rate proves it!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Sarah L.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Shop Owner</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Dave A." class="avatar" src="https://randomuser.me/api/portraits/men/65.jpg"/>
+<p class="testimonial-text">"We were burning money on ads before. Now, our campaigns are targeted and profitable. What a turnaround!"</p>
+<div class="person-info">
+<div class="person-name-line">
+
+<p class="person-name">Dave A.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Operations Lead</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Lisa M." class="avatar" src="https://randomuser.me/api/portraits/women/33.jpg"/>
+<p class="testimonial-text">"The landing page they created for our event registration was clean, clear, and converted way above expectations."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Lisa M.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Event Coordinator</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Michael T." class="avatar" src="https://randomuser.me/api/portraits/men/52.jpg"/>
+<p class="testimonial-text">"Understanding the technical SEO fixes they implemented was eye-opening. Our site health score is way up."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Michael T.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Webmaster</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Kathy H." class="avatar" src="https://randomuser.me/api/portraits/women/71.jpg"/>
+<p class="testimonial-text">"More people are finding our blog now than ever before. Their content and traffic strategy is working wonders."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Kathy H.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Content Manager</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Carlos R." class="avatar" src="https://randomuser.me/api/portraits/men/19.jpg"/>
+<p class="testimonial-text">"Managing Google Ads was a headache. Handing it over to them freed up my time and got better results."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Carlos R.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Service Provider</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Sarah L." class="avatar" src="https://randomuser.me/api/portraits/women/28.jpg"/>
+<p class="testimonial-text">"The checkout process on our new site is so much smoother. Customers love it, and our conversion rate proves it!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Sarah L.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Shop Owner</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Dave A." class="avatar" src="https://randomuser.me/api/portraits/men/65.jpg"/>
+<p class="testimonial-text">"We were burning money on ads before. Now, our campaigns are targeted and profitable. What a turnaround!"</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Dave A.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Operations Lead</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Lisa M." class="avatar" src="https://randomuser.me/api/portraits/women/33.jpg"/>
+<p class="testimonial-text">"The landing page they created for our event registration was clean, clear, and converted way above expectations."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Lisa M.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Event Coordinator</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Michael T." class="avatar" src="https://randomuser.me/api/portraits/men/52.jpg"/>
+<p class="testimonial-text">"Understanding the technical SEO fixes they implemented was eye-opening. Our site health score is way up."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Michael T.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Webmaster</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Kathy H." class="avatar" src="https://randomuser.me/api/portraits/women/71.jpg"/>
+<p class="testimonial-text">"More people are finding our blog now than ever before. Their content and traffic strategy is working wonders."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Kathy H.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Content Manager</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+<div class="testimonial-card">
+<img alt="Carlos R." class="avatar" src="https://randomuser.me/api/portraits/men/19.jpg"/>
+<p class="testimonial-text">"Managing Google Ads was a headache. Handing it over to them freed up my time and got better results."</p>
+<div class="person-info">
+<div class="person-name-line">
+<p class="person-name">Carlos R.</p>
+<span class="verified-badge-container">
+<span class="verified-badge">
+<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" fill-rule="evenodd" stroke="white" stroke-width="1.5"></path></svg>
+</span>
+<span class="verified-text">Verified Review</span>
+</span>
+</div>
+<p class="person-title">Service Provider</p>
+</div>
+<span class="card-quote-mark">“</span>
+</div>
+</div>
+</div>
+<div class="add-review-trigger-container">
+<button class="add-review-button subtle" id="reviewToggleButton">Add Your Review?</button>
+</div>
+<div class="add-review-section" id="reviewSection">
+<div class="add-review-content">
+<form class="review-form" id="reviewForm" novalidate="">
+<div class="form-left-column">
+<div class="form-group avatar-upload">
+<label for="avatar">Your Photo (Optional)</label>
+<div class="avatar-preview empty" id="avatarPreview"></div>
+<label class="file-upload-label" for="avatar">Choose Photo</label>
+<input accept="image/*" id="avatar" name="avatar" type="file"/>
+</div>
+<div class="form-group">
+<label for="firstName">First Name</label>
+<input id="firstName" name="firstName" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="lastName">Last Name</label>
+<input id="lastName" name="lastName" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input id="email" name="email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="jobTitle">Job Title</label>
+<input id="jobTitle" name="jobTitle" required="" type="text"/>
+</div>
+</div>
+<div class="form-right-column">
+<div class="form-group" style="flex-grow: 1;">
+<label for="reviewText">Your Review</label>
+<textarea id="reviewText" minlength="10" name="reviewText" required=""></textarea>
+</div>
+</div>
+<div class="submit-section">
+<div class="recaptcha-container">
+<div class="g-recaptcha" data-sitekey="6Lcu6ycrAAAAAPqWPiNV6GnhWVMIKxP_qTVcSogB"></div>
+</div>
+<button class="submit-btn" type="submit">Submit Review</button>
+</div>
+<div class="confirmation-message" id="confirmationMessage">
+                        Thank you for your review! We always appreciate feedback!
+                    </div>
+</form>
+</div>
+</div>
+<script>
+        // JS remains the same
+        const reviewToggleButton = document.getElementById('reviewToggleButton');
+        const reviewSection = document.getElementById('reviewSection');
+        reviewToggleButton.addEventListener('click', (e) => {
+            const isExpanded = reviewSection.classList.toggle('expanded');
+            reviewToggleButton.textContent = isExpanded ? 'Hide Review Form' : 'Add Your Review?';
+            if (isExpanded) {
+                reviewSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+        const avatarInput = document.getElementById('avatar');
+        const avatarPreview = document.getElementById('avatarPreview');
+        avatarInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                if (!file.type.startsWith('image/')){ alert('Please select an image file.'); this.value = ''; return; }
+                 const reader = new FileReader();
+                 reader.onload = function(e) {
+                    avatarPreview.innerHTML = ''; avatarPreview.classList.remove('empty');
+                    const img = document.createElement('img'); img.src = e.target.result; img.alt = "Avatar Preview";
+                    avatarPreview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            } else { avatarPreview.innerHTML = ''; avatarPreview.classList.add('empty'); }
+        });
+        const reviewForm = document.getElementById('reviewForm');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+        const submitButton = reviewForm.querySelector('.submit-btn');
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+            reviewForm.querySelectorAll('[required]').forEach(input => {
+                const parentGroup = input.closest('.form-group');
+                 input.style.borderColor = '';
+                 const errorMsg = parentGroup ? parentGroup.querySelector('.error-message') : null;
+                 if (errorMsg) errorMsg.remove();
+
+                 if (!input.value.trim()) {
+                     isValid = false; input.style.borderColor = 'red';
+                     displayError(input, 'This field is required.');
+                 } else if (input.type === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
+                      isValid = false; input.style.borderColor = 'red';
+                      displayError(input, 'Please enter a valid email address.');
+                 } else if (input.tagName === 'TEXTAREA' && input.value.trim().length < (input.minLength || 10)) {
+                      isValid = false; input.style.borderColor = 'red';
+                       displayError(input, `Review must be at least ${input.minLength || 10} characters long.`);
+                  }
+            });
+             if (!isValid) return;
+
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) { alert('Please complete the reCAPTCHA verification.'); return; }
+
+            submitButton.disabled = true; submitButton.textContent = 'Submitting...';
+            const formData = new FormData(reviewForm); formData.append('g-recaptcha-response', recaptchaResponse);
+
+            console.log('Simulating review submission...');
+            setTimeout(() => {
+                 console.log('Form data submitted (simulated):', Object.fromEntries(formData));
+                 showConfirmation(); submitButton.disabled = false; submitButton.textContent = 'Submit Review';
+                 grecaptcha.reset();
+                 reviewForm.querySelectorAll('[required]').forEach(input => {
+                      input.style.borderColor = '';
+                      const errorMsg = input.closest('.form-group')?.querySelector('.error-message');
+                      if (errorMsg) errorMsg.remove();
+                  });
+            }, 1500);
+        });
+         function displayError(inputElement, message) {
+             const formGroup = inputElement.closest('.form-group');
+             if (!formGroup) return;
+             const existingError = formGroup.querySelector('.error-message');
+             if (existingError) existingError.remove();
+             const errorSpan = document.createElement('span');
+             errorSpan.className = 'error-message';
+             errorSpan.style.color = 'red'; errorSpan.style.fontSize = '0.8rem';
+             errorSpan.style.display = 'block'; errorSpan.style.marginTop = '4px';
+             errorSpan.textContent = message;
+             inputElement.parentNode.insertBefore(errorSpan, inputElement.nextSibling);
+         }
+        function showConfirmation() {
+            confirmationMessage.style.display = 'block'; reviewForm.reset();
+            avatarPreview.innerHTML = ''; avatarPreview.classList.add('empty');
+            setTimeout(() => { confirmationMessage.style.display = 'none'; }, 5000);
+        }
+    </script>
+</body>
+</html>

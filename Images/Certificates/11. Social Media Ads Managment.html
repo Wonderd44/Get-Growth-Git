@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Ads Management Services | Get Growth Media</title>
+    <meta name="description" content="Engage your target audience and build your brand with expert Social Media Ads management by Get Growth Media. We manage campaigns on Meta (Facebook, Instagram) & more.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00; /* */
+            --white: #FFFFFF; /* */
+            --light-gray: #F7F8FA; /* */
+            --black: #000000; /* */
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0; /* */
+            --shadow-color: rgba(0, 0, 0, 0.05); /* */
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* */
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7; /* Consistent line height */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px; /* Slightly narrower for content pages */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Horizontal padding */
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--border-light);
+        }
+        .content-section:last-child {
+            border-bottom: none;
+             padding-bottom: 8rem; /* More padding at the end */
+        }
+        .content-section.bg-light {
+             background-color: var(--light-gray); /* Alternate background */
+        }
+
+        /* Headings Styling based on Branding and SEO */
+        h1, h2, h3 {
+            font-weight: 700; /* Bold headings */
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem; /* Space below headings */
+        }
+
+        h1 { /* H1 styling */
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem; /* Less margin before underline */
+        }
+
+        /* Neon green underline for H1 and H2 */
+        h1::after,
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: var(--neon-green); /* */
+            margin: 1.5rem auto 3rem auto; /* Center and add space below */
+            border-radius: 2px;
+        }
+        h2.section-title::after {
+             margin-top: 1rem;
+             margin-bottom: 2.5rem;
+        }
+
+        h2 { /* H2 styling */
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+             margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+             text-align: center;
+        }
+
+
+        h3 { /* H3 styling */
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray); /* */
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit paragraph width for readability */
+        }
+        p.lead { /* Optional lead paragraph style */
+             font-size: 1.2rem;
+             color: var(--dark-gray);
+             margin-left: auto;
+             margin-right: auto;
+             text-align: center;
+             max-width: 800px;
+             margin-bottom: 3rem;
+        }
+        section p:last-child {
+             margin-bottom: 0;
+        }
+
+        /* List Styling (Using default from previous examples) */
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            text-align: left;
+        }
+
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--neon-green);
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Specific styling for the centered list container */
+        .centered-list-container {
+            text-align: center; /* Center the container contents */
+        }
+         .centered-list-container ul {
+              /* display: inline-block ensures the ul shrinks to fit content, aiding centering */
+              /* text-align: left ensures text inside li starts left, relative to the checkmark */
+         }
+          .centered-list-container li {
+               /* Inherits default li styles including padding-left */
+          }
+
+
+        /* Feature Grid Styling */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item-card {
+            background-color: var(--white);
+            padding: 2rem 1.8rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 6px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+        }
+        .feature-item-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+         /* Optional: Add icons to features */
+        .feature-item-card h3 i {
+            color: var(--neon-green);
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+            width: 28px; /* Fixed width for alignment */
+            text-align: center;
+        }
+
+        .feature-item-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0; /* Remove margin for card context */
+        }
+
+
+        /* Call to Action Section */
+        .cta-section {
+             text-align: center;
+             padding-top: 2rem; /* Space above CTAs */
+        }
+         .cta-section p {
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 2rem;
+         }
+
+        /* Button Styling (Based on Primary Button from Branding Guide) */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded style from header CTA */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green); /* */
+            color: var(--black); /* */
+            box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(174, 255, 0, 0.5); /* Enhanced hover shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+             h1::after, h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             h2.section-title::after {
+                 margin-top: 1.5rem;
+                 margin-bottom: 3rem;
+             }
+             p, li {
+                 font-size: 1.1rem;
+             }
+             .content-section {
+                 padding: 7rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 9rem;
+             }
+        }
+
+        @media (min-width: 992px) {
+             .content-section {
+                 padding: 8rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 10rem;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="content-section">
+        <div class="container">
+            <h1>Social Media Ads Management</h1>
+            <p class="lead">
+                Connect with your ideal customers where they spend their time online. <strong>Social Media Advertising</strong> allows you to target specific demographics, interests, and behaviors on platforms like Meta (Facebook & Instagram), LinkedIn, and more. Effective <strong>Social Media Ads management</strong> helps build brand awareness, generate leads, and drive engagement through visually compelling campaigns.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container" style="max-width: 850px; text-align: center;">
+            <h2 class="section-title">The Power of Managed Social Campaigns</h2>
+            <p>
+                Running successful <strong>social media ads</strong> goes beyond boosting posts. It requires a deep understanding of platform algorithms, audience behavior, creative best practices, and constant adaptation. Professional management ensures your budget is strategically allocated, your targeting is precise, your creatives resonate, and your campaigns evolve to deliver optimal results.
+            </p>
+            <p>
+                From identifying the right platforms for your audience (like Meta Ads for broad consumer reach or LinkedIn for B2B) to crafting eye-catching visuals and tracking performance, comprehensive management turns social media potential into tangible business growth.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+         <div class="container">
+             <h2 class="section-title">Our Social Media Ads Management Approach</h2>
+             <p style="text-align: center; margin-left: auto; margin-right:auto; margin-bottom: 3rem;">We provide end-to-end management for your social media advertising, focusing on engaging your audience and achieving your marketing objectives. Our flat-rate service includes:</p>
+
+             <div class="feature-grid">
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-network-wired"></i>Platform Selection & Strategy</h3>
+                     <p>We help you choose the most effective social platforms (Meta, LinkedIn, etc.) based on your target audience and campaign goals, developing a cohesive cross-channel strategy if needed.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-users-cog"></i>Advanced Audience Targeting</h3>
+                     <p>Leveraging powerful platform tools, we target users based on demographics, interests, behaviors, job titles, custom audiences (website visitors, email lists), and lookalike audiences.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-paint-brush"></i>Compelling Creative Design</h3>
+                     <p>Social media is visual. We work with you or create engaging ad creatives (images, videos, carousels) and write copy designed to stop the scroll and drive action.</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-cogs"></i>Campaign Optimization</h3>
+                     <p>We continuously monitor and optimize campaigns, adjusting bids, placements (Feeds, Stories, etc.), and ad delivery settings to maximize reach, engagement, and conversions within your budget.</p>
+                 </div>
+                 <div class="feature-item-card">
+                      <h3><i class="fas fa-crosshairs"></i>Conversion Tracking (Pixel/Events)</h3> <p>Using tools like the Meta Pixel, we set up conversion tracking to measure the true impact of your ads on leads, sales, sign-ups, and other key performance indicators (KPIs).</p>
+                 </div>
+                 <div class="feature-item-card">
+                     <h3><i class="fas fa-retweet"></i>Retargeting Campaigns</h3>
+                     <p>Reconnect with users who have previously visited your website or engaged with your content. Retargeting keeps your brand top-of-mind and encourages conversions from interested prospects.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-vials"></i>Continuous A/B Testing</h3>
+                     <p>We rigorously test different ad creatives, audience segments, headlines, calls-to-action, and placements to learn what resonates best and refine campaign effectiveness.</p>
+                 </div>
+                 <div class="feature-item-card">
+                      <h3><i class="fas fa-dollar-sign"></i>Budget Management</h3>
+                      <p>We ensure your budget is allocated efficiently across campaigns and platforms to achieve the best possible results, providing clear reporting on ad spend and performance.</p>
+                 </div>
+                  <div class="feature-item-card">
+                     <h3><i class="fas fa-chart-pie"></i>Performance Reporting</h3>
+                     <p>Receive clear, insightful reports on key metrics like reach, engagement, click-through rates, conversions, and cost-per-result, understanding exactly how your campaigns are performing.</p>
+                 </div>
+             </div>
+         </div>
+     </section>
+
+    <section class="content-section bg-light centered-list-container">
+        <div class="container" style="max-width: 850px;">
+             <h2 class="section-title">Why Get Growth Media for Social Ads?</h2>
+              <ul>
+                 <li><strong>Certified Expertise:</strong> Our team includes Meta Ads Certified professionals, ensuring up-to-date knowledge and best practices.</li>
+                 <li><strong>Platform Versatility:</strong> We manage campaigns across key platforms like Facebook, Instagram, LinkedIn, and more.</li>
+                 <li><strong>Creative & Strategic Approach:</strong> We balance engaging creative with data-driven targeting and optimization for maximum impact.</li>
+                 <li><strong>Transparent Flat-Rate Fee:</strong> Simple, predictable pricing for comprehensive management services.</li>
+                 <li><strong>Focus on Your Goals:</strong> Whether it's brand awareness, lead generation, or sales, we align campaigns with your objectives.</li>
+                 <li><strong>No Long-Term Contracts:</strong> We believe in earning your continued business through performance.</li>
+                  <li><strong>Performance Guarantee:</strong> We stand by our work with a fair refund policy if you're not satisfied.</li>
+             </ul>
+        </div>
+    </section>
+
+    <section class="content-section cta-section">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Ready to Amplify Your Social Presence?</h2>
+            <p>
+               Leverage the power of social media advertising with expert management from <strong>Get Growth Media</strong>. Let's build campaigns that connect, engage, and convert your target audience.
+            </p>
+            <div>
+                <a href="#pricing-section-link" class="btn btn-primary">View Social Media Ad Packages</a>
+                <a href="#contact-form-link" class="btn btn-primary">Get Your Free Social Strategy Call</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

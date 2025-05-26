@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paid Advertising: Google Ads vs Social Media Ads | Get Growth Media</title>
+    <meta name="description" content="Explore paid advertising options. Understand the key differences, pros, and cons between Google Ads and Social Media Ads (like Meta Ads) for your marketing campaigns with Get Growth Media.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables based on Branding Guide & Existing Files */
+        :root {
+            --neon-green: #AEFF00; /* */
+            --white: #FFFFFF; /* */
+            --light-gray: #F7F8FA; /* */
+            --black: #000000; /* */
+            --dark-gray: #1A202C; /* Primary Text */
+            --medium-gray: #667185; /* Secondary Text */
+            --border-light: #E2E8F0; /* */
+            --shadow-color: rgba(0, 0, 0, 0.05); /* */
+        }
+
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* */
+            background-color: var(--white);
+            color: var(--dark-gray);
+            line-height: 1.7; /* Consistent line height */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+			padding-top: 160px; /* Adjust this value as needed */
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px; /* Slightly narrower for content pages */
+            margin: 0 auto;
+            padding: 0 1.5rem; /* Horizontal padding */
+        }
+
+        /* General Section Styling */
+        .content-section {
+            padding: 6rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--border-light);
+        }
+        .content-section:last-child {
+            border-bottom: none;
+             padding-bottom: 8rem; /* More padding at the end */
+        }
+        .content-section.bg-light {
+             background-color: var(--light-gray); /* Alternate background */
+        }
+
+        /* Headings Styling based on Branding and SEO */
+        h1, h2, h3 {
+            font-weight: 700; /* Bold headings */
+            color: var(--dark-gray);
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+            margin-bottom: 1.5rem; /* Space below headings */
+        }
+
+        h1 { /* H1 styling */
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem; /* Less margin before underline */
+        }
+
+        /* Neon green underline for H1 and H2 */
+        h1::after,
+        h2.section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 5px;
+            background: var(--neon-green); /* */
+            margin: 1.5rem auto 3rem auto; /* Center and add space below */
+            border-radius: 2px;
+        }
+        h2.section-title::after {
+             margin-top: 1rem;
+             margin-bottom: 2.5rem;
+        }
+
+        h2 { /* H2 styling */
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+             margin-bottom: 1.25rem;
+        }
+        h2.section-title {
+             text-align: center;
+        }
+
+
+        h3 { /* H3 styling */
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Paragraph Styling */
+        p {
+            font-size: 1.05rem;
+            color: var(--medium-gray); /* */
+            margin-bottom: 1.5rem;
+            max-width: 750px; /* Limit paragraph width for readability */
+        }
+        p.lead { /* Optional lead paragraph style */
+             font-size: 1.2rem;
+             color: var(--dark-gray);
+             margin-left: auto;
+             margin-right: auto;
+             text-align: center;
+             max-width: 800px;
+             margin-bottom: 3rem;
+        }
+        section p:last-child {
+             margin-bottom: 0;
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0; /* Reset padding for the ul */
+            margin-bottom: 1.5rem;
+            text-align: left; /* Align text inside li to the left by default */
+            /* display: inline-block; removed from general ul */
+        }
+
+        /* General list item styling */
+        li {
+            font-size: 1.05rem;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+            /* position: relative; and padding-left: 2rem; moved to .checklist li */
+        }
+
+        /* Styling specific to checklist items */
+        .checklist li {
+            position: relative; /* For positioning the pseudo-element */
+            padding-left: 2rem; /* Space for the custom checkmark */
+        }
+
+        /* Custom bullet point using neon green check, scoped to .checklist */
+        .checklist li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px; /* Adjust vertical alignment if needed */
+            width: 18px;
+            height: 18px;
+            background-color: var(--neon-green); /* */
+            mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" /></svg>');
+            mask-repeat: no-repeat;
+            mask-size: contain;
+        }
+
+        /* Specific styling for the centered list container */
+        .centered-list-container {
+            text-align: center; /* Center the container contents */
+        }
+        .centered-list-container ul.checklist {
+             display: inline-block; /* Ensures the ul shrinks to fit content, aiding centering */
+             /* text-align: left; is inherited from general ul rule */
+        }
+         /* .centered-list-container li { } */ /* No longer needed */
+
+
+        /* Comparison Section Styling */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Stack on mobile */
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 20px var(--shadow-color);
+             display: flex; /* Use flexbox for better height alignment */
+             flex-direction: column;
+        }
+        .comparison-item h3 {
+             /* Optional: add specific styling like an icon */
+             margin-bottom: 1.5rem;
+        }
+        .comparison-content {
+             flex-grow: 1; /* Allows content area to expand */
+        }
+        .comparison-item ul.checklist { /* Apply to checklists within comparison items */
+             margin-bottom: 0; /* Original style had margin-bottom: 0 for ul in comparison-item */
+             display: block; /* Override inline-block for this specific list, making it full width */
+             /* text-align: left; is inherited */
+        }
+        .comparison-item .pros-cons {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-light);
+        }
+        .comparison-item .pros-cons p {
+             margin-bottom: 0.5rem;
+             font-size: 0.95rem;
+        }
+         .comparison-item .pros-cons strong {
+             font-weight: 600;
+             color: var(--dark-gray);
+         }
+
+
+        /* Call to Action Section */
+        .cta-section {
+             text-align: center;
+             padding-top: 2rem; /* Space above CTAs */
+        }
+         .cta-section p {
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 2rem;
+         }
+
+        /* Button Styling (Based on Primary Button from Branding Guide) */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 25px; /* Rounded style from header CTA */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            margin: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background-color: var(--neon-green); /* */
+            color: var(--black); /* */
+            box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(174, 255, 0, 0.5); /* Enhanced hover shadow */
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr 1fr; /* Side-by-side */
+                align-items: stretch; /* Make columns equal height */
+            }
+             h1::after, h2.section-title::after {
+                 margin: 2rem auto 4rem auto;
+             }
+             h2.section-title::after {
+                 margin-top: 1.5rem;
+                 margin-bottom: 3rem;
+             }
+             /* Apply to general li and specifically to .checklist li for consistent font size */
+             li, .checklist li {
+                 font-size: 1.1rem;
+             }
+             p {
+                 font-size: 1.1rem;
+             }
+             .content-section {
+                 padding: 7rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 9rem;
+             }
+        }
+
+        @media (min-width: 992px) {
+            .comparison-item {
+                padding: 2.5rem;
+            }
+             .content-section {
+                 padding: 8rem 0;
+             }
+             .content-section:last-child {
+                 padding-bottom: 10rem;
+             }
+        }
+        /* Modal styles are loaded dynamically via modal-form.js */
+		
+		
+		.cta-section .btn,
+.cta-section .btn-primary,
+.cta-section button.btn-primary {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 320px; /* updated */
+  height: 52px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: var(--neon-green);
+  color: var(--black);
+  box-shadow: 0 4px 14px rgba(174, 255, 0, 0.4);
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+    </style>
+</head>
+<body>
+
+ <!--#include file="Header.html" -->
+
+ <section class="content-section">
+        <div class="container">
+            <h1>Paid Advertising: Reach Your Audience</h1>
+            <p class="lead">
+                In today's digital landscape, getting noticed requires a strategic approach. <strong>Paid advertising</strong> (also known as PPC or pay-per-click) allows businesses to reach specific audiences quickly and effectively across various online platforms. But with different options available, which is right for you? Let's explore two giants: Google Ads and Social Media Ads.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Google Ads vs. Social Media Ads</h2>
+            <p style="text-align: center; margin-left: auto; margin-right:auto; margin-bottom: 3rem;">Both platforms offer powerful ways to connect with potential customers, but they operate on fundamentally different principles: capturing existing demand versus generating new interest.</p>
+
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>Google Ads (Search & More)</h3>
+                    <div class="comparison-content">
+                        <p>Google Ads primarily focuses on capturing **search intent**. When users actively search for products, services, or information related to your business on Google, your ads can appear.</p>
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul class="checklist">
+                            <li>Targets users based on keywords they search for.</li>
+                            <li>Ads appear on Google Search results, YouTube, partner sites, etc.</li>
+                            <li>Excellent for reaching users with high purchase intent.</li>
+                            <li>Often involves bidding on specific keywords.</li>
+                        </ul>
+                    </div>
+                    <div class="pros-cons">
+                        <p><strong>Pros:</strong> Targets active searchers, high potential ROI for bottom-of-funnel searches, wide reach via Google network.</p>
+                        <p><strong>Cons:</strong> Can be competitive and expensive for popular keywords, requires ongoing optimization, less effective for building initial brand awareness without active search.</p>
+                    </div>
+                </div>
+
+                <div class="comparison-item">
+                     <h3>Social Media Ads (Meta, LinkedIn, etc.)</h3>
+                     <div class="comparison-content">
+                        <p>Platforms like Meta (Facebook & Instagram), LinkedIn, TikTok, etc., allow you to target users based on **demographics, interests, behaviors, and connections**, even if they aren't actively searching for your product.</p>
+                        <p><strong>Key Characteristics:</strong></p>
+                        <ul class="checklist">
+                            <li>Targets users based on profiles and online activity.</li>
+                            <li>Ads appear within users' social feeds, stories, messages, etc.</li>
+                            <li>Great for building brand awareness and generating demand.</li>
+                            <li>Relies heavily on engaging visuals and ad creatives.</li>
+                        </ul>
+                    </div>
+                    <div class="pros-cons">
+                         <p><strong>Pros:</strong> Precise audience targeting options, effective for visual products/services, great for brand building and top-of-funnel marketing.</p>
+                         <p><strong>Cons:</strong> Users may not have immediate purchase intent, requires strong creative content, platform algorithms and costs can fluctuate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+         <div class="container centered-list-container" style="max-width: 850px;">
+             <h2 class="section-title">Which Platform Should You Choose?</h2>
+             <p>Often, the most effective strategy involves using **both**, but here's a general guide:</p>
+             <ul class="checklist">
+                 <li><strong>Use Google Ads when:</strong> You want to capture users actively looking for your specific solution *right now*. Your product/service solves a clear, searchable problem.</li>
+                 <li><strong>Use Social Media Ads when:</strong> You want to build brand awareness, reach specific demographics/interest groups, promote visually appealing products, or generate leads earlier in the sales funnel.</li>
+                 <li><strong>Use Both when:</strong> You want a comprehensive digital advertising strategy covering both active searchers and passive browsers, building awareness and capturing intent simultaneously.</li>
+             </ul>
+             <p style="margin-top: 2rem;">The best choice depends on your specific business goals, target audience, budget, and the nature of your product or service.</p>
+         </div>
+     </section>
+
+    <section class="content-section cta-section bg-light">
+        <div class="container" style="max-width: 850px;">
+            <h2 class="section-title">Expert Paid Advertising Management</h2>
+            <p>
+                Navigating the complexities of <strong>paid advertising</strong> requires expertise. At <strong>Get Growth Media</strong>, we manage results-driven campaigns across both Google Ads and Social Media platforms like Meta Ads. We focus on maximizing your return on ad spend (ROAS) with transparent, flat-rate fees.
+            </p>
+             <p>
+                 <strong>Our Services Include:</strong><br>
+                 ✓ Google Ads Management<br>
+                 ✓ Meta (Facebook & Instagram) Ads Management<br>
+                 ✓ Campaign Setup & Optimization<br>
+                 ✓ Performance Tracking & Reporting
+             </p>
+            <p>Ready to accelerate your growth with effective online ads?</p>
+            <div>
+                <a href="/#pricing" class="btn btn-primary">View Marketing Packages</a>
+                 <button id="openConsultationPopup" class="btn btn-primary">Get Your Free Ad Consultation</button>
+                 </div>
+        </div>
+    </section>
+
+	 
+	 
+	  <!--#include file="Footer.html" -->
+	  
+	  
+
+
+
+<!-- Modal Script -->
+<script src="Modal Files/modal-form.js"></script>
+<div id="modal-container"></div>
+	 
+	 	  </body>
+</html>

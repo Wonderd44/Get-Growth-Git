@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout – Step 1 | Get Growth Media</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+          font-family: 'Inter', sans-serif;
+          background: linear-gradient(135deg, #f7f8fa 0%, #ffffff 100%);
+          color: #1A202C; /* Tailwind gray-900 */
+        }
+        .glass {
+          backdrop-filter: blur(16px) saturate(180%);
+          background: rgba(255, 255, 255, 0.85);
+          box-shadow: 0 12px 45px rgba(0, 0, 0, 0.1);
+          border-radius: 1.5rem;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+        }
+        .glass:hover {
+          box-shadow: 0 18px 52px rgba(0, 0, 0, 0.15);
+          transform: translateY(-2px);
+        }
+
+        /* Step Container and Individual Panes */
+        .checkout-step-pane {
+            width:100%; /* Each step is one-third of the 300% steps-container */
+            flex-shrink: 0; /* Prevent shrinking within the flex container */
+            box-sizing: border-box;
+            display: none; /* Hidden by default, made visible by .step-visible */
+        }
+        .checkout-step-pane.step-visible {
+            display: block; /* Made visible by JS */
+            opacity: 1;
+            transform: translateY(0);
+            padding-left: 2.5rem; /* Padding for content within the step pane */
+            padding-right: 2.5rem;
+        }
+
+        /* Button Styles */
+        .premium-button {
+          background-color: #AEFF00;
+          color: #000000;
+          font-weight: 700;
+          border-radius: 0.75rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(174, 255, 0, 0.2);
+          padding: 0.75rem 1.5rem;
+          position: relative;
+          overflow: hidden;
+        }
+        .premium-button:hover {
+          background-color: #AEFF00;
+          filter: brightness(1.1);
+          box-shadow: 0 6px 20px rgba(174, 255, 0, 0.3);
+          transform: translateY(-2px);
+        }
+        .premium-button:disabled {
+          background-color: #9ca3af;
+          color: #e5e7eb;
+          box-shadow: none;
+          transform: none;
+          cursor: not-allowed;
+          opacity: 0.6;
+          filter: brightness(1);
+        }
+        .premium-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+          transition: left 0.7s ease;
+        }
+        .premium-button:hover::before { left: 100%; }
+
+        /* Input Styling */
+        .form-field {
+            position: relative; /* Crucial for absolute positioning of custom-placeholder */
+            margin-bottom: 0; /* Remove default margin, use explicit spacing instead */
+        }
+        .premium-input {
+          height: 3rem !important; /* Fixed height */
+          line-height: 1.2 !important; /* Normal line height */
+          padding-top: 0.9rem !important; /* Specific top padding */
+          padding-bottom: 0.9rem !important; /* Specific bottom padding */
+          padding-left: 1rem !important; /* Keep horizontal padding */
+          padding-right: 1rem !important; /* Keep horizontal padding */
+          border: 1px solid #d1d5db;
+          border-radius: 0.5rem;
+          background-color: white;
+          transition: all 0.3s ease;
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
+          vertical-align: baseline !important; /* Reset vertical alignment */
+          margin: 0 !important; /* Reset any default margins */
+        }
+        
+        /* Ensure consistent styling across all input types */
+        input[type="text"].premium-input,
+        input[type="email"].premium-input,
+        input[type="tel"].premium-input {
+          height: 3rem !important;
+          line-height: 1.2 !important;
+          padding: 0.9rem 1rem !important;
+          margin: 0 !important;
+          vertical-align: baseline !important;
+          text-align: left !important;
+          font-size: 1rem !important;
+          font-family: 'Inter', sans-serif !important;
+          font-weight: 400 !important;
+          letter-spacing: normal !important;
+          text-indent: 0 !important;
+          border: 1px solid #d1d5db !important;
+          border-radius: 0.5rem !important;
+          background-color: white !important;
+          outline: none;
+        }
+        
+                 input[type="text"].premium-input:focus,
+         input[type="email"].premium-input:focus,
+         input[type="tel"].premium-input:focus {
+           border-color: #AEFF00 !important;
+         }
+         
+         /* Ensure invalid fields stay red even when focused - override ALL focus states */
+         input[type="text"].premium-input.is-invalid:focus,
+         input[type="email"].premium-input.is-invalid:focus,
+         input[type="tel"].premium-input.is-invalid:focus,
+         #email-input.is-invalid:focus {
+           border-color: #ef4444 !important;
+           box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+           transform: translateY(-1px);
+         }
+        
+        /* Specific fix for email input if it's still problematic */
+        #email-input {
+          height: 3rem !important;
+          line-height: 1.2 !important;
+          padding: 0.9rem 1rem !important;
+          font-size: 1rem !important;
+          font-family: 'Inter', sans-serif !important;
+          vertical-align: baseline !important;
+          text-align: left !important;
+          margin: 0 !important;
+          border: 1px solid #d1d5db !important;
+        }
+        
+        #email-input:focus {
+          border-color: #AEFF00 !important;
+        }
+        
+                 .premium-input:focus {
+             outline: none;
+             border-color: #AEFF00 !important; /* Ensure this is important */
+             box-shadow: 0 0 0 3px rgba(174, 255, 0, 0.2);
+             transform: translateY(-1px);
+         }
+         
+         /* Override focus state for invalid inputs - no green border */
+         .premium-input.is-invalid:focus {
+             border-color: #ef4444 !important;
+             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+         }
+        .premium-input.is-invalid { border-color: #ef4444 !important; animation: shake 0.4s ease-in-out; }
+        .premium-input.is-valid { border-color: #22c55e; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+        /* Custom Placeholder (acting as floating label) */
+        .custom-placeholder {
+          position: absolute;
+          left: 1rem;
+          top: 0;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          color: #9ca3af;
+          pointer-events: none;
+          transition: opacity 0.2s ease-out, transform 0.2s ease-out, font-size 0.2s ease-out, top 0.2s ease-out;
+          font-size: 1rem;
+          z-index: 2;
+          opacity: 1; /* Visible by default */
+        }
+        /* When input is focused OR has value (because :not(:placeholder-shown) also triggers if value exists and placeholder attribute is not set or empty) */
+        .premium-input:focus + .custom-placeholder,
+        .premium-input:not(:placeholder-shown) + .custom-placeholder {
+          opacity: 0; /* Hide the placeholder */
+        }
+
+        /* Validation feedback */
+        .validation-icon { margin-left: 0.5rem; display: inline-block; vertical-align: middle; transition: all 0.2s ease; opacity: 0; transform: scale(0.8); }
+        .validation-icon.active { opacity: 1; transform: scale(1); }
+        .validation-message { font-size: 0.75rem; color: #ef4444; min-height: 1rem; margin-top: 0.25rem; transition: all 0.3s ease; }
+        /* Progress Indicator */
+        .progress-steps { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; }
+        .progress-step { display: flex; flex-direction: column; align-items: center; text-align: center; color: #9ca3af; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); position: relative; flex: 1; }
+        .progress-step:not(:last-child)::after { content: ''; position: absolute; top: 16px; left: calc(50% + 20px); width: calc(100% - 40px); height: 2px; background-color: #e5e7eb; z-index: -1; transition: background-color 0.5s ease; }
+        .progress-step .step-icon-wrapper { width: 36px; height: 36px; border-radius: 50%; background-color: #e5e7eb; display: flex; align-items: center; justify-content: center; margin-bottom: 0.5rem; transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); border: 2px solid transparent; position: relative; overflow: hidden; }
+        .progress-step .step-icon-wrapper::before { content: ''; position: absolute; width: 100%; height: 100%; background: rgba(174, 255, 0, 0.15); top: 0; left: 0; transform: scale(0); transition: transform 0.3s ease; border-radius: 50%; }
+        .progress-step:hover .step-icon-wrapper::before { transform: scale(1); }
+        .progress-step .step-icon { width: 18px; height: 18px; stroke-width: 2.5; color: #9ca3af; transition: all 0.3s ease; }
+        .progress-step .step-label { font-size: 0.75rem; font-weight: 500; transition: all 0.3s ease; }
+        .progress-step.active .step-icon-wrapper, .progress-step.completed .step-icon-wrapper { background-color: #AEFF00; border-color: #AEFF00; transform: scale(1.1); }
+        .progress-step.active .step-icon, .progress-step.completed .step-icon { color: #000000; }
+        .progress-step.completed:not(:last-child)::after { background-color: #AEFF00; animation: connectorFill 0.6s ease forwards; }
+        @keyframes connectorFill { from { width: 0; } to { width: calc(100% - 40px); } }
+        .progress-step.active .step-label { color: #111827; font-weight: 600; transform: translateY(2px); }
+        .progress-step.completed .step-label { color: #6b7280; }
+        /* Spinner */
+        .spinner { width: 1.1rem; height: 1.1rem; border: 2px solid rgba(0, 0, 0, 0.2); border-radius: 50%; border-top-color: #000000; animation: spin 0.8s ease-in-out infinite; display: inline-block; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .premium-button .spinner + .button-text { margin-left: 0.75rem; }
+        /* Order Summary */
+        .order-summary { background-color: #f9fafb; border-radius: 0.75rem; padding: 1.5rem; border: 1px solid #e5e7eb; margin-bottom: 1.5rem; transition: all 0.3s ease; position: relative; }
+        .order-summary:hover { border-color: #AEFF00; box-shadow: 0 5px 15px rgba(174, 255, 0, 0.1); }
+        .order-summary h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem; color: #1f2937; position: relative; display: inline-block; }
+        .order-summary h3::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 40px; height: 3px; background-color: #AEFF00; border-radius: 2px; }
+        .order-summary .summary-item { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.875rem; color: #4b5563; }
+        .order-summary .summary-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 1rem; font-weight: 600; color: #111827; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb; }
+        #summary-features-list li { display: flex; align-items: center; line-height: 1.5; transition: transform 0.2s ease; }
+        #summary-features-list li:hover { transform: translateX(3px); }
+        #summary-features-list i { flex-shrink: 0; color: #AEFF00; }
+        #summary-placeholder { position: relative; z-index: 2; background-color: #f9fafb; min-height: 10rem; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.3s ease-out; }
+        .summary-content-loading { visibility: hidden; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; }
+        #summary-content { visibility: visible; opacity: 1; position: relative; transition: opacity 0.3s ease-in; }
+        #summary-content.summary-content-loading { visibility: hidden; opacity: 0; position: absolute; }
+        /* Trust Badges - Reduced margin-top */
+        .trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 0.5rem; margin-bottom: 1.5rem; }
+        .trust-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; color: #667185; padding: 0.5rem 0.75rem; border-radius: 0.5rem; background-color: rgba(255, 255, 255, 0.7); border: 1px solid #e2e8f0; transition: all 0.2s ease; }
+        .trust-badge:hover { background-color: white; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); }
+        .trust-badge i { color: #22c55e; }
+        /* Guarantee */
+        .satisfaction-guarantee { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem; padding: 0.75rem; border-radius: 0.5rem; background-color: rgba(174, 255, 0, 0.1); border: 1px solid rgba(174, 255, 0, 0.3); }
+        /* Testimonial - Reduced margin-top */
+        .testimonial-mini { margin-top: 1rem; padding: 1rem; border-radius: 0.5rem; background-color: white; border: 1px solid #e2e8f0; position: relative; overflow: hidden; }
+        .testimonial-mini::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: #AEFF00; }
+        .testimonial-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #AEFF00; object-fit: cover; }
+        .testimonial-stars { color: #fbbf24; font-size: 0.75rem; }
+        /* Particles */
+        #tsparticles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+        /* Support Button */
+        .support-chat-button { position: fixed; bottom: 2rem; right: 2rem; width: 3.5rem; height: 3.5rem; border-radius: 50%; background-color: #AEFF00; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(174, 255, 0, 0.3); cursor: pointer; transition: all 0.3s ease; z-index: 999; }
+        .support-chat-button:hover { transform: scale(1.1) rotate(15deg); }
+        .support-chat-button i { color: #000000; font-size: 1.25rem; }
+        /* Section Title */
+        .section-title { position: relative; display: inline-block; margin-bottom: 1rem; }
+        .section-title::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 40px; height: 3px; background-color: #AEFF00; border-radius: 2px; }
+        /* Confetti */
+        .confetti { position: fixed; width: 10px; height: 10px; background-color: #AEFF00; animation: confetti-fall 3s ease-in-out forwards, confetti-shake 2s ease-in-out infinite; z-index: 999; pointer-events: none; }
+        @keyframes confetti-fall { 0% { transform: translateY(-100vh); } 100% { transform: translateY(100vh); } }
+        @keyframes confetti-shake { 0%{transform:translateX(0) rotate(0deg)} 25%{transform:translateX(5px) rotate(90deg)} 50%{transform:translateX(-5px) rotate(180deg)} 75%{transform:translateX(5px) rotate(270deg)} 100%{transform:translateX(0) rotate(360deg)} }
+        
+        /* Mobile-only spacing adjustments - extremely compact */
+        @media (max-width: 768px) {
+            /* Reduce top padding on mobile */
+            body {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            .min-h-screen {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            /* Reduce main container padding */
+            .py-12 {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            
+            .form-field {
+                margin-bottom: 0.1rem !important; /* Minimal spacing between input boxes on mobile */
+            }
+            .form-field.mb-5 {
+                margin-bottom: 0.1rem !important;
+            }
+            .form-field.mb-1 {
+                margin-bottom: 0.1rem !important;
+            }
+            /* Target the grid container spacing too */
+            .grid.gap-5 {
+                gap: 0.25rem !important;
+            }
+            /* Reduce form margins */
+            form.mt-4 {
+                margin-top: 0.5rem !important;
+            }
+            /* Also reduce the grid row gap on Step 1 */
+            .grid.mb-5 {
+                margin-bottom: 0.1rem !important;
+            }
+            /* Move continue button up on mobile */
+            #continue-button {
+                margin-top: -0.5rem !important;
+            }
+            /* Move error validation text up so it's not covered by button */
+            #step-1-message {
+                transform: translateY(-0.75rem) !important;
+            }
+        }
+        /* Stripe Custom */
+        #payment-element { --stripe-variables-colorPrimary: #AEFF00; --stripe-variables-focusRingColor: rgba(174, 255, 0, 0.3); }
+        /* Toast */
+        .toast-notification { position: fixed; bottom: 1rem; right: 1rem; padding: 0.75rem 1rem; border-radius: 0.5rem; background-color: #AEFF00; color: #000000; font-size: 0.875rem; font-weight: 500; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); z-index: 9999; transform: translateY(150%); opacity: 0; transition: all 0.3s ease; }
+        .toast-notification.visible { transform: translateY(0); opacity: 1; }
+        .toast-notification.success { background-color: #10b981; color: white; }
+        .toast-notification.error { background-color: #ef4444; color: white; }
+        /* Stripe Overrides */
+        #payment-element .u-lh.u-fs-sm.u-fw-medium.u-color-primary.u-mh-2 { color: #AEFF00 !important; }
+        #payment-element [data-testid="card"][aria-selected="true"] { color: #AEFF00 !important; border-color: #AEFF00 !important; }
+        #payment-element [data-testid="card"][aria-selected="true"] span { color: #AEFF00 !important; }
+        #payment-element [data-testid="card"][aria-selected="false"] { color: #6B7280 !important; border-color: transparent !important; }
+        #payment-element [data-testid="card"][aria-selected="false"] span { color: #6B7280 !important; }
+    
+/* Alignment fix override */
+#steps-container{transform:none!important;width:100%!important;}
+.checkout-step-pane{display:none}
+.checkout-step-pane.step-visible{display:block}
+
+/* Floating label modern implementation */
+.form-field{position:relative;}
+.floating-label{
+  position:absolute;
+  left:1rem;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:1rem;
+  color:#9ca3af;
+  pointer-events:none;
+  background:#fff;
+  padding:0 .15rem;
+  transition:all .2s ease;
+}
+.premium-input:focus + .floating-label,
+.premium-input:not(:placeholder-shown) + .floating-label{
+  top:-0.6rem;
+  transform:none;
+  font-size:0.78rem;
+  color:#AEFF00;
+}
+
+/* Padding below testimonial section */
+.testimonial-mini{margin-top:1rem;margin-bottom:2rem;}
+
+/* Floating label tweak for textarea */
+textarea.premium-input + .floating-label{
+  top:1rem !important;
+  transform:none !important;
+}
+textarea.premium-input:focus + .floating-label,
+textarea.premium-input:not(:placeholder-shown) + .floating-label{
+  top:-0.6rem !important;
+  transform:none !important;
+  font-size:0.78rem;
+  color:#AEFF00;
+}
+
+/* --- Static labels (no animation) --- */
+.floating-label{
+  position:absolute;
+  left:1rem;
+  top:-0.6rem;
+  font-size:0.78rem;
+  color:#9ca3af;
+  background:#fff;
+  padding:0 .15rem;
+  pointer-events:none;
+  line-height:1;
+  transform:none;
+}
+.premium-input:focus + .floating-label,
+.premium-input:not(:placeholder-shown) + .floating-label{
+  top:-0.6rem;
+  font-size:0.78rem;
+  color:#AEFF00;
+  transform:none;
+}
+textarea.premium-input + .floating-label{
+  top:-0.6rem;
+}
+
+/* Ensure textarea label static too and enable resize */
+textarea.premium-input{
+  resize: vertical !important;
+  line-height: 1.5 !important;
+  padding: 1rem;
+  min-height: 100px;
+  overflow: auto;
+}
+
+textarea.premium-input + .floating-label{
+  position:absolute;
+  left:1rem;
+  top:-0.6rem;
+  font-size:0.78rem;
+  color:#9ca3af;
+  background:#fff;
+  padding:0 .15rem;
+  pointer-events:none;
+  line-height:1;
+}
+textarea.premium-input:focus + .floating-label,
+textarea.premium-input:not(:placeholder-shown) + .floating-label{
+  color:#AEFF00;
+}
+
+/* Make goals textarea label always floating */
+#achieve-input + .floating-label {
+  top: -0.6rem !important;
+  transform: none !important;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+#achieve-input:focus + .floating-label {
+  color: #AEFF00;
+}
+
+/* Specific styles for goals textarea */
+#achieve-input {
+  width: 100%;
+  min-height: calc(1.5em * 3 + 0.75rem * 2); /* 3 lines of text (1.5em line-height) + top/bottom padding */
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5; /* Standard line height for readability */
+  color: #1A202C;
+  resize: vertical; /* Enable vertical resize */
+  overflow: auto; /* Show scrollbar if content exceeds max-height */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  display: block; /* Ensure it takes full width and behaves as a block */
+}
+
+/* Focus state for goals textarea */
+#achieve-input:focus {
+  outline: none;
+  border-color: #AEFF00;
+  box-shadow: 0 0 0 3px rgba(174, 255, 0, 0.2);
+}
+
+/* Validation states for goals textarea (optional, but good for consistency) */
+#achieve-input.is-invalid {
+  border-color: #ef4444 !important;
+}
+
+/* Goals textarea LABEL - always floating */
+#achieve-input + .floating-label {
+  position: absolute;
+  left: 1rem;
+  top: -0.6rem; /* Position above the textarea */
+  font-size: 0.78rem;
+  color: #9ca3af; /* Default label color */
+  background: #fff; /* Background to cover the border */
+  padding: 0 0.15rem;
+  pointer-events: none; /* Label doesn't interfere with clicks */
+  line-height: 1; /* Ensure label height is consistent */
+  transition: color 0.3s ease; /* Smooth color transition on focus */
+}
+
+/* Goals textarea LABEL - color on focus of textarea */
+#achieve-input:focus + .floating-label {
+  color: #AEFF00; /* Accent color for focused label */
+}
+
+/* Override any conflicting styles */
+.premium-input {
+  resize: vertical !important;
+}
+    </style>
+</head>
+<body class="min-h-screen flex items-start justify-center px-4 py-12">
+    <div id="tsparticles"></div>
+    
+    <div class="relative w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <!-- Main Content -->
+         <div class="w-full md:col-span-2 order-1 md:order-1">
+            <div class="glass">
+                <!-- Header -->
+                <div class="flex items-center justify-between p-6 sm:p-8 border-b border-gray-200/50">
+                    <a href="/" class="hover:opacity-80 transition-opacity">
+                        <img src="/Images/Get-Growth-Media.svg" alt="Logo" class="h-10" onerror="this.src='https://placehold.co/100x40/EAEAEA/9CA3AF?text=Logo'">
+                    </a>
+                    <div class="text-right text-xs">
+                        <span class="text-gray-500">Need help?</span>
+                        <a href="/Contact Us.shtml" class="text-green-500 font-medium hover:underline relative group">
+                            Contact Us
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-green-500 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Progress Steps -->
+                <div class="px-6 sm:px-10 pt-6">
+                    <div class="progress-steps">
+                        <div class="progress-step active" id="progress-step-1">
+                            <div class="step-icon-wrapper"><i data-feather="user" class="step-icon"></i></div>
+                            <span class="step-label">Contact</span>
+                        </div>
+                        <div class="progress-step" id="progress-step-2">
+                            <div class="step-icon-wrapper"><i data-feather="briefcase" class="step-icon"></i></div>
+                            <span class="step-label">Business</span>
+                        </div>
+                        <div class="progress-step" id="progress-step-3">
+                            <div class="step-icon-wrapper"><i data-feather="credit-card" class="step-icon"></i></div>
+                            <span class="step-label">Payment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Steps Container -->
+                <div class="overflow-hidden w-full" id="steps-wrapper">
+                    <div id="steps-container" style="display: flex; width:100%; transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);">
+                        
+                        <!-- Step 1: Contact Information -->
+                        <div class="checkout-step-pane step-visible" id="step-1">
+                            <h1 class="text-2xl font-bold mb-2 tracking-tight text-gray-800 section-title pt-8">Your Contact Information</h1>
+                                                          <p class="text-gray-600 mb-12 text-sm">Let's start with the basics. We'll use this to keep you updated.</p>
+                            
+                            <form id="step-1-form" novalidate="" class="mt-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                                    <div class="form-field">
+                                        <input type="text" id="first-name-input" name="firstName" class="w-full premium-input" placeholder=" " required autocomplete="given-name">
+                                        <label for="first-name-input" class="floating-label">First Name</label>
+                                        <label for="first-name-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">First Name</label>
+                                        <span class="validation-icon" id="first-name-validation-icon"></span>
+                                        <div class="validation-message" id="first-name-validation-message"></div>
+                                    </div>
+                                    <div class="form-field">
+                                        <input type="text" id="last-name-input" name="lastName" class="w-full premium-input" placeholder=" " required autocomplete="family-name">
+                                        <label for="last-name-input" class="floating-label">Last Name</label>
+                                        <label for="last-name-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">Last Name</label>
+                                        <span class="validation-icon" id="last-name-validation-icon"></span>
+                                        <div class="validation-message" id="last-name-validation-message"></div>
+                                    </div>
+                                </div>
+                                <div class="form-field mb-5">
+                                    <input type="email" id="email-input" name="email" class="w-full premium-input" placeholder=" " required autocomplete="email">
+                                    <label for="email-input" class="floating-label">Email Address</label>
+                                    <label for="email-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">Email Address</label>
+                                    <span class="validation-icon" id="email-validation-icon"></span>
+                                    <div class="validation-message" id="email-validation-message"></div>
+                                </div>
+                                                                 <div class="form-field mb-1">
+                                     <input type="tel" id="phone-input" name="phone" class="w-full premium-input" placeholder=" " required autocomplete="tel">
+                                     <label for="phone-input" class="floating-label">Phone Number</label>
+                                     <label for="phone-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">Phone Number</label>
+                                     <span class="validation-icon" id="phone-validation-icon"></span>
+                                     <div class="validation-message" id="phone-validation-message"></div>
+                                 </div>
+                                 <div class="text-sm text-center text-red-600 min-h-[1rem]" id="step-1-message"></div>
+                                 <button type="button" id="continue-button" class="w-full mt-1 inline-flex justify-center items-center px-6 py-3 premium-button">
+                                    <span class="spinner hidden"></span>
+                                    <span class="button-text">Next: Business Info</span>
+                                    <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </button>
+                            </form>
+                            
+                            <div class="mt-4 text-xs text-center text-gray-500 flex items-center justify-center">
+                                <i data-feather="lock" class="h-3 w-3 mr-1 text-gray-400"></i> Your information is secure and encrypted.
+                            </div>
+                            
+                            <div class="trust-badges">
+                                <div class="trust-badge">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span>256-bit SSL</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <span>Secure Checkout</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <i class="fa-solid fa-user-shield"></i>
+                                    <span>Privacy Protected</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Business Information -->
+                        <div class="checkout-step-pane" id="step-2">
+                            <h1 class="text-2xl font-bold mb-2 tracking-tight text-gray-800 section-title pt-8">About Your Business</h1>
+                                                          <p class="text-gray-600 mb-12 text-sm">This helps us tailor our service to your specific needs.</p>
+                            
+                                                         <form id="step-2-form" novalidate="" class="mt-4">
+                                 <div class="form-field mb-5">
+                                    <input type="text" id="business-name-input" name="businessName" class="w-full premium-input" placeholder=" " required>
+                                    <label for="business-name-input" class="floating-label">Business Name</label>
+                                    <label for="business-name-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">Business Name</label>
+                                    <span class="validation-icon" id="business-name-validation-icon"></span>
+                                    <div class="validation-message" id="business-name-validation-message"></div>
+                                </div>
+                                <div class="form-field mb-5">
+                                    <input type="text" id="location-input" name="location" class="w-full premium-input" placeholder=" " required>
+                                    <label for="location-input" class="floating-label">Location (City, State)</label>
+                                    <label for="location-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">Location (City, State)</label>
+                                    <span class="validation-icon" id="location-validation-icon"></span>
+                                    <div class="validation-message" id="location-validation-message"></div>
+                                </div>
+                                <div class="form-field mb-5">
+                                    <input type="text" id="years-input" name="yearsInBusiness" class="w-full premium-input" placeholder=" " required>
+                                    <label for="years-input" class="floating-label">Years In Business</label>
+                                    <label for="years-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">Years in Business</label>
+                                    <span class="validation-icon" id="years-validation-icon"></span>
+                                    <div class="validation-message" id="years-validation-message"></div>
+                                </div>
+                                <div class="form-field mb-5">
+                                    <textarea id="achieve-input" name="achieveGoal" class="w-full" placeholder=" " required rows="3"></textarea>
+                                    <label for="achieve-input" class="floating-label">What Are Your Primary Goals?</label>
+                                    <label for="achieve-input" class="text-xs font-semibold text-gray-700 uppercase tracking-wider sr-only">What are your primary goals?</label>
+                                    <div class="validation-message" id="achieve-validation-message"></div>
+                                </div>
+                                                                 <div class="text-sm text-center text-red-600 min-h-[1rem]" id="step-2-message"></div>
+                                                                   <button type="button" id="back-to-step-1" class="w-full inline-flex justify-center items-center px-6 py-3 text-sm text-gray-700 hover:text-black transition duration-150 ease-in-out -mt-4">
+                                    <i data-feather="arrow-left" class="mr-2 h-4 w-4"></i>Back to Contact Info
+                                </button>
+                                <button type="button" id="to-step-3" class="w-full mt-4 inline-flex justify-center items-center px-6 py-3 premium-button">
+                                    <span class="spinner hidden"></span>
+                                    <span class="button-text">Continue to Payment</span>
+                                    <i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
+                                </button>
+                            </form>
+                            
+                            <div class="mt-4 text-xs text-center text-gray-500 flex items-center justify-center">
+                                <i data-feather="lock" class="h-3 w-3 mr-1 text-gray-400"></i> Secure submission.
+                            </div>
+                            
+                            <div class="testimonial-mini">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer" class="testimonial-avatar" onerror="this.src='https://placehold.co/32x32/EAEAEA/9CA3AF?text=User'">
+                                    <div>
+                                        <div class="text-sm font-semibold">Michael Thompson</div>
+                                        <div class="testimonial-stars">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-600">"Get Growth Media transformed our online presence. Their streamlined process made everything simple, and the results speak for themselves!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Payment -->
+                        <div class="checkout-step-pane" id="step-3">
+                            <h1 class="text-2xl font-bold mb-2 tracking-tight text-gray-800 section-title pt-8">Secure Payment</h1>
+                            <p class="text-gray-600 mb-8 text-sm">Complete your order. All transactions are secure.</p>
+                            
+                            <div class="satisfaction-guarantee mb-4">
+                                <i class="fa-solid fa-badge-check"></i>
+                                <div>
+                                    <div class="text-sm font-semibold">100% Satisfaction Guarantee</div>
+                                    <div class="text-xs text-gray-600">Not satisfied? Get a full refund within 14 days, no questions asked.</div>
+                                </div>
+                            </div>
+                            
+                            <form id="payment-form" class="space-y-4">
+                                <div id="payment-element-loader" class="text-center py-8 text-gray-500">
+                                    <i data-feather="loader" class="animate-spin h-6 w-6 mx-auto mb-2"></i><br>Loading Payment Options...
+                                </div>
+                                <div id="payment-element" class="rounded-lg border border-gray-300 p-4 bg-white shadow-sm" style="display: none;">
+                                    <!-- Stripe Elements will be inserted here -->
+                                </div>
+                                <div id="payment-message" role="alert" class="text-sm text-center text-red-600 mb-2 min-h-[1rem]"></div>
+                                
+                                <div class="text-center text-xs text-gray-500 mt-2 space-y-1">
+                                    <div class="flex items-center justify-center">
+                                        <i data-feather="shield" class="h-4 w-4 mr-1 text-green-500"></i>
+                                        <span>Processed securely by <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" class="font-medium text-green-500 hover:underline">Stripe</a>.</span>
+                                    </div>
+                                    <div>We do not store your credit card details.</div>
+                                </div>
+                                
+                                <button type="button" id="back-to-step-2" class="w-full inline-flex justify-center items-center px-6 py-3 mt-2 text-sm text-gray-700 hover:text-black transition duration-150 ease-in-out">
+                                    <i data-feather="arrow-left" class="mr-2 h-4 w-4"></i>Back to Business Info
+                                </button>
+                                <button type="submit" id="submit-button" class="w-full mt-4 inline-flex justify-center items-center px-6 py-3 premium-button" disabled>
+                                    <span class="spinner hidden"></span>
+                                    <span class="button-text" id="button-text">Pay Now</span>
+                                    <i data-feather="check-circle" class="ml-2 h-4 w-4"></i>
+                                </button>
+                            </form>
+                            
+                            <div class="trust-badges mt-6">
+                                <div class="trust-badge">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <span>256-bit SSL</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <span>Secure Checkout</span>
+                                </div>
+                                <div class="trust-badge">
+                                    <i class="fa-solid fa-user-shield"></i>
+                                    <span>Privacy Protected</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                 <!-- Order Summary Sidebar -->
+         <div class="w-full md:col-span-1 order-2 md:order-2 sticky top-12">
+            <div class="glass p-6">
+                <div class="order-summary">
+                    <h3 class="section-title">Order Summary</h3>
+                    <div id="summary-placeholder" class="text-center text-gray-500 py-4">
+                        <i data-feather="loader" class="animate-spin h-5 w-5 mx-auto mb-2"></i><br>Loading details...
+                    </div>
+                    <div id="summary-content" class="summary-content-loading">
+                        <div class="summary-item border-b border-gray-200/80 pb-3 mb-3">
+                            <span id="summary-package-name" class="font-medium text-gray-700">Loading Package...</span>
+                            <span id="summary-package-price" class="font-semibold text-gray-800">Loading...</span>
+                        </div>
+                        <div id="summary-features-section" class="mb-3 hidden">
+                            <ul id="summary-features-list" class="list-none space-y-1.5 text-xs text-gray-600 pl-1">
+                                <!-- Features will be inserted here -->
+                            </ul>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span id="summary-total-price" class="font-bold text-lg text-gray-900">Loading...</span>
+                        </div>
+                    </div>
+                    <div id="summary-error" class="text-center text-red-500 py-4 text-sm hidden">
+                        Could not load order details.
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <div class="text-sm font-semibold mb-2 text-gray-700 flex items-center">
+                        <i class="fa-solid fa-star text-yellow-400 mr-1"></i>
+                        Client Reviews <span class="text-xs text-gray-500 ml-2">(243)</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-2 bg-white rounded-lg border border-gray-100 text-xs">
+                            <div class="flex items-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer" class="testimonial-avatar w-6 h-6" onerror="this.src='https://placehold.co/24x24/EAEAEA/9CA3AF?text=User'">
+                                <span class="font-medium">Sarah J.</span>
+                                <div class="testimonial-stars text-[10px]">★★★★★</div>
+                            </div>
+                            <p class="text-gray-600 mt-1">"Best investment for our small business this year!"</p>
+                        </div>
+                        <div class="p-2 bg-white rounded-lg border border-gray-100 text-xs">
+                            <div class="flex items-center gap-2">
+                                <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Customer" class="testimonial-avatar w-6 h-6" onerror="this.src='https://placehold.co/24x24/EAEAEA/9CA3AF?text=User'">
+                                <span class="font-medium">Robert W.</span>
+                                <div class="testimonial-stars text-[10px]">★★★★★</div>
+                            </div>
+                            <p class="text-gray-600 mt-1">"Fast, efficient, and amazing results. Will order again."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-xs text-gray-500 mt-4 text-center">
+                    Questions? Call us at <a href="tel:845-250-2403" class="text-green-500 font-medium hover:underline">845-250-2403</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="checkout.js"></script>
+    <script>
+/* Alignment override & placeholder safeguard */
+document.addEventListener('DOMContentLoaded',()=>{
+
+  /* Floating-label placeholders */
+  document.querySelectorAll('.premium-input').forEach(el=>{
+     if(!el.hasAttribute('placeholder')) el.setAttribute('placeholder',' ');
+  });
+
+  /* Simple hide/show navigation – no sliding */
+  window.goToStep = function(step){
+    if(step<1||step>3) return;
+    document.querySelectorAll('.checkout-step-pane.step-visible').forEach(el=>el.classList.remove('step-visible'));
+    const pane=document.getElementById(`step-${step}`);
+    if(pane) pane.classList.add('step-visible');
+    [progressStep1,progressStep2,progressStep3].forEach((el,i)=>{
+      el.classList.toggle('active',i+1===step);
+      el.classList.toggle('completed',i+1<step);
+    });
+    currentStep=step;
+    window.scrollTo(0,0);
+  };
+
+  /* Default order summary if priceId missing */
+  if(!new URLSearchParams(location.search).get('priceId') && typeof updateOrderSummary==='function'){
+     window.priceDetails = {
+       name:'Growth Package',
+       amount:9900,
+       currency:'USD',
+       recurring:false,
+       interval:null,
+       features:['AI‑optimised campaigns','Monthly report','24‑hour support']
+     };
+     updateOrderSummary();
+  }
+
+});
+    </script>
+</body>
+</html>

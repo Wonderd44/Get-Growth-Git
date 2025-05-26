@@ -1,0 +1,55 @@
+Get Growth Branding Guide
+This guide outlines the key visual and stylistic elements used across the website homepage files to ensure consistency in future development.
+
+1. Logo
+Primary Header Logo: Use the SVG logo found at https://getgrowth.media/Assets/Get-Growth-Media.svg.
+Footer Logo: An alternative logo is used in the footer, sourced from https://need-ads.com/assets/logo.svg. Confirm which is the definitive brand logo for consistent use.
+
+2. Color Palette
+The color scheme utilizes a primary accent color with neutral backgrounds and text colors.
+
+Primary Accent:
+Neon Green: #AEFF00 (Used for buttons, links hover, icons, highlights, underlines)
+Neutral Colors:
+White: #FFFFFF (Primary background, card backgrounds)
+Light Gray: #F8F8F8 / #F7F8FA (Section backgrounds, secondary backgrounds)
+Black: #000000 (Used occasionally, e.g., primary button text)
+Dark Gray: #222222 / #1A202C / #0A0A0A (Primary text, headlines)
+Medium Gray: #666666 / #667185 / #444444 (Secondary text, sub-headlines, paragraph text)
+Border Light: #E2E8F0 / #e0e0e0 / #EEEEEE (Borders for cards, sections, inputs)
+Other Colors:
+Google Blue: #4285F4 (Used for Verified Review badge background)
+
+3. Typography
+Primary Font: 'Inter' is used for the main body text, navigation, card content, and headlines. Weights used range from 300 to 800.
+Secondary Font: 'Plus Jakarta Sans' is used for footer headings and the "Quick Message" button. Weights 400, 500, 600, 700 are specified.
+Hierarchy:
+Headlines (h1, h2) are large, often bold (700-800 weight), and sometimes use negative letter-spacing.
+Sub-headlines and section titles (h3) use medium-to-bold weights (600-700).
+Paragraph text uses regular or medium weights (400-500) with good line height (around 1.6-1.75) for readability.
+
+4. Tone & Voice
+The language used across the sections suggests the following brand voice characteristics:
+
+Value-Driven: Emphasizes affordability and results ("Affordable Web Development", "Digital services that drive real growth", "best ROI").
+Transparent & Trustworthy: Highlights clear pricing, no hidden fees, no contracts, and refund availability ("Flat-Rate Fee", "No Contracts", "No Set-up Fees", "Refunds Available", "Real verified reviews").
+Professional & Expert: Uses terms like "Premium", "Expertise", "Custom branding", "Optimization", "Advanced analytics".
+Approachable & Simple: Focuses on ease of use and clear processes ("Getting Started is Easy", "We simplify the process", "Have questions?").
+Action-Oriented: Uses clear calls to action ("Schedule a Call", "Send Us a Message", "Purchase", "Subscribe").
+
+5. Component Styles
+Buttons:
+Primary: Neon green background (#AEFF00), black text, rounded corners (8px or 25px), subtle shadow, hover effect (lift, enhanced shadow).
+Secondary: White background, dark gray text, light border, rounded corners (8px), subtle shadow, hover effect (lift, darker border/text).
+Cards (Pricing, Steps, Testimonials): White background, light border, rounded corners (10px-16px), soft shadows, hover effect (lift, increased shadow, potential border highlight or top border animation).
+Navigation: Sticky header, links with neon green underline hover effect, dropdown menus with subtle animations. Mobile menu uses slide-in transition and includes icons.
+Forms: Clean input fields with light borders, focus state highlights border with neon green, clear labels.
+Icons: Often use neon green as the primary color or accent. Material Symbols Outlined and Font Awesome are used.
+Underlines: Section titles often feature a short, thick neon green underline element below them.
+
+6. Imagery & Visuals
+Logo: As mentioned above.
+Certification Badges: Google Ads and Meta Ads certification badges are displayed prominently in the mobile menu and footer.
+Illustrations/Icons: Minimal use of icons in step-by-step sections and "Why Us" section.
+Particles: The hero section uses a tsParticles background animation with subtle gray particles and neon green connecting lines on hover.
+Avatars: Testimonials use rounded avatars with a neon green border.

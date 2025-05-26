@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Get Growth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    :root {
+      --neon-green: #AEFF00;
+      --white: #FFFFFF;
+      --light-gray: #F4F7FA;
+      --black: #000000;
+      --dark-gray: #1A1A1A;
+      --medium-gray: #666666;
+      --border-light: #E2E8F0;
+      --shadow: rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    html, body {
+      background-color: var(--white);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12.5rem 2rem 4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .contact-intro {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-intro h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .contact-intro p {
+      font-size: 1.1rem;
+      color: var(--medium-gray);
+      margin-bottom: 1rem;
+    }
+
+    .contact-intro a {
+      color: var(--neon-green);
+      text-decoration: underline;
+    }
+
+    .contact-form-card {
+      flex: 1;
+      min-width: 320px;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      box-shadow: 0 15px 40px var(--shadow);
+      padding: 3.625rem 3rem 3rem; /* Add 10px top padding */
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    form .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group label {
+      position: absolute;
+      top: -0.7rem;
+      left: 1rem;
+      background: var(--white);
+      padding: 0 0.25rem;
+      font-size: 0.9rem;
+      color: var(--dark-gray);
+      font-weight: 600;
+      z-index: 1;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      font-size: 1.05rem;
+      background-color: var(--white);
+      transition: 0.3s;
+      position: relative;
+      z-index: 0;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--neon-green);
+      box-shadow: 0 0 0 4px rgba(174, 255, 0, 0.25);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .recaptcha-submit-row {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .g-recaptcha {
+      transform: scale(1);
+      transform-origin: left;
+    }
+
+    .contact-button {
+      background-color: var(--neon-green);
+      color: var(--black);
+      font-weight: 700;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(174, 255, 0, 0.25);
+    }
+
+    .contact-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(174, 255, 0, 0.35);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .contact-form-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 2.5rem 1.25rem 2rem;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .recaptcha-submit-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .g-recaptcha {
+        transform: scale(0.94);
+        transform-origin: center;
+      }
+
+      .contact-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--#include file="Header.html" -->
+  <div class="container">
+    <div class="contact-intro">
+      <h1>Contact Us</h1>
+      <p>We simplify lead generation so you can focus on growing your business.</p>
+      <p>We're always here to assist you with any of your issues, needs, or requests. Even if you’re just looking for some friendly advice — we’re happy to help.</p>
+      <p>You are under no obligation to make a purchase and we keep your personal information private.</p>
+    </div>
+
+    <div class="contact-form-card">
+      <form action="contact-us.php" method="post">
+        <div class="form-group">
+          <label for="flname">Full Name *</label>
+          <input type="text" id="flname" name="flname" required>
+        </div>
+        <div class="form-group">
+          <label for="mobile">Phone *</label>
+          <input type="tel" id="mobile" name="mobile" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="companyName">Company Name *</label>
+          <input type="text" id="companyName" name="companyName" required>
+        </div>
+        <div class="form-group">
+          <label for="companysite">Company Website *</label>
+          <input type="text" id="companysite" name="companysite" placeholder="yourcompany.com" required>
+        </div>
+        <div class="form-group">
+          <label for="hear-about">How Did You Hear About Us? *</label>
+          <select id="hear-about" name="inquiry-source" required>
+            <option disabled selected>Select one</option>
+            <option value="google">Google</option>
+            <option value="referral">Referral</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="event">Event</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group full-width">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <div class="recaptcha-submit-row">
+          <div class="g-recaptcha" data-sitekey="6Lcu6ycrAAAAAPqWPiNV6GnhWVMIKxP_qTVcSogB"></div>
+          <button type="submit" class="contact-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--#include file="Footer.html" -->
+</body>
+</html>

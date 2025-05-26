@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status - Get Growth Media</title>
+    <script src="https://js.stripe.com/v3/" async></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            box-sizing: border-box;
+            margin: 0; /* Reset default margin */
+        }
+
+        .checkout-container { /* Reusing class for consistency */
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px; /* Adjust as needed */
+            box-sizing: border-box;
+            margin-top: 20px; /* Add some margin at the top */
+            text-align: center; /* Center content */
+        }
+
+        h1 {
+            text-align: center;
+            color: #212529;
+            margin-top: 0; /* Reset default */
+            margin-bottom: 25px;
+        }
+
+        #confirmation-message p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        #return-link {
+             margin-top: 30px;
+             display: none; /* Hidden by default, shown by JS */
+        }
+         #return-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c757d; /* Grey */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+         #return-link a:hover {
+            background-color: #5a6268;
+        }
+
+        /* Style message colors based on content if needed */
+        #confirmation-message.success p { color: #28a745; } /* Green */
+        #confirmation-message.processing p { color: #ffc107; } /* Orange */
+        #confirmation-message.error p { color: #dc3545; } /* Red */
+
+    </style>
+</head>
+<body>
+    <div class="checkout-container"> <h1>Order Status</h1>
+        <div id="confirmation-message">
+            <p>Loading configuration...</p>
+            </div>
+        <div id="return-link">
+             <a href="/">Return to Homepage</a> </div>
+    </div>
+
+    <script>
+        // ---- CONFIGURATION ----
+        // !!! Ensure this matches your deployed worker URL !!!
+        const BACKEND_URL = 'https://worker.danwellington44.workers.dev';
+        // ---------------------
+
+        let stripe = null;
+
+        // --- Helper ---
+        function displayMessage(htmlContent, cssClass = '', showReturnLink = true) {
+            const messageContainer = document.getElementById('confirmation-message');
+            messageContainer.innerHTML = htmlContent;
+            messageContainer.className = cssClass; // Apply class for styling
+            if (showReturnLink) {
+                 document.getElementById('return-link').style.display = 'block';
+            }
+        }
+
+        // --- Main Logic ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            const messageContainer = document.getElementById('confirmation-message'); // Get container early for errors
+
+            try {
+                 // 1. Fetch Config to get Publishable Key <<<--- MODIFIED
+                 const configResponse = await fetch(`${BACKEND_URL}/api/config`);
+                 if (!configResponse.ok) {
+                    // Try to get error from body, otherwise use status text
+                    let errorMsg = `Failed to load configuration (${configResponse.status})`;
+                    try {
+                        const { error } = await configResponse.json();
+                        if (error) errorMsg = error;
+                    } catch (e) { /* Ignore parsing error */ }
+                    throw new Error(errorMsg);
+                 }
+                 const { publishableKey } = await configResponse.json();
+                 if (!publishableKey || !publishableKey.startsWith('pk_')) { // Basic validation
+                    throw new Error('Invalid Stripe configuration received from server.');
+                 }
+
+                 stripe = Stripe(publishableKey); // Initialize Stripe.js <<<--- Uses fetched key
+
+                 // 2. Retrieve the PaymentIntent client secret from the URL
+                 displayMessage('<p>Retrieving payment details...</p>'); // Update status
+                 const urlParams = new URLSearchParams(window.location.search);
+                 const clientSecret = urlParams.get('payment_intent_client_secret');
+
+                 if (!clientSecret) {
+                     throw new Error('Could not find payment details in URL. Please return to checkout.');
+                 }
+
+                 // 3. Retrieve the PaymentIntent status from Stripe
+                 displayMessage('<p>Checking payment status, please wait...</p>'); // Update status
+                 const { error: retrieveError, paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+                 // Handle potential errors from retrievePaymentIntent
+                 if (retrieveError) {
+                     console.error("Stripe retrievePaymentIntent error:", retrieveError);
+                     throw new Error(`Could not retrieve payment status: ${retrieveError.message}`);
+                 }
+
+                 if (!paymentIntent) {
+                     throw new Error("Could not retrieve Payment Intent information from Stripe.");
+                 }
+
+                 // 4. Inspect the PaymentIntent status and display message
+                 switch (paymentIntent.status) {
+                     case 'succeeded':
+                         displayMessage('<p>Payment successful! Thank you for your purchase.</p>', 'success');
+                         // Optional: Fetch more order details from your own backend using paymentIntent.id if needed
+                         break;
+
+                     case 'processing':
+                         displayMessage('<p>Your payment is processing. We will update you when payment is confirmed.</p>', 'processing');
+                         break;
+
+                     case 'requires_payment_method':
+                         displayMessage('<p>Payment failed. Please return to checkout and try another payment method.</p>', 'error');
+                         // Optional: Redirect back? Maybe provide link?
+                         break;
+
+                    case 'canceled':
+                         displayMessage('<p>Payment was canceled.</p>', 'error');
+                         break;
+
+                     default:
+                         displayMessage(`<p>Something went wrong (Status: ${paymentIntent.status}). Please contact support if payment was taken.</p>`, 'error');
+                         break;
+                 }
+            } catch (error) {
+                console.error("Error processing confirmation:", error);
+                // Use the helper to display the error
+                displayMessage(`<p>Error: ${error.message || 'Could not verify payment status.'}</p>`, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

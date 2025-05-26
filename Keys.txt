@@ -1,0 +1,6 @@
+gemini 1.5 flash works for text : AIzaSyDv2zCCzM5imt4hxzXCuCQer-kfv0v0GXA
+
+OPENAPI works for text and images : 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
+
+google Gemini 1.5 words for text : AIzaSyAB_Dhi_eqDEp-3Dpt7QoGhQ7q_-NCtuMY
+
