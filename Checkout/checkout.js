@@ -763,6 +763,32 @@ if (step1NextButton && step1Form) {
         console.log("Collected data after Step 1:", collectedData);
         trackEvent('checkout_step_complete', { step: 1, step_name: getStepName(1) });
 
+        // Send Step 1 data to the server for email notification
+        const step1DataPayload = {
+            step: 1,
+            data: {
+                firstName: collectedData.firstName,
+                lastName: collectedData.lastName,
+                email: collectedData.email,
+                phone: collectedData.phone
+            }
+        };
+        const formData = new URLSearchParams();
+        formData.append('jsonData', JSON.stringify(step1DataPayload));
+
+        fetch('checkout/send_checkout_notification.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formData.toString()
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Step 1 Email Notification Result:', result);
+        })
+        .catch(error => {
+            console.error('Error sending Step 1 email notification:', error);
+        });
+
         // Simulate async operation (e.g., saving data) then navigate
         setTimeout(() => {
             console.log("Transitioning to Step 2.");
@@ -796,6 +822,32 @@ if (step2NextButton && step2Form) {
         };
         console.log("Collected data after Step 2:", collectedData);
         trackEvent('checkout_step_complete', { step: 2, step_name: getStepName(2) });
+
+        // Send Step 2 data to the server for email notification
+        const step2DataPayload = {
+            step: 2,
+            data: {
+                businessName: collectedData.businessName,
+                location: collectedData.location,
+                yearsInBusiness: collectedData.yearsInBusiness,
+                achieveGoal: collectedData.achieveGoal
+            }
+        };
+        const formDataStep2 = new URLSearchParams();
+        formDataStep2.append('jsonData', JSON.stringify(step2DataPayload));
+
+        fetch('checkout/send_checkout_notification.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formDataStep2.toString()
+        })
+        .then(response => response.json())
+        .then(result => {
+            console.log('Step 2 Email Notification Result:', result);
+        })
+        .catch(error => {
+            console.error('Error sending Step 2 email notification:', error);
+        });
 
         try {
             const { priceId, email } = collectedData;
