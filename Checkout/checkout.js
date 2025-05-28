@@ -764,6 +764,7 @@ if (step1NextButton && step1Form) {
         trackEvent('checkout_step_complete', { step: 1, step_name: getStepName(1) });
 
         // Send Step 1 data to the server for email notification
+        console.log("[DEBUG] Checkpoint 1.1: Preparing to send Step 1 email notification.");
         const step1DataPayload = {
             step: 1,
             data: {
@@ -776,6 +777,7 @@ if (step1NextButton && step1Form) {
         const formData = new URLSearchParams();
         formData.append('jsonData', JSON.stringify(step1DataPayload));
 
+        console.log("[DEBUG] Checkpoint 1.2: formData for Step 1 prepared. Initiating fetch.", formData.toString());
         fetch('checkout/send_checkout_notification.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -824,6 +826,7 @@ if (step2NextButton && step2Form) {
         trackEvent('checkout_step_complete', { step: 2, step_name: getStepName(2) });
 
         // Send Step 2 data to the server for email notification
+        console.log("[DEBUG] Checkpoint 2.1: Preparing to send Step 2 email notification.");
         const step2DataPayload = {
             step: 2,
             data: {
@@ -836,6 +839,7 @@ if (step2NextButton && step2Form) {
         const formDataStep2 = new URLSearchParams();
         formDataStep2.append('jsonData', JSON.stringify(step2DataPayload));
 
+        console.log("[DEBUG] Checkpoint 2.2: formData for Step 2 prepared. Initiating fetch.", formDataStep2.toString());
         fetch('checkout/send_checkout_notification.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
